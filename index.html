@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jonah Bernard</title>
+    <style>
+        :root {
+            --text-color: #000000;
+            --link-color: #333333;
+            --brand-color: #287b5a;
+            /* Teal/green for the center header name */
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Georgia, 'Times New Roman', Times, serif;
+            color: var(--text-color);
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            background-color: #ffffff;
+        }
+
+        header {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 30px 40px;
+            font-size: 15px;
+            position: sticky;
+            top: 0;
+            background-color: #ffffff;
+            z-index: 100;
+        }
+
+        .nav-group {
+            display: flex;
+            gap: 40px;
+        }
+
+        .nav-group a {
+            text-decoration: none;
+            color: var(--link-color);
+        }
+
+        .nav-group a:hover {
+            text-decoration: underline;
+        }
+
+        .header-name {
+            font-size: 20px;
+            color: var(--brand-color);
+            margin: 0 60px;
+            text-decoration: none;
+        }
+
+        main {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        #hero {
+            min-height: calc(100vh - 80px);
+            /* Fill the screen minus header */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding-bottom: 10vh;
+            box-sizing: border-box;
+        }
+
+        #about {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 80px 40px;
+            box-sizing: border-box;
+            background-color: #fafafa;
+            /* Slight off-white to distinguish the section */
+        }
+
+        .about-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            max-width: 1100px;
+            width: 100%;
+            gap: 60px;
+        }
+
+        .about-text {
+            flex: 1;
+            font-size: 17px;
+            line-height: 1.8;
+            color: #222;
+        }
+
+        .about-image {
+            width: 300px;
+            height: 350px;
+            background-color: #eaeaea;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #888;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .about-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        h1 {
+            font-size: 42px;
+            font-weight: normal;
+            margin: 0 0 12px 0;
+        }
+
+        .email {
+            font-size: 20px;
+            margin: 0 0 16px 0;
+        }
+
+        .quote {
+            font-size: 20px;
+            margin: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="nav-group">
+            <a href="open-source.html">Open-Source Contributions</a>
+            <a href="#about">About</a>
+        </div>
+        <a href="/" class="header-name">Jonah Bernard</a>
+        <div class="nav-group">
+            <a href="#resume">Resume</a>
+            <a href="#hobbies">Hobbies</a>
+            <a href="blog.html">Blog</a>
+        </div>
+    </header>
+
+    <main>
+        <section id="hero">
+            <h1>Jonah Bernard</h1>
+            <p class="email">jonah@thebernards.org</p>
+            <p class="quote">"Life without impact is a life unlived."</p>
+        </section>
+
+        <section id="about">
+            <div class="about-container">
+                <div class="about-text">
+                    <p>Hi! I'm Jonah Bernard. I'm a senior at Cornell studying computer science. I am interesting in the
+                        world and in computing systems. I am currently exploring LLM inference with a focus on
+                        optimizing software for different hardware backends.</p>
+                </div>
+
+                <div class="about-image">
+                    <!-- Replace the src with your actual image path, e.g., "profile.jpg" -->
+                    <img src="IMG_0467.jpg" alt="Jonah Bernard"
+                        onerror="this.style.display='none'; this.parentNode.innerHTML='Your Photo Here';">
+                </div>
+
+                <div class="about-text">
+                    <p>I am interested in building technology systems that advance civilization and make it easier for
+                        humans to live. Please reach out to me if you want to chat!</p>
+                </div>
+            </div>
+        </section>
+    </main>
+</body>
+
+</html>

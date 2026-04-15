@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Open-Source Contributions - Jonah Bernard</title>
+    <style>
+        :root {
+            --text-color: #000000;
+            --link-color: #333333;
+            --brand-color: #287b5a;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Georgia, 'Times New Roman', Times, serif;
+            color: var(--text-color);
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            background-color: #ffffff;
+        }
+
+        header {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 30px 40px;
+            font-size: 15px;
+            position: sticky;
+            top: 0;
+            background-color: #ffffff;
+            z-index: 100;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .nav-group {
+            display: flex;
+            gap: 40px;
+        }
+
+        .nav-group a {
+            text-decoration: none;
+            color: var(--link-color);
+        }
+
+        .nav-group a:hover {
+            text-decoration: underline;
+        }
+
+        .header-name {
+            font-size: 20px;
+            color: var(--brand-color);
+            margin: 0 60px;
+            text-decoration: none;
+        }
+
+        main {
+            padding: 60px 40px;
+            max-width: 1000px;
+            margin: 0 auto;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        h1 {
+            font-size: 36px;
+            font-weight: normal;
+            margin: 0 0 40px 0;
+            text-align: center;
+        }
+
+        h2 {
+            font-size: 24px;
+            font-weight: normal;
+            margin: 50px 0 20px 0;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #eaeaea;
+        }
+
+        h3 {
+            font-size: 20px;
+            font-weight: normal;
+            margin: 30px 0 15px 0;
+            color: #444;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 20px;
+        }
+
+        .square {
+            aspect-ratio: 1;
+            background-color: #fafafa;
+            border: 1px solid #eaeaea;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            color: #222;
+            transition: all 0.2s ease;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .square:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+            background-color: #ffffff;
+            border-color: #ddd;
+        }
+
+        .square-img {
+            width: 100%;
+            height: 140px;
+            object-fit: cover;
+            border-radius: 6px;
+            margin-bottom: 15px;
+        }
+
+        .square-title {
+            font-size: 20px;
+            margin-bottom: 8px;
+        }
+
+        .square-desc {
+            font-size: 15px;
+            color: #666;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="nav-group">
+            <a href="open-source.html">Open-Source Contributions</a>
+            <a href="/#about">About</a>
+        </div>
+        <a href="/" class="header-name">Jonah Bernard</a>
+        <div class="nav-group">
+            <a href="/#resume">Resume</a>
+            <a href="/#hobbies">Hobbies</a>
+            <a href="blog.html">Blog</a>
+        </div>
+    </header>
+
+    <main>
+        <h1>Open-Source Contributions</h1>
+
+        <h2>LLM Infra (PRs & Issues)</h2>
+
+        <h3>Apple Silicon Backend</h3>
+        <div class="grid">
+            <a href="details.html?id=infra-apple-1" class="square">
+                <img src="Apple Logo.jpg" alt="SGLang and Apple" class="square-img">
+                <div class="square-title">Roadmap: Apple Device Support</div>
+                <div class="square-desc">Issue #19137</div>
+            </a>
+            <a href="details.html?id=infra-apple-2" class="square">
+                <div class="square-title">PR #2</div>
+                <div class="square-desc">Apple Silicon Backend contribution</div>
+            </a>
+            <a href="details.html?id=infra-apple-3" class="square">
+                <div class="square-title">Issue #3</div>
+                <div class="square-desc">Apple Silicon Backend contribution</div>
+            </a>
+        </div>
+
+        <h3>Miscellaneous</h3>
+        <div class="grid">
+            <a href="details.html?id=infra-misc-1" class="square">
+                <div class="square-title">PR #4</div>
+                <div class="square-desc">Miscellaneous contribution</div>
+            </a>
+            <a href="details.html?id=infra-misc-2" class="square">
+                <div class="square-title">PR #5</div>
+                <div class="square-desc">Miscellaneous contribution</div>
+            </a>
+            <a href="details.html?id=infra-misc-3" class="square">
+                <div class="square-title">Issue #6</div>
+                <div class="square-desc">Miscellaneous contribution</div>
+            </a>
+        </div>
+
+        <h2>Side Projects</h2>
+        <div class="grid">
+            <a href="details.html?id=project-1" class="square">
+                <div class="square-title">Project 1</div>
+                <div class="square-desc">Description of side project</div>
+            </a>
+            <a href="details.html?id=project-2" class="square">
+                <div class="square-title">Project 2</div>
+                <div class="square-desc">Description of side project</div>
+            </a>
+            <a href="details.html?id=project-3" class="square">
+                <div class="square-title">Project 3</div>
+                <div class="square-desc">Description of side project</div>
+            </a>
+            <a href="details.html?id=project-4" class="square">
+                <div class="square-title">Project 4</div>
+                <div class="square-desc">Description of side project</div>
+            </a>
+            <a href="details.html?id=project-5" class="square">
+                <div class="square-title">Project 5</div>
+                <div class="square-desc">Description of side project</div>
+            </a>
+            <a href="details.html?id=project-6" class="square">
+                <div class="square-title">Project 6</div>
+                <div class="square-desc">Description of side project</div>
+            </a>
+        </div>
+    </main>
+</body>
+
+</html>

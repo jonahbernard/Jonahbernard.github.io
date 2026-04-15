@@ -1,0 +1,844 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SGLang Scheduler - Jonah Bernard</title>
+    <style>
+        :root {
+            --text-color: #000000;
+            --link-color: #333333;
+            --brand-color: #287b5a;
+            --bg-color: #ffffff;
+            --code-bg: #f6f8fa;
+            --border-color: #eaeaea;
+            --var-bg: #fafafa;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Georgia, 'Times New Roman', Times, serif;
+            color: var(--text-color);
+            background-color: var(--bg-color);
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        header {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 30px 40px;
+            font-size: 15px;
+            position: sticky;
+            top: 0;
+            background-color: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(5px);
+            z-index: 100;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .nav-group {
+            display: flex;
+            gap: 40px;
+        }
+
+        .nav-group a {
+            text-decoration: none;
+            color: var(--link-color);
+        }
+
+        .nav-group a:hover {
+            text-decoration: underline;
+        }
+
+        .header-name {
+            font-size: 20px;
+            color: var(--brand-color);
+            margin: 0 60px;
+            text-decoration: none;
+        }
+
+        .blog-header {
+            text-align: center;
+            padding: 40px 20px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .blog-header h1 {
+            font-size: 36px;
+            font-weight: normal;
+            margin: 0 0 10px 0;
+        }
+
+        .blog-header p {
+            color: #666;
+            font-size: 18px;
+            margin: 0;
+        }
+
+        /* DIAGRAM STYLES */
+        .diagram-wrapper {
+            position: sticky;
+            top: 76px;
+            /* Sticks right below the header */
+            z-index: 90;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(5px);
+            border-bottom: 1px solid var(--border-color);
+            padding: 15px 20px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.03);
+            display: flex;
+            justify-content: center;
+        }
+
+        .arch-diagram {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 30px;
+            max-width: 800px;
+        }
+
+        .arch-box {
+            border: 2px solid var(--border-color);
+            border-radius: 8px;
+            padding: 10px;
+            width: 140px;
+            height: 70px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background: #ffffff;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.02);
+        }
+
+        .arch-box.highlight {
+            border-color: #d73a49;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(215, 58, 73, 0.15);
+        }
+
+        .arch-box-title {
+            font-size: 13px;
+            font-weight: bold;
+            color: #555;
+            margin-bottom: 8px;
+            text-align: center;
+            transition: color 0.3s ease;
+        }
+
+        .arch-box.highlight .arch-box-title {
+            color: #d73a49;
+        }
+
+        .arch-items {
+            display: flex;
+            gap: 6px;
+            flex-wrap: wrap;
+            justify-content: center;
+            width: 100%;
+            min-height: 20px;
+        }
+
+        .arch-item {
+            width: 12px;
+            height: 12px;
+            opacity: 0;
+            transform: scale(0);
+            animation: popIn 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+        }
+
+        @keyframes popIn {
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .arch-item.req {
+            background-color: #d73a49;
+            border-radius: 3px;
+        }
+
+        .arch-item.block {
+            background-color: #032f62;
+            border-radius: 50%;
+        }
+
+        .arch-arrow {
+            font-size: 20px;
+            color: #ccc;
+            font-weight: bold;
+            transition: color 0.3s ease;
+        }
+
+        .arch-arrow.active {
+            color: #d73a49;
+        }
+
+        /* END DIAGRAM STYLES */
+
+        .container {
+            display: flex;
+            flex: 1;
+            position: relative;
+        }
+
+        .left-panel {
+            flex: 1.2;
+            padding: 40px;
+            border-right: 1px solid var(--border-color);
+            min-width: 300px;
+            padding-bottom: 80vh;
+            /* Allow plenty of scroll space */
+        }
+
+        .middle-panel {
+            flex: 1.8;
+            background-color: var(--code-bg);
+            box-sizing: border-box;
+            min-width: 400px;
+
+            /* Sticky Code Window */
+            position: sticky;
+            top: 210px;
+            height: calc(100vh - 230px);
+            display: flex;
+            flex-direction: row;
+            overflow: hidden;
+            border-left: 1px solid var(--border-color);
+            border-right: 1px solid var(--border-color);
+        }
+
+        .code-viewport {
+            flex: 1;
+            overflow-y: auto;
+            padding: 20px;
+            scroll-behavior: smooth;
+            position: relative;
+        }
+
+        /* Hide scrollbar for the viewport for a cleaner look */
+        .code-viewport::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .code-viewport::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        .code-viewport::-webkit-scrollbar-thumb {
+            background: #d1d5da;
+            border-radius: 3px;
+        }
+
+        .minimap-container {
+            width: 30px;
+            background-color: #f0f3f6;
+            border-left: 1px solid var(--border-color);
+            position: relative;
+        }
+
+        .minimap-indicator {
+            position: absolute;
+            width: 100%;
+            background-color: rgba(40, 123, 90, 0.15);
+            /* Brand color light */
+            border-left: 3px solid var(--brand-color);
+            transition: top 0.4s ease, height 0.4s ease;
+            box-sizing: border-box;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+        }
+
+        .right-panel {
+            flex: 1;
+            background-color: var(--var-bg);
+            min-width: 250px;
+        }
+
+        .sticky-content {
+            position: sticky;
+            top: 210px;
+            padding: 40px;
+            box-sizing: border-box;
+        }
+
+        .sticky-content h3 {
+            margin-top: 0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            font-size: 14px;
+            color: #666;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border-bottom: 2px solid var(--border-color);
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+
+        .var-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
+            border-bottom: 1px solid #eaeaea;
+            font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+            font-size: 13px;
+        }
+
+        .var-name {
+            color: #d73a49;
+            font-weight: bold;
+        }
+
+        .var-value {
+            color: #032f62;
+            background-color: #eef3f8;
+            padding: 2px 6px;
+            border-radius: 4px;
+        }
+
+        .var-row.changed .var-value {
+            animation: flash 1.5s ease;
+        }
+
+        @keyframes flash {
+            0% {
+                background-color: #ffdf70;
+                color: #000;
+            }
+
+            100% {
+                background-color: #eef3f8;
+                color: #032f62;
+            }
+        }
+
+        .expl-block {
+            margin-bottom: 80px;
+            opacity: 0.3;
+            transition: opacity 0.4s ease, transform 0.4s ease;
+            font-size: 18px;
+            line-height: 1.6;
+            transform: translateX(-10px);
+        }
+
+        .expl-block.active {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .expl-block h2 {
+            font-size: 24px;
+            font-weight: bold;
+            margin-top: 0;
+            color: var(--brand-color);
+        }
+
+        .code-chunk {
+            opacity: 0.3;
+            transition: opacity 0.4s ease, background-color 0.4s ease;
+            padding: 12px 16px;
+            border-radius: 6px;
+            margin-bottom: 4px;
+            border-left: 3px solid transparent;
+        }
+
+        .code-chunk.active {
+            opacity: 1;
+            background-color: #ffffff;
+            border-left-color: var(--brand-color);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.03);
+        }
+
+        pre {
+            margin: 0;
+            font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+            font-size: 14px;
+            line-height: 1.5;
+            color: #24292e;
+            white-space: pre-wrap;
+        }
+
+        .keyword {
+            color: #d73a49;
+        }
+
+        .string {
+            color: #032f62;
+        }
+
+        .comment {
+            color: #6a737d;
+        }
+
+        .function {
+            color: #6f42c1;
+        }
+
+        @media (max-width: 1100px) {
+            .container {
+                flex-direction: column;
+            }
+
+            .middle-panel {
+                position: relative;
+                top: 0;
+                height: 500px;
+                border-left: none;
+                border-top: 1px solid var(--border-color);
+                min-width: 100%;
+            }
+
+            .right-panel {
+                border-left: none;
+                border-top: 1px solid var(--border-color);
+                min-width: 100%;
+            }
+
+            .left-panel {
+                border-right: none;
+                padding-bottom: 40px;
+                min-width: 100%;
+            }
+
+            .expl-block {
+                opacity: 1;
+                margin-bottom: 40px;
+                transform: none;
+            }
+
+            .sticky-content {
+                position: relative;
+                top: 0;
+                padding: 20px 40px;
+            }
+
+            .diagram-wrapper {
+                position: relative;
+                top: 0;
+            }
+        }
+    </style>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/toolbar/prism-toolbar.min.css" rel="stylesheet" />
+    <style>
+        /* Force code blocks in explanation panel to wrap instead of overflowing */
+        .expl-block pre[class*="language-"],
+        .expl-block code[class*="language-"] {
+            white-space: pre-wrap !important;
+            word-wrap: break-word !important;
+            word-break: break-all !important;
+            overflow-wrap: anywhere !important;
+            overflow-x: hidden !important;
+            border-radius: 6px;
+        }
+        
+        /* Subtle styling for the copy button */
+        .prism-copy-button {
+            opacity: 0.8;
+            transition: opacity 0.2s;
+        }
+        .prism-copy-button:hover {
+            opacity: 1;
+        }
+
+        /* GitHub-style inline backticks */
+        .expl-block code:not([class*="language-"]) {
+            background-color: rgba(27,31,35,0.05);
+            border-radius: 6px;
+            padding: 0.2em 0.4em;
+            font-size: 85%;
+            font-family: ui-monospace, SFMono-Regular, SF Mono, Menlo, Consolas, Liberation Mono, monospace;
+            color: #24292e;
+            white-space: pre-wrap;
+            word-break: break-word;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="nav-group">
+            <a href="open-source.html">Open-Source Contributions</a>
+            <a href="/#about">About</a>
+        </div>
+        <a href="/" class="header-name">Jonah Bernard</a>
+        <div class="nav-group">
+            <a href="/#resume">Resume</a>
+            <a href="/#hobbies">Hobbies</a>
+            <a href="blog.html">Blog</a>
+        </div>
+    </header>
+
+    <div class="blog-header">
+        <h1>Understanding the SGLang Scheduler</h1>
+        <p>A deep dive into how SGLang efficiently schedules tensor parallel GPU workers and orchestrates request
+            handling.</p>
+    </div>
+
+    <!-- INTERACTIVE ARCHITECTURE DIAGRAM -->
+    <div class="diagram-wrapper">
+        <div class="arch-diagram">
+            <div class="arch-box" id="box-queue">
+                <div class="arch-box-title">Waiting Queue</div>
+                <div class="arch-items" id="items-queue"></div>
+            </div>
+            <div class="arch-arrow" id="arrow-1">→</div>
+            <div class="arch-box" id="box-cache">
+                <div class="arch-box-title">Radix Cache</div>
+                <div class="arch-items" id="items-cache"></div>
+            </div>
+            <div class="arch-arrow" id="arrow-2">→</div>
+            <div class="arch-box" id="box-workers">
+                <div class="arch-box-title">GPU Workers</div>
+                <div class="arch-items" id="items-workers"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="left-panel" id="explanation-container">
+            <div style="padding: 40px; color: #666; text-align: center; font-style: italic;">Loading blog content...</div>
+        </div>
+
+        <!-- STICKY CODE WINDOW WITH MINIMAP -->
+        <div class="middle-panel">
+            <div class="code-viewport" id="code-viewport">
+                <div style="padding: 20px; color: #666; text-align: center; font-style: italic;">Loading code from
+                    scheduler.py...</div>
+            </div>
+
+            <!-- VSCode Style Minimap -->
+            <div class="minimap-container">
+                <div class="minimap-indicator" id="minimap-indicator" style="display: none;"></div>
+            </div>
+        </div>
+
+        <div class="right-panel">
+            <div class="sticky-content">
+                <h3>Debugger State</h3>
+                <div id="variables-container">
+                    <div style="color: #888; font-style: italic; font-size: 13px;">Scroll to see local variables...
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-bash.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/toolbar/prism-toolbar.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/copy-to-clipboard/prism-copy-to-clipboard.min.js"></script>
+    <script src="blog_content.js"></script>
+    <script>
+        // 1. Configuration for file chunks
+        // You can easily update this config as you write your blog post!
+        const codeChunksConfig = [
+            { id: 'code-entry', start: 312, end: 384 },
+            { id: 'init-scheduler', start: 384, end: 459 },
+            { id: 'send-init-info-to-parent-process', start: 42, end: 58 },
+            { id: 'event-loop', start: 1340, end: 1350 },
+            { id: 'dispatch_event_loop', start: 3578, end: 3604 },
+            { id: 'event_loop_normal', start: 1352, end: 1378 },
+            { id: 'recv_requests', start: 1473, end: 1608 },
+            { id: 'process_input_requests', start: 1639, end: 1662 },
+            { id: '_request_dispatcher', start: 1639, end: 1662 }, // This is not in scheduler.py
+            { id: 'cancel_bubble_timer', start: 24, end: 35 },  // This is not in scheduler.py
+            { id: 'get_next_batch_to_run', start: 2239, end: 2346 },
+            { id: '_abort_on_waiting_timeout', start: 2239, end: 2346 },
+            { id: '_abort_on_running_timeout', start: 2239, end: 2346 },
+            { id: 'stash_chunked_request', start: 2239, end: 2346 }, 
+            { id: 'self.last_batch.filter_batch', start: 2239, end: 2346 }, 
+            { id: 'self.running_batch.merge_batch(self.last_batch)', start: 2239, end: 2346 },
+            { id: 'self.running_batch.filter_batch()', start: 2239, end: 2346 },
+            { id: 'new_batch = self.get_new_batch_prefill()', start: 2239, end: 2346 },
+            { id: 'new_batch is not None', start: 2239, end: 2346 },
+            { id: 'new_batch is None', start: 2239, end: 2346 },
+            { id: 'self.running_batch is not empty and not self.running_batch.is_prefill_only', start: 2239, end: 2346 },
+            { id: 'self.running_batch = self.update_running_batch(self.running_batch)', start: 2239, end: 2346 },
+            { id: 'run_batch', start: 2691, end: 2839 },
+            //------------------------------start normal run batch-------------------------------------------------------------------------
+            { id: 'run_batch no overlap branch', start: 2772, end: 2783 },
+            { id: 'no overlap forward batch generation', start: 2772, end: 2783 }, // This is not in scheduler.py
+            { id: 'no overlap update_cache_from_scheduler', start: 2772, end: 2783 }, // This is not in scheduler.py
+            //------------------------------end normal run batch-------------------------------------------------------------------------
+            { id: 'process_batch_result', start: 2866, end: 2887 },
+            //------------------------------start normal process batch result-------------------------------------------------------------------------
+            { id: 'self.process_batch_result_prefill(batch, result)', start: 123, end: 332 }, // This is not in scheduler.py. It is in scheduler_output_processor_mixin.py
+
+            //------------------------------start normal process batch result prefill-------------------------------------------------------------------------
+            { id: 'self.process_batch_result_prefill(batch, result)_part1', start: 128, end: 147 }, // This is not in scheduler.py. It is in scheduler_output_processor_mixin.py
+            { id: 'self.process_batch_result_prefill(batch, result)_part2', start: 148, end: 173 }, // This is not in scheduler.py. It is in scheduler_output_processor_mixin.py
+            { id: 'self.process_batch_result_prefill(batch, result)_part3', start: 175, end: 199 }, // This is not in scheduler.py. It is in scheduler_output_processor_mixin.py
+            { id: 'self.process_batch_result_prefill(batch, result)_part4', start: 200, end: 219 }, // This is not in scheduler.py. It is in scheduler_output_processor_mixin.py
+            { id: 'self.process_batch_result_prefill(batch, result)_part5', start: 221, end: 249 }, // This is not in scheduler.py. It is in scheduler_output_processor_mixin.py
+            { id: 'self.process_batch_result_prefill(batch, result)_part6', start: 250, end: 278 }, // This is not in scheduler.py. It is in scheduler_output_processor_mixin.py
+            { id: 'self.process_batch_result_prefill(batch, result)_part7', start: 326, end: 332 }, // This is not in scheduler.py. It is in scheduler_output_processor_mixin.py
+             //------------------------------end normal process batch result prefill-------------------------------------------------------------------------
+
+            { id: 'self.process_batch_result_decode(batch, result)', start: 374, end: 528 }, // This is not in scheduler.py. It is in scheduler_output_processor_mixin.py
+
+            //------------------------------start normal process batch result decode-------------------------------------------------------------------------
+
+            { id: 'self.process_batch_result_decode(batch, result)_part1', start: 374, end: 411 }, // This is not in scheduler.py. It is in scheduler_output_processor_mixin.py
+            { id: 'self.process_batch_result_decode(batch, result)_part2', start: 412, end: 425 }, // This is not in scheduler.py. It is in scheduler_output_processor_mixin.py
+            { id: 'self.process_batch_result_decode(batch, result)_part3', start: 426, end: 455 }, // This is not in scheduler.py. It is in scheduler_output_processor_mixin.py
+            { id: 'self.process_batch_result_decode(batch, result)_part4', start: 464, end: 495 }, // This is not in scheduler.py. It is in scheduler_output_processor_mixin.py
+            { id: 'self.process_batch_result_decode(batch, result)_part5', start: 496, end: 528 }, // This is not in scheduler.py. It is in scheduler_output_processor_mixin.py
+
+             //------------------------------end normal process batch result decode-------------------------------------------------------------------------
+
+            //------------------------------end normal process batch result-------------------------------------------------------------------------
+            { id: 'on_idle', start: 24, end: 35 }, // This is not in scheduler.py
+            { id: 'self_check_during_busy', start: 24, end: 35 }, // This is not in scheduler.py
+            //------------------------------start overlap run batch-------------------------------------------------------------------------
+            { id: 'self.record_batch_in_overlap(model_worker_batch)', start: 2691, end: 2839 },
+            { id: 'model_worker_batch.sampling_info.copy_for_forward()', start: 2691, end: 2839 },
+            { id: 'future_indices = self.future_map.alloc_future_indices(bs)', start: 2691, end: 2839 },
+            { id: 'forward_batch_generation', start: 2691, end: 2839 },
+            { id: 'self.future_map.store_to_map(future_indices, batch_result)', start: 2691, end: 2839 },
+            { id: 'batch_result.copy_to_cpu(return_logprob=batch.return_logprob)', start: 2691, end: 2839 },
+            //------------------------------end overlap run batch------------------------------------------------------------------------- 
+        ];
+
+        document.addEventListener('DOMContentLoaded', async () => {
+            const varsContainer = document.getElementById('variables-container');
+            const codeViewport = document.getElementById('code-viewport');
+            const minimapIndicator = document.getElementById('minimap-indicator');
+            let currentVars = {};
+            let debuggerStates = {};
+
+            try {
+                const [codeRes, statesRes] = await Promise.all([
+                    fetch('scheduler.py'),
+                    fetch('debugger_states.json').catch(() => ({ ok: false }))
+                ]);
+
+                if (!codeRes.ok) throw new Error('Network error');
+                if (statesRes.ok) {
+                    debuggerStates = await statesRes.json();
+                }
+
+                if (typeof blogContent !== 'undefined') {
+                    const explanationContainer = document.getElementById('explanation-container');
+                    explanationContainer.innerHTML = '';
+                    
+                    blogContent.forEach((block) => {
+                        const div = document.createElement('div');
+                        div.className = 'expl-block';
+                        div.setAttribute('data-target', block.target);
+                        div.setAttribute('data-diagram-state', block.diagram_state || 'init');
+                        
+                        const h2 = document.createElement('h2');
+                        h2.textContent = block.title;
+                        div.appendChild(h2);
+                        
+                        const contentDiv = document.createElement('div');
+                        // Replace markdown backticks with <code> tags
+                        const formattedContent = block.content.replace(/`([^`]+)`/g, '<code>$1</code>');
+                        contentDiv.innerHTML = formattedContent;
+                        div.appendChild(contentDiv);
+                        
+                        explanationContainer.appendChild(div);
+                    });
+                }
+
+                const text = await codeRes.text();
+                const lines = text.split('\n');
+
+                codeViewport.innerHTML = '';
+                let currentLine = 1;
+
+                function createChunkDiv(id, chunkText) {
+                    if (!chunkText.trim() && !id) return;
+                    const div = document.createElement('div');
+                    div.className = 'code-chunk';
+                    if (id) div.id = id;
+                    else div.style.opacity = '0.3';
+
+                    const pre = document.createElement('pre');
+                    const code = document.createElement('code');
+                    code.className = 'language-python';
+                    code.textContent = chunkText;
+
+                    pre.appendChild(code);
+                    div.appendChild(pre);
+                    codeViewport.appendChild(div);
+                }
+
+                for (const config of codeChunksConfig) {
+                    if (config.start > currentLine) {
+                        const gapLines = lines.slice(currentLine - 1, config.start - 1);
+                        createChunkDiv('', gapLines.join('\n'));
+                    }
+                    const chunkLines = lines.slice(config.start - 1, config.end);
+                    createChunkDiv(config.id, chunkLines.join('\n'));
+                    currentLine = config.end + 1;
+                }
+
+                if (currentLine <= lines.length) {
+                    const tailLines = lines.slice(currentLine - 1);
+                    createChunkDiv('', tailLines.join('\n'));
+                }
+
+                if (window.Prism) Prism.highlightAll();
+                minimapIndicator.style.display = 'block';
+            } catch (e) {
+                console.error(e);
+                codeViewport.innerHTML = '<div style="padding: 20px; color: red;">Failed to load scheduler.py. (Are you running this via a local server? Browsers block file:// fetches!)</div>';
+                return;
+            }
+
+            const codeChunks = document.querySelectorAll('.code-chunk');
+
+            const archStates = {
+                'init': { queue: [], cache: [], workers: [], highlight: [] },
+                'queueing': { queue: ['req', 'req', 'req'], cache: [], workers: [], highlight: ['queue'] },
+                'caching': { queue: ['req', 'req'], cache: ['block', 'block', 'block', 'block', 'block'], workers: [], highlight: ['cache'] },
+                'forward': { queue: ['req'], cache: ['block', 'block', 'block'], workers: ['req', 'req'], highlight: ['workers'] }
+            };
+
+            function updateDiagram(stateName) {
+                const state = archStates[stateName] || archStates['init'];
+                const qEl = document.getElementById('items-queue');
+                const cEl = document.getElementById('items-cache');
+                const wEl = document.getElementById('items-workers');
+
+                const qHTML = state.queue.map(type => `<div class="arch-item ${type}"></div>`).join('');
+                if (qEl.innerHTML !== qHTML) qEl.innerHTML = qHTML;
+
+                const cHTML = state.cache.map(type => `<div class="arch-item ${type}"></div>`).join('');
+                if (cEl.innerHTML !== cHTML) cEl.innerHTML = cHTML;
+
+                const wHTML = state.workers.map(type => `<div class="arch-item ${type}"></div>`).join('');
+                if (wEl.innerHTML !== wHTML) wEl.innerHTML = wHTML;
+
+                document.querySelectorAll('.arch-box').forEach(box => box.classList.remove('highlight'));
+                document.querySelectorAll('.arch-arrow').forEach(arrow => arrow.classList.remove('active'));
+
+                state.highlight.forEach(h => {
+                    const el = document.getElementById(`box-${h}`);
+                    if (el) el.classList.add('highlight');
+
+                    if (h === 'cache') {
+                        document.getElementById('arrow-1').classList.add('active');
+                    } else if (h === 'workers') {
+                        document.getElementById('arrow-1').classList.add('active');
+                        document.getElementById('arrow-2').classList.add('active');
+                    }
+                });
+            }
+
+            function updateMinimap(targetElement) {
+                if (!targetElement) return;
+
+                // Ensure calculations happen after any layout shifts
+                requestAnimationFrame(() => {
+                    const totalHeight = codeViewport.scrollHeight;
+                    const topPos = targetElement.offsetTop;
+                    const height = targetElement.offsetHeight;
+
+                    const pctTop = (topPos / totalHeight) * 100;
+                    const pctHeight = (height / totalHeight) * 100;
+
+                    minimapIndicator.style.top = `${pctTop}%`;
+                    minimapIndicator.style.height = `${Math.max(pctHeight, 2)}%`; // Ensure it's at least slightly visible
+                });
+            }
+
+            const observerOptions = {
+                root: null,
+                rootMargin: '-30% 0px -40% 0px',
+                threshold: 0
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                const dynamicExplBlocks = document.querySelectorAll('.expl-block');
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        // 1. Manage Highlighting
+                        dynamicExplBlocks.forEach(b => b.classList.remove('active'));
+                        codeChunks.forEach(b => b.classList.remove('active'));
+
+                        entry.target.classList.add('active');
+
+                        const targetId = entry.target.getAttribute('data-target');
+                        const targetCode = document.getElementById(targetId);
+
+                        if (targetCode) {
+                            targetCode.classList.add('active');
+
+                            // 2. Scroll the code viewport non-linearly to the right chunk!
+                            // Calculate the offset to center the target chunk without scrolling the main window
+                            const viewportHeight = codeViewport.clientHeight;
+                            const targetTop = targetCode.offsetTop;
+                            const targetHeight = targetCode.offsetHeight;
+                            const scrollPos = targetTop - (viewportHeight / 2) + (targetHeight / 2);
+
+                            codeViewport.scrollTo({
+                                top: scrollPos,
+                                behavior: 'smooth'
+                            });
+
+                            // 3. Update Minimap
+                            updateMinimap(targetCode);
+                        }
+
+                        // 4. Update Variables Panel
+                        const targetIdCode = entry.target.getAttribute('data-target');
+                        if (debuggerStates[targetIdCode]) {
+                            const newVars = debuggerStates[targetIdCode];
+                            varsContainer.innerHTML = '';
+
+                            for (const [key, value] of Object.entries(newVars)) {
+                                const row = document.createElement('div');
+                                row.className = 'var-row';
+
+                                if (currentVars[key] !== value) {
+                                    row.classList.add('changed');
+                                }
+
+                                const nameEl = document.createElement('span');
+                                nameEl.className = 'var-name';
+                                nameEl.textContent = key;
+
+                                const valEl = document.createElement('span');
+                                valEl.className = 'var-value';
+                                valEl.textContent = value;
+
+                                row.appendChild(nameEl);
+                                row.appendChild(valEl);
+                                varsContainer.appendChild(row);
+                            }
+                            currentVars = newVars;
+                        }
+
+                        // 5. Update Diagram
+                        const diagramState = entry.target.getAttribute('data-diagram-state');
+                        if (diagramState) {
+                            updateDiagram(diagramState);
+                        }
+                    }
+                });
+            }, observerOptions);
+
+            const finalExplBlocks = document.querySelectorAll('.expl-block');
+            finalExplBlocks.forEach(block => {
+                observer.observe(block);
+            });
+
+            // Re-calculate minimap on window resize in case heights change
+            window.addEventListener('resize', () => {
+                const activeCode = document.querySelector('.code-chunk.active');
+                if (activeCode) updateMinimap(activeCode);
+            });
+        });
+    </script>
+</body>
+
+</html>

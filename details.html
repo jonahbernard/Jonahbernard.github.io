@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contribution Details - Jonah Bernard</title>
+    <style>
+        :root {
+            --text-color: #000000;
+            --link-color: #333333;
+            --brand-color: #287b5a;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Georgia, 'Times New Roman', Times, serif;
+            color: var(--text-color);
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            background-color: #ffffff;
+        }
+
+        header {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 30px 40px;
+            font-size: 15px;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .nav-group {
+            display: flex;
+            gap: 40px;
+        }
+
+        .nav-group a {
+            text-decoration: none;
+            color: var(--link-color);
+        }
+
+        .nav-group a:hover {
+            text-decoration: underline;
+        }
+
+        .header-name {
+            font-size: 20px;
+            color: var(--brand-color);
+            margin: 0 60px;
+            text-decoration: none;
+        }
+
+        main {
+            padding: 60px 40px;
+            max-width: 800px;
+            margin: 0 auto;
+            width: 100%;
+            box-sizing: border-box;
+            line-height: 1.8;
+        }
+
+        h1 {
+            font-weight: normal;
+            font-size: 32px;
+            margin: 0 0 20px 0;
+        }
+
+        a.back {
+            color: var(--brand-color);
+            text-decoration: none;
+            margin-bottom: 40px;
+            display: inline-block;
+        }
+
+        a.back:hover {
+            text-decoration: underline;
+        }
+
+        #detail-content {
+            font-size: 17px;
+        }
+
+        /* GitHub Embed Styles */
+        .github-embed {
+            margin-top: 50px;
+            padding-top: 30px;
+            border-top: 2px solid #eaeaea;
+        }
+
+        .github-embed h2 {
+            font-size: 24px;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        .github-body {
+            background-color: #fafafa;
+            padding: 25px;
+            border-radius: 8px;
+            border: 1px solid #eaeaea;
+            font-size: 15px;
+            line-height: 1.6;
+        }
+
+        .github-body pre {
+            background-color: #f0f0f0;
+            padding: 15px;
+            border-radius: 4px;
+            overflow-x: auto;
+        }
+
+        .github-body code {
+            font-family: monospace;
+            background-color: #f0f0f0;
+            padding: 2px 4px;
+            border-radius: 3px;
+            font-size: 14px;
+        }
+
+        .github-body pre code {
+            padding: 0;
+            background-color: transparent;
+        }
+
+        .github-body a {
+            color: var(--brand-color);
+        }
+
+        .github-body img {
+            max-width: 100%;
+        }
+    </style>
+    <!-- Marked.js for parsing Markdown to HTML -->
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+</head>
+
+<body>
+    <header>
+        <div class="nav-group">
+            <a href="open-source.html">Open-Source Contributions</a>
+            <a href="/#about">About</a>
+        </div>
+        <a href="/" class="header-name">Jonah Bernard</a>
+        <div class="nav-group">
+            <a href="/#resume">Resume</a>
+            <a href="/#hobbies">Hobbies</a>
+        </div>
+    </header>
+    <main>
+        <a href="open-source.html" class="back">&larr; Back to Open-Source</a>
+        <h1 id="detail-title">Loading...</h1>
+        <div id="detail-content"></div>
+    </main>
+
+    <script>
+        // Centralized content data for all projects and PRs/Issues
+        const contentData = {
+            "project-1": { title: "Project 1", content: "<p>Explanation and details about Side Project 1 go here. You can add more text, links, or images as needed.</p>" },
+            "project-2": { title: "Project 2", content: "<p>Explanation and details about Side Project 2 go here. You can add more text, links, or images as needed.</p>" },
+            "project-3": { title: "Project 3", content: "<p>Explanation and details about Side Project 3 go here. You can add more text, links, or images as needed.</p>" },
+            "project-4": { title: "Project 4", content: "<p>Explanation and details about Side Project 4 go here. You can add more text, links, or images as needed.</p>" },
+            "project-5": { title: "Project 5", content: "<p>Explanation and details about Side Project 5 go here. You can add more text, links, or images as needed.</p>" },
+            "project-6": { title: "Project 6", content: "<p>Explanation and details about Side Project 6 go here. You can add more text, links, or images as needed.</p>" },
+            "infra-apple-1": {
+                title: "Apple Device Support",
+                content: "<p>I am leading the Apple Device Support (2026 Q1) for SGLang. SGLang currently has no support for Apple Silicon, and this roadmap coordinates community efforts to add it.</p><p>Key tasks include:</p><ul><li>Initial <code>mps</code> support and environment checks.</li><li>Implementing a full MLX Backend (switching from PyTorch to MLX).</li><li>Writing custom Metal Kernels for blazing fast inference (PagedAttention, FusedMoE, RMSNorm, RoPE).</li><li>Rewriting model architectures (Qwen, GPT, Hunyuan) using MLX.</li></ul><p><a href=\"https://github.com/sgl-project/sglang/issues/19137\" target=\"_blank\" rel=\"noopener noreferrer\">View the full GitHub Issue #19137</a></p>",
+                githubApiUrl: "https://api.github.com/repos/sgl-project/sglang/issues/19137"
+            },
+            "infra-apple-2": { title: "Apple Silicon PR #2", content: "<p>Explanation and details about this Apple Silicon Backend contribution go here. You can link to the GitHub PR or issue directly.</p>" },
+            "infra-apple-3": { title: "Apple Silicon Issue #3", content: "<p>Explanation and details about this Apple Silicon Backend contribution go here. You can link to the GitHub PR or issue directly.</p>" },
+            "infra-misc-1": { title: "Miscellaneous PR #4", content: "<p>Explanation and details about this Miscellaneous contribution go here. You can link to the GitHub PR or issue directly.</p>" },
+            "infra-misc-2": { title: "Miscellaneous PR #5", content: "<p>Explanation and details about this Miscellaneous contribution go here. You can link to the GitHub PR or issue directly.</p>" },
+            "infra-misc-3": { title: "Miscellaneous Issue #6", content: "<p>Explanation and details about this Miscellaneous contribution go here. You can link to the GitHub PR or issue directly.</p>" }
+        };
+
+        // Parse the URL to find out which item was clicked
+        const urlParams = new URLSearchParams(window.location.search);
+        const id = urlParams.get('id');
+
+        const titleElement = document.getElementById('detail-title');
+        const contentElement = document.getElementById('detail-content');
+
+        if (id && contentData[id]) {
+            const data = contentData[id];
+            titleElement.textContent = data.title;
+            contentElement.innerHTML = data.content;
+            document.title = data.title + " - Jonah Bernard";
+
+            // If there's a live GitHub issue to embed
+            if (data.githubApiUrl) {
+                const embedContainer = document.createElement('div');
+                embedContainer.className = 'github-embed';
+                embedContainer.innerHTML = '<p style="color: #666;"><em>Loading live issue from GitHub...</em></p>';
+                contentElement.appendChild(embedContainer);
+
+                fetch(data.githubApiUrl)
+                    .then(response => response.json())
+                    .then(issue => {
+                        if (issue.body) {
+                            const htmlContent = marked.parse(issue.body);
+                            embedContainer.innerHTML = `
+                                <h2>${issue.title}</h2>
+                                <div class="github-body">${htmlContent}</div>
+                            `;
+                        } else {
+                            embedContainer.innerHTML = '<p style="color: #666;"><em>Issue content is empty or could not be loaded.</em></p>';
+                        }
+                    })
+                    .catch(err => {
+                        embedContainer.innerHTML = '<p style="color: red;"><em>Failed to load live issue from GitHub.</em></p>';
+                    });
+            }
+        } else {
+            titleElement.textContent = "Not Found";
+            contentElement.innerHTML = "<p>The requested contribution could not be found or doesn't exist.</p>";
+            document.title = "Not Found - Jonah Bernard";
+        }
+    </script>
+</body>
+
+</html>
