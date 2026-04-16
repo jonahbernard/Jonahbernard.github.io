@@ -379,6 +379,46 @@ req.req_pool_idx: This is the unique row ID integer assigned to this specific Re
 `
   },
   {
+    target: "class PrefillDelayer",
+    diagram_state: "init",
+    title: "new_batch is not None",
+    content: `
+<p>The prefill delayer was added in in this PR: https://github.com/sgl-project/sglang/pull/14201. It has no effect on our single GPU setup so we will not explore it in this PR. </p>
+`
+  },
+  {
+    target: "class PrefillDelayerSinglePassExecutor",
+    diagram_state: "init",
+    title: "new_batch is not None",
+    content: `
+<p><code> PrefillDelayerSinglePassExecutor </code> also has no impact. </p>
+`
+  },
+  {
+    target: "class _get_new_batch_prefill_raw_part1",
+    diagram_state: "init",
+    title: "new_batch is not None (lines 2372 - 2393)",
+    content: `
+<p>This snippet plays a critical role in decoupling the computational overhead of grammar/regex compilation from the highly latency-sensitive scheduling loop in SGLang.  </p>
+<p>When a user submits an inference request with structured generation constraints (e.g., a regex pattern, a JSON schema, or a formal grammar), the system must convert these constraints into an executable format, such as a Finite State Machine (FSM) or a specialized logit processor.  </p>
+<p>Compiling complex grammars or large JSON schemas is a CPU-intensive synchronous task. If the scheduler were to compile the grammar the moment it received the request, it would block the main event loop. This would prevent the engine from executing forward passes on already-running requests, killing GPU utilization and spiking latencies.  </p>
+<p>To solve this, SGLang utilizes the grammar_manager. (figure out exactly how the grammar manager works??)  </p>
+<p>Before _get_new_batch_prefill_raw looks at the standard self.waiting_queue to schedule requests, it explicitly polls the grammar_manager. It asks: "Do we have any requests that were parked here waiting for their grammars to compile, and are now finished?" (figure out this flow more??) </p>
+<p>If there are requests where the grammar compilitation is complete (so the request is ready for token generation), it adds those requests to the main request queue (<code> waiting_queue </code>) (figure out which PR added this??)<p>
+<p>Then the code prepares the KV cache if the heirachal cache (<code> HiCache </code>) is enabled. (check exactly what it does??) <p>
+<p>When (explore the case??) then <code> self.running_batch.batch_is_full </code> is set to <code> True </code> The scheduler will immediately return None (meaning "skip prefill, just do decode now") IF: (We have no memory OR we have no new requests) AND (We aren't in the middle of processing a massive chunked prompt). If chunked_req is NOT None, the scheduler must bypass the early exit because it has a strict obligation to keep feeding the remaining chunks of that request into the model.(do we just grab the next chunk??) <p>
+<p><p>
+`
+  },
+  {
+    target: "class _get_new_batch_prefill_raw_part2",
+    diagram_state: "init",
+    title: "new_batch is not None (lines 2393 - 2423)",
+    content: `
+<p> <p>
+`
+  },
+  {
     target: "new_batch is not None",
     diagram_state: "init",
     title: "new_batch is not None",
