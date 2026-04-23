@@ -8,8 +8,12 @@
     <style>
         :root {
             --text-color: #000000;
-            --link-color: #333333;
-            --brand-color: #287b5a;
+            --link-color: #313C52;
+            --brand-color: #B58E31;
+            --muted-color: #AAADB2;
+            --border-color: #dcd8c9;
+            --bg-alt: #f5f1e8;
+            --beige: #D6C6A2;
         }
 
         body {
@@ -25,7 +29,7 @@
 
         header {
             display: flex;
-            justify-content: center;
+            justify-content: flex-start;
             align-items: center;
             padding: 30px 40px;
             font-size: 15px;
@@ -33,7 +37,7 @@
             top: 0;
             background-color: #ffffff;
             z-index: 100;
-            border-bottom: 1px solid #f0f0f0;
+            border-bottom: 1px solid var(--border-color);
         }
 
         .nav-group {
@@ -44,6 +48,7 @@
         .nav-group a {
             text-decoration: none;
             color: var(--link-color);
+            transition: color 0.2s ease;
         }
 
         .nav-group a:hover {
@@ -52,9 +57,15 @@
 
         .header-name {
             font-size: 20px;
-            color: var(--brand-color);
-            margin: 0 60px;
+            color: var(--link-color);
+            margin-right: 120px;
             text-decoration: none;
+            transition: color 0.2s ease;
+        }
+
+        .nav-group a.active,
+        .header-name.active {
+            color: var(--brand-color);
         }
 
         main {
@@ -77,14 +88,14 @@
             font-weight: normal;
             margin: 50px 0 20px 0;
             padding-bottom: 10px;
-            border-bottom: 1px solid #eaeaea;
+            border-bottom: 1px solid var(--border-color);
         }
 
         h3 {
             font-size: 20px;
             font-weight: normal;
             margin: 30px 0 15px 0;
-            color: #444;
+            color: var(--link-color);
         }
 
         .grid {
@@ -95,14 +106,14 @@
 
         .square {
             aspect-ratio: 1;
-            background-color: #fafafa;
-            border: 1px solid #eaeaea;
+            background-color: var(--bg-alt);
+            border: 1px solid var(--border-color);
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: flex-start;
             text-decoration: none;
-            color: #222;
+            color: var(--text-color);
             transition: all 0.2s ease;
             padding: 30px 20px 20px;
             text-align: center;
@@ -111,9 +122,9 @@
 
         .square:hover {
             transform: translateY(-4px);
-            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+            box-shadow: 0 8px 24px rgba(49, 60, 82, 0.1);
             background-color: #ffffff;
-            border-color: #ddd;
+            border-color: var(--muted-color);
         }
 
         .square-img {
@@ -131,23 +142,21 @@
 
         .square-desc {
             font-size: 15px;
-            color: #666;
+            color: var(--link-color);
         }
     </style>
 </head>
 
 <body>
     <header>
-        <div class="nav-group">
-            <a href="/#open-source">Open-Source Contributions</a>
-            <a href="/#about">About</a>
-        </div>
         <a href="/" class="header-name">Jonah Bernard</a>
         <div class="nav-group">
             <a href="/#hobbies">Hobbies</a>
-            <a href="/#experience">Experience</a>
-            <a href="/#education">Education</a>
+            <a href="/#open-source" class="active">Open-Source Contributions</a>
             <a href="/#blog">Blog</a>
+            <a href="/#education">Education</a>
+            <a href="/#experience">Experience</a>
+            <a href="/#about">About</a>
         </div>
     </header>
 
@@ -159,12 +168,12 @@
         <h3>Apple Silicon Backend</h3>
         <div class="grid">
             <a href="details.html?id=infra-apple-1" class="square">
-                <img src="Apple Logo.jpg" alt="SGLang and Apple" class="square-img">
+                <img src="assets/Apple Logo.jpg" alt="SGLang and Apple" class="square-img">
                 <div class="square-title">Roadmap: Apple Device Support</div>
                 <div class="square-desc">Issue #19137</div>
             </a>
             <a href="details.html?id=infra-apple-2" class="square">
-                <img src="SGL Logo.png" alt="SGLang Logo" class="square-img">
+                <img src="assets/SGL Logo.png" alt="SGLang Logo" class="square-img">
                 <div class="square-title">SGLang PR #22159</div>
                 <div class="square-desc">Add MLX profiling to bench_one_batch.py</div>
             </a>
@@ -173,32 +182,32 @@
         <h3>Mixture of Experts &amp; LoRA</h3>
         <div class="grid">
             <a href="details.html?id=infra-moe-1" class="square">
-                <img src="SGL Logo.png" alt="SGLang Logo" class="square-img">
+                <img src="assets/SGL Logo.png" alt="SGLang Logo" class="square-img">
                 <div class="square-title">SGLang PR #14105</div>
                 <div class="square-desc">[LoRA][III] Add LoRA support for MoE layers and enable TP</div>
             </a>
             <a href="details.html?id=infra-moe-2" class="square">
-                <img src="SGL Logo.png" alt="SGLang Logo" class="square-img">
+                <img src="assets/SGL Logo.png" alt="SGLang Logo" class="square-img">
                 <div class="square-title">SGLang PR #19710</div>
                 <div class="square-desc">[LoRA][I] Add MOE LoRA JIT alignment kernel and tests</div>
             </a>
             <a href="details.html?id=infra-moe-3" class="square">
-                <img src="SGL Logo.png" alt="SGLang Logo" class="square-img">
+                <img src="assets/SGL Logo.png" alt="SGLang Logo" class="square-img">
                 <div class="square-title">SGLang PR #19711</div>
                 <div class="square-desc">[LoRA][II] Add fused MOE LoRA Triton kernel and tests</div>
             </a>
             <a href="details.html?id=infra-moe-4" class="square">
-                <img src="SGL Logo.png" alt="SGLang Logo" class="square-img">
+                <img src="assets/SGL Logo.png" alt="SGLang Logo" class="square-img">
                 <div class="square-title">SGLang PR #11795</div>
                 <div class="square-desc">Refactor Triton-kernel MoE runner integration</div>
             </a>
             <a href="details.html?id=infra-moe-5" class="square">
-                <img src="SGL Logo.png" alt="SGLang Logo" class="square-img">
+                <img src="assets/SGL Logo.png" alt="SGLang Logo" class="square-img">
                 <div class="square-title">SGLang PR #16280</div>
                 <div class="square-desc">Add MoE Integration Tests For CUTLASS Coverage</div>
             </a>
             <a href="details.html?id=infra-moe-6" class="square">
-                <img src="SGL Logo.png" alt="SGLang Logo" class="square-img">
+                <img src="assets/SGL Logo.png" alt="SGLang Logo" class="square-img">
                 <div class="square-title">SGLang PR #12090</div>
                 <div class="square-desc">[MoE] Add Comprehensive MoE Integration Tests</div>
             </a>

@@ -8,9 +8,12 @@
     <style>
         :root {
             --text-color: #000000;
-            --link-color: #333333;
-            --brand-color: #287b5a;
-            /* Teal/green for the center header name */
+            --link-color: #313C52;
+            --brand-color: #B58E31;
+            --muted-color: #AAADB2;
+            --border-color: #dcd8c9;
+            --bg-alt: #f5f1e8;
+            --beige: #D6C6A2;
         }
 
         html {
@@ -30,7 +33,7 @@
 
         header {
             display: flex;
-            justify-content: center;
+            justify-content: flex-start;
             align-items: center;
             padding: 30px 40px;
             font-size: 15px;
@@ -89,6 +92,7 @@
         .nav-group a {
             text-decoration: none;
             color: var(--link-color);
+            transition: color 0.2s ease;
         }
 
         .nav-group a:hover {
@@ -97,9 +101,15 @@
 
         .header-name {
             font-size: 20px;
-            color: var(--brand-color);
-            margin: 0 60px;
+            color: var(--link-color);
+            margin-right: 120px;
             text-decoration: none;
+            transition: color 0.2s ease;
+        }
+
+        .nav-group a.active,
+        .header-name.active {
+            color: var(--brand-color);
         }
 
         main {
@@ -127,8 +137,7 @@
             align-items: center;
             padding: 80px 40px;
             box-sizing: border-box;
-            background-color: #fafafa;
-            /* Slight off-white to distinguish the section */
+            background-color: var(--bg-alt);
         }
 
         .about-container {
@@ -144,19 +153,19 @@
             flex: 1;
             font-size: 17px;
             line-height: 1.8;
-            color: #222;
+            color: var(--text-color);
         }
 
         .about-image {
             width: 300px;
             height: 350px;
-            background-color: #eaeaea;
+            background-color: var(--beige);
             display: flex;
             justify-content: center;
             align-items: center;
-            color: #888;
+            color: var(--muted-color);
             overflow: hidden;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+            box-shadow: 0 4px 15px rgba(49, 60, 82, 0.08);
         }
 
         .about-image img {
@@ -184,7 +193,7 @@
         #blog {
             padding: 80px 40px;
             box-sizing: border-box;
-            background-color: #fafafa;
+            background-color: var(--bg-alt);
         }
 
         .blog-container {
@@ -210,16 +219,16 @@
             display: block;
             padding: 24px 28px;
             background-color: #ffffff;
-            border: 1px solid #eaeaea;
+            border: 1px solid var(--border-color);
             text-decoration: none;
-            color: #222;
+            color: var(--text-color);
             transition: all 0.2s ease;
         }
 
         .blog-entry:hover {
             transform: translateY(-2px);
-            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
-            border-color: #ddd;
+            box-shadow: 0 8px 24px rgba(49, 60, 82, 0.1);
+            border-color: var(--muted-color);
         }
 
         .blog-entry-title {
@@ -230,14 +239,14 @@
 
         .blog-entry-desc {
             font-size: 16px;
-            color: #555;
+            color: var(--link-color);
             line-height: 1.6;
             margin: 0 0 8px 0;
         }
 
         .blog-entry-date {
             font-size: 14px;
-            color: #888;
+            color: var(--muted-color);
             font-style: italic;
         }
 
@@ -265,14 +274,14 @@
             font-weight: normal;
             margin: 50px 0 20px 0;
             padding-bottom: 10px;
-            border-bottom: 1px solid #eaeaea;
+            border-bottom: 1px solid var(--border-color);
         }
 
         #open-source h4.os-subsection {
             font-size: 20px;
             font-weight: normal;
             margin: 30px 0 15px 0;
-            color: #444;
+            color: var(--link-color);
         }
 
         .grid {
@@ -283,14 +292,14 @@
 
         .square {
             aspect-ratio: 1;
-            background-color: #fafafa;
-            border: 1px solid #eaeaea;
+            background-color: var(--bg-alt);
+            border: 1px solid var(--border-color);
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: flex-start;
             text-decoration: none;
-            color: #222;
+            color: var(--text-color);
             transition: all 0.2s ease;
             padding: 30px 20px 20px;
             text-align: center;
@@ -299,9 +308,9 @@
 
         .square:hover {
             transform: translateY(-4px);
-            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+            box-shadow: 0 8px 24px rgba(49, 60, 82, 0.1);
             background-color: #ffffff;
-            border-color: #ddd;
+            border-color: var(--muted-color);
         }
 
         .square-img {
@@ -319,23 +328,89 @@
 
         .square-desc {
             font-size: 15px;
-            color: #666;
+            color: var(--link-color);
         }
-    </style>
+
+        #hobbies {
+            padding: 80px 40px;
+            box-sizing: border-box;
+            background-color: var(--bg-alt);
+        }
+
+        .hobbies-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        #hobbies h2.hobbies-title {
+            font-size: 32px;
+            font-weight: normal;
+            margin: 0 0 16px 0;
+            text-align: center;
+        }
+
+        #hobbies .hobbies-intro {
+            font-size: 17px;
+            line-height: 1.7;
+            color: var(--link-color);
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto 50px auto;
+        }
+
+        #hobbies h3.hobbies-section {
+            font-size: 24px;
+            font-weight: normal;
+            margin: 40px 0 20px 0;
+            padding-bottom: 10px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .hobbies-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 20px;
+        }
+
+        .hobby {
+            padding: 28px;
+            background-color: #ffffff;
+            border: 1px solid var(--border-color);
+            transition: all 0.2s ease;
+        }
+
+        .hobby:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(49, 60, 82, 0.1);
+            border-color: var(--muted-color);
+        }
+
+        .hobby-title {
+            font-size: 20px;
+            margin: 0 0 10px 0;
+            color: var(--brand-color);
+        }
+
+        .hobby-desc {
+            font-size: 15px;
+            line-height: 1.6;
+            color: var(--link-color);
+            margin: 0;
+        }
+</style>
 </head>
 
 <body>
     <header>
+        <a href="/" class="header-name active" id="nav-home">Jonah Bernard</a>
         <div class="nav-group">
-            <a href="#open-source">Open-Source Contributions</a>
-            <a href="#about">About</a>
-            <a href="#experience">Experience</a>
-        </div>
-        <a href="/" class="header-name">Jonah Bernard</a>
-        <div class="nav-group">
-            <a href="#hobbies">Hobbies</a>
-            <a href="#education">Education</a>
-            <a href="#blog">Blog</a>
+            <a href="#hobbies" id="nav-hobbies">Hobbies</a>
+            <a href="#open-source" id="nav-open-source">Open-Source Contributions</a>
+            <a href="#blog" id="nav-blog">Blog</a>
+            <a href="#education" id="nav-education">Education</a>
+            <a href="#experience" id="nav-experience">Experience</a>
+            <a href="#about" id="nav-about">About</a>
         </div>
         <div class="header-socials">
             <a href="#" aria-label="GitHub" target="_blank" rel="noopener noreferrer">
@@ -393,7 +468,7 @@
 
                 <div class="about-image">
                     <!-- Replace the src with your actual image path, e.g., "profile.jpg" -->
-                    <img src="IMG_0467.jpg" alt="Jonah Bernard"
+                    <img src="assets/IMG_0467.jpg" alt="Jonah Bernard"
                         onerror="this.style.display='none'; this.parentNode.innerHTML='Your Photo Here';">
                 </div>
 
@@ -409,26 +484,59 @@
             <div style="max-width: 1200px; width: 100%; display: flex; gap: 400px; align-items: flex-start;">
                 <div style="flex: 1; text-align: left;">
                     <h2 style="margin-top: 0;">Experience</h2>
-                    <div style="margin-bottom: 40px; border-bottom: 1px solid #eaeaea; padding-bottom: 20px;">
-                        <h3 style="font-size: 24px; margin: 0 0 10px 0;">Software Engineer</h3>
-                        <h4
-                            style="font-size: 20px; color: #444; margin: 0 0 10px 0; font-style: italic; font-weight: normal;">
-                            Cubic Transportation Systems</h4>
-                        <p style="font-size: 17px; line-height: 1.6;">Worked on building technology systems that advance
-                            civilization and make it easier for humans to live. Contributed to various software
-                            engineering projects.</p>
+                    <div
+                        style="margin-bottom: 40px; border-bottom: 1px solid var(--border-color); padding-bottom: 20px; display: flex; gap: 20px; align-items: flex-start;">
+                        <div
+                            style="flex-shrink: 0; width: 64px; height: 64px; display: flex; align-items: center; justify-content: center;">
+                            <img src="assets/AMD Logo.svg" alt="AMD logo"
+                                style="max-width: 100%; max-height: 100%; object-fit: contain;">
+                        </div>
+                        <div style="flex: 1; min-width: 0;">
+                            <h3 style="font-size: 24px; margin: 0 0 6px 0;">AMD</h3>
+                            <h4
+                                style="font-size: 18px; color: var(--link-color); margin: 0 0 4px 0; font-style: italic; font-weight: normal;">
+                                Software Engineer Intern</h4>
+                            <p style="font-size: 14px; color: var(--muted-color); margin: 0;">Summer 2026</p>
+                        </div>
+                    </div>
+                    <div
+                        style="margin-bottom: 40px; border-bottom: 1px solid var(--border-color); padding-bottom: 20px; display: flex; gap: 20px; align-items: flex-start;">
+                        <div
+                            style="flex-shrink: 0; width: 64px; height: 64px; display: flex; align-items: center; justify-content: center;">
+                            <img src="assets/Cubic Logo.png" alt="Cubic Transportation Systems logo"
+                                style="max-width: 100%; max-height: 100%; object-fit: contain;">
+                        </div>
+                        <div style="flex: 1; min-width: 0;">
+                            <h3 style="font-size: 24px; margin: 0 0 6px 0;">Cubic Transportation Systems</h3>
+                            <h4
+                                style="font-size: 18px; color: var(--link-color); margin: 0 0 4px 0; font-style: italic; font-weight: normal;">
+                                Software Engineer Intern</h4>
+                            <p style="font-size: 14px; color: var(--muted-color); margin: 0 0 10px 0;">Summer 2025</p>
+                            <p style="font-size: 17px; line-height: 1.6; margin: 0;">Worked on building technology
+                                systems that advance civilization and make it easier for humans to live. Contributed to
+                                various software engineering projects.</p>
+                        </div>
                     </div>
                 </div>
 
                 <div id="education" style="flex: 1; text-align: left;">
                     <h2 style="margin-top: 0;">Education</h2>
-                    <div style="margin-bottom: 40px; border-bottom: 1px solid #eaeaea; padding-bottom: 20px;">
-                        <h3 style="font-size: 24px; margin: 0 0 10px 0;">Cornell University</h3>
-                        <h4
-                            style="font-size: 20px; color: #444; margin: 0 0 10px 0; font-style: italic; font-weight: normal;">
-                            Computer Science</h4>
-                        <p style="font-size: 17px; line-height: 1.6;">Senior studying computer science. Exploring LLM
-                            inference with a focus on optimizing software for different hardware backends.</p>
+                    <div
+                        style="margin-bottom: 40px; border-bottom: 1px solid var(--border-color); padding-bottom: 20px; display: flex; gap: 20px; align-items: flex-start;">
+                        <div
+                            style="flex-shrink: 0; width: 64px; height: 64px; display: flex; align-items: center; justify-content: center;">
+                            <img src="assets/Cornell Logo.png" alt="Cornell University logo"
+                                style="max-width: 100%; max-height: 100%; object-fit: contain;">
+                        </div>
+                        <div style="flex: 1; min-width: 0;">
+                            <h3 style="font-size: 24px; margin: 0 0 10px 0;">Cornell University</h3>
+                            <h4
+                                style="font-size: 20px; color: var(--link-color); margin: 0 0 10px 0; font-style: italic; font-weight: normal;">
+                                B.S. in Computer Science</h4>
+                            <p style="font-size: 15px; color: var(--muted-color); margin: 0 0 10px 0;">2022-2026</p>
+                            <p style="font-size: 17px; line-height: 1.6;">Senior studying computer science. Exploring
+                                LLM inference with a focus on optimizing software for different hardware backends.</p>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -438,7 +546,7 @@
             <div class="blog-container">
                 <h2 class="blog-title">Blog</h2>
                 <div class="blog-list">
-                    <a href="blog.html" class="blog-entry">
+                    <a href="blog-construction.html" class="blog-entry">
                         <h3 class="blog-entry-title">Understanding the SGLang Scheduler</h3>
                         <p class="blog-entry-desc">A deep dive into how SGLang efficiently schedules tensor parallel GPU
                             workers and orchestrates request handling.</p>
@@ -456,12 +564,12 @@
                 <h4 class="os-subsection">Apple Silicon Backend</h4>
                 <div class="grid">
                     <a href="details.html?id=infra-apple-1" class="square">
-                        <img src="Apple Logo.jpg" alt="SGLang and Apple" class="square-img">
+                        <img src="assets/Apple Logo.jpg" alt="SGLang and Apple" class="square-img">
                         <div class="square-title">Roadmap: Apple Device Support</div>
                         <div class="square-desc">Issue #19137</div>
                     </a>
                     <a href="details.html?id=infra-apple-2" class="square">
-                        <img src="SGL Logo.png" alt="SGLang Logo" class="square-img">
+                        <img src="assets/SGL Logo.png" alt="SGLang Logo" class="square-img">
                         <div class="square-title">SGLang PR #22159</div>
                         <div class="square-desc">Add MLX profiling to bench_one_batch.py</div>
                     </a>
@@ -470,32 +578,32 @@
                 <h4 class="os-subsection">Mixture of Experts &amp; LoRA</h4>
                 <div class="grid">
                     <a href="details.html?id=infra-moe-1" class="square">
-                        <img src="SGL Logo.png" alt="SGLang Logo" class="square-img">
+                        <img src="assets/SGL Logo.png" alt="SGLang Logo" class="square-img">
                         <div class="square-title">SGLang PR #14105</div>
                         <div class="square-desc">[LoRA][III] Add LoRA support for MoE layers and enable TP</div>
                     </a>
                     <a href="details.html?id=infra-moe-2" class="square">
-                        <img src="SGL Logo.png" alt="SGLang Logo" class="square-img">
+                        <img src="assets/SGL Logo.png" alt="SGLang Logo" class="square-img">
                         <div class="square-title">SGLang PR #19710</div>
                         <div class="square-desc">[LoRA][I] Add MOE LoRA JIT alignment kernel and tests</div>
                     </a>
                     <a href="details.html?id=infra-moe-3" class="square">
-                        <img src="SGL Logo.png" alt="SGLang Logo" class="square-img">
+                        <img src="assets/SGL Logo.png" alt="SGLang Logo" class="square-img">
                         <div class="square-title">SGLang PR #19711</div>
                         <div class="square-desc">[LoRA][II] Add fused MOE LoRA Triton kernel and tests</div>
                     </a>
                     <a href="details.html?id=infra-moe-4" class="square">
-                        <img src="SGL Logo.png" alt="SGLang Logo" class="square-img">
+                        <img src="assets/SGL Logo.png" alt="SGLang Logo" class="square-img">
                         <div class="square-title">SGLang PR #11795</div>
                         <div class="square-desc">Refactor Triton-kernel MoE runner integration</div>
                     </a>
                     <a href="details.html?id=infra-moe-5" class="square">
-                        <img src="SGL Logo.png" alt="SGLang Logo" class="square-img">
+                        <img src="assets/SGL Logo.png" alt="SGLang Logo" class="square-img">
                         <div class="square-title">SGLang PR #16280</div>
                         <div class="square-desc">Add MoE Integration Tests For CUTLASS Coverage</div>
                     </a>
                     <a href="details.html?id=infra-moe-6" class="square">
-                        <img src="SGL Logo.png" alt="SGLang Logo" class="square-img">
+                        <img src="assets/SGL Logo.png" alt="SGLang Logo" class="square-img">
                         <div class="square-title">SGLang PR #12090</div>
                         <div class="square-desc">[MoE] Add Comprehensive MoE Integration Tests</div>
                     </a>
@@ -546,7 +654,82 @@
                 </div>
             </div>
         </section>
+
+        <section id="hobbies">
+            <div class="hobbies-container">
+                <h2 class="hobbies-title">Hobbies &amp; Interests</h2>
+                <p class="hobbies-intro">A few things I care about outside of work.</p>
+
+                <h3 class="hobbies-section">Intellectual Interests</h3>
+                <div class="hobbies-list">
+                    <div class="hobby">
+                        <h3 class="hobby-title">Law</h3>
+                    </div>
+                    <div class="hobby">
+                        <h3 class="hobby-title">History</h3>
+                    </div>
+                    <div class="hobby">
+                        <h3 class="hobby-title">Psychology</h3>
+                    </div>
+                </div>
+
+                <h3 class="hobbies-section">Societal Causes</h3>
+                <div class="hobbies-list">
+                    <div class="hobby">
+                        <h3 class="hobby-title">Eradicating Lead Poisoning</h3>
+                    </div>
+                    <div class="hobby">
+                        <h3 class="hobby-title">Car Crash Prevention</h3>
+                    </div>
+                </div>
+            </div>
+        </section>
     </main>
+
+    <script>
+        (function () {
+            const sections = [
+                { id: 'hero', navIds: ['nav-home'] },
+                { id: 'about', navIds: ['nav-about'] },
+                { id: 'experience', navIds: ['nav-experience', 'nav-education'] },
+                { id: 'blog', navIds: ['nav-blog'] },
+                { id: 'open-source', navIds: ['nav-open-source'] },
+                { id: 'hobbies', navIds: ['nav-hobbies'] }
+            ];
+
+            const allNav = document.querySelectorAll('.nav-group a, .header-name');
+
+            function updateActiveNav() {
+                const threshold = 150;
+                let current = sections[0];
+                for (const s of sections) {
+                    const el = document.getElementById(s.id);
+                    if (!el) continue;
+                    if (el.getBoundingClientRect().top <= threshold) {
+                        current = s;
+                    }
+                }
+                allNav.forEach(a => a.classList.remove('active'));
+                current.navIds.forEach(id => {
+                    const el = document.getElementById(id);
+                    if (el) el.classList.add('active');
+                });
+            }
+
+            let ticking = false;
+            window.addEventListener('scroll', () => {
+                if (!ticking) {
+                    requestAnimationFrame(() => {
+                        updateActiveNav();
+                        ticking = false;
+                    });
+                    ticking = true;
+                }
+            }, { passive: true });
+
+            updateActiveNav();
+        })();
+    </script>
 </body>
 
 </html>

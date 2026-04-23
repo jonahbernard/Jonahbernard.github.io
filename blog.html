@@ -8,12 +8,13 @@
     <style>
         :root {
             --text-color: #000000;
-            --link-color: #333333;
-            --brand-color: #287b5a;
+            --link-color: #313C52;
+            --brand-color: #B58E31;
+            --muted-color: #AAADB2;
             --bg-color: #ffffff;
             --code-bg: #f6f8fa;
-            --border-color: #eaeaea;
-            --var-bg: #fafafa;
+            --border-color: #dcd8c9;
+            --var-bg: #f5f1e8;
         }
 
         body {
@@ -29,7 +30,7 @@
 
         header {
             display: flex;
-            justify-content: center;
+            justify-content: flex-start;
             align-items: center;
             padding: 30px 40px;
             font-size: 15px;
@@ -49,6 +50,7 @@
         .nav-group a {
             text-decoration: none;
             color: var(--link-color);
+            transition: color 0.2s ease;
         }
 
         .nav-group a:hover {
@@ -57,9 +59,15 @@
 
         .header-name {
             font-size: 20px;
-            color: var(--brand-color);
-            margin: 0 60px;
+            color: var(--link-color);
+            margin-right: 120px;
             text-decoration: none;
+            transition: color 0.2s ease;
+        }
+
+        .nav-group a.active,
+        .header-name.active {
+            color: var(--brand-color);
         }
 
         .blog-header {
@@ -75,7 +83,7 @@
         }
 
         .blog-header p {
-            color: #666;
+            color: var(--link-color);
             font-size: 18px;
             margin: 0;
         }
@@ -247,7 +255,7 @@
         .minimap-indicator {
             position: absolute;
             width: 100%;
-            background-color: rgba(40, 123, 90, 0.15);
+            background-color: rgba(181, 142, 49, 0.15);
             /* Brand color light */
             border-left: 3px solid var(--brand-color);
             transition: top 0.4s ease, height 0.4s ease;
@@ -272,7 +280,7 @@
             margin-top: 0;
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
             font-size: 14px;
-            color: #666;
+            color: var(--link-color);
             text-transform: uppercase;
             letter-spacing: 1px;
             border-bottom: 2px solid var(--border-color);
@@ -284,7 +292,7 @@
             display: flex;
             justify-content: space-between;
             padding: 10px 0;
-            border-bottom: 1px solid #eaeaea;
+            border-bottom: 1px solid var(--border-color);
             font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
             font-size: 13px;
         }
@@ -464,16 +472,14 @@
 
 <body>
     <header>
-        <div class="nav-group">
-            <a href="/#open-source">Open-Source Contributions</a>
-            <a href="/#about">About</a>
-            <a href="/#experience">Experience</a>
-        </div>
         <a href="/" class="header-name">Jonah Bernard</a>
         <div class="nav-group">
             <a href="/#hobbies">Hobbies</a>
+            <a href="/#open-source">Open-Source Contributions</a>
+            <a href="/#blog" class="active">Blog</a>
             <a href="/#education">Education</a>
-            <a href="/#blog">Blog</a>
+            <a href="/#experience">Experience</a>
+            <a href="/#about">About</a>
         </div>
     </header>
 

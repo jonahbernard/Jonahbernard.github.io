@@ -8,8 +8,11 @@
     <style>
         :root {
             --text-color: #000000;
-            --link-color: #333333;
-            --brand-color: #287b5a;
+            --link-color: #313C52;
+            --brand-color: #B58E31;
+            --muted-color: #AAADB2;
+            --border-color: #dcd8c9;
+            --bg-alt: #f5f1e8;
         }
 
         body {
@@ -25,11 +28,11 @@
 
         header {
             display: flex;
-            justify-content: center;
+            justify-content: flex-start;
             align-items: center;
             padding: 30px 40px;
             font-size: 15px;
-            border-bottom: 1px solid #f0f0f0;
+            border-bottom: 1px solid var(--border-color);
         }
 
         .nav-group {
@@ -40,6 +43,7 @@
         .nav-group a {
             text-decoration: none;
             color: var(--link-color);
+            transition: color 0.2s ease;
         }
 
         .nav-group a:hover {
@@ -48,9 +52,15 @@
 
         .header-name {
             font-size: 20px;
-            color: var(--brand-color);
-            margin: 0 60px;
+            color: var(--link-color);
+            margin-right: 120px;
             text-decoration: none;
+            transition: color 0.2s ease;
+        }
+
+        .nav-group a.active,
+        .header-name.active {
+            color: var(--brand-color);
         }
 
         main {
@@ -87,26 +97,26 @@
         .github-embed {
             margin-top: 50px;
             padding-top: 30px;
-            border-top: 2px solid #eaeaea;
+            border-top: 2px solid var(--border-color);
         }
 
         .github-embed h2 {
             font-size: 24px;
             margin-bottom: 20px;
-            color: #333;
+            color: var(--text-color);
         }
 
         .github-body {
-            background-color: #fafafa;
+            background-color: var(--bg-alt);
             padding: 25px;
             border-radius: 8px;
-            border: 1px solid #eaeaea;
+            border: 1px solid var(--border-color);
             font-size: 15px;
             line-height: 1.6;
         }
 
         .github-body pre {
-            background-color: #f0f0f0;
+            background-color: #ece8da;
             padding: 15px;
             border-radius: 4px;
             overflow-x: auto;
@@ -114,7 +124,7 @@
 
         .github-body code {
             font-family: monospace;
-            background-color: #f0f0f0;
+            background-color: #ece8da;
             padding: 2px 4px;
             border-radius: 3px;
             font-size: 14px;
@@ -139,16 +149,14 @@
 
 <body>
     <header>
-        <div class="nav-group">
-            <a href="/#open-source">Open-Source Contributions</a>
-            <a href="/#about">About</a>
-        </div>
         <a href="/" class="header-name">Jonah Bernard</a>
         <div class="nav-group">
             <a href="/#hobbies">Hobbies</a>
-            <a href="/#experience">Experience</a>
-            <a href="/#education">Education</a>
+            <a href="/#open-source" class="active">Open-Source Contributions</a>
             <a href="/#blog">Blog</a>
+            <a href="/#education">Education</a>
+            <a href="/#experience">Experience</a>
+            <a href="/#about">About</a>
         </div>
     </header>
     <main>
