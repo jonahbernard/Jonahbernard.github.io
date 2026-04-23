@@ -60,7 +60,7 @@ const blogContent = [
 <p>The HTTP server is run using Uvicorn, which is an ASGI (Asynchronous Server Gateway Interface).<p>
 `
   },
-  
+
   {
     target: "code-entry",
     diagram_state: "init",
@@ -163,7 +163,7 @@ The \`Scheduler\` sets all of its local variables to hold the important informat
 <p>The newly formed batch is then handed over to the GPU for the forward pass, completing the cycle.</p>
 `
   }
-,
+  ,
   {
     target: "event_loop_normal",
     diagram_state: "init",
@@ -415,15 +415,47 @@ req.req_pool_idx: This is the unique row ID integer assigned to this specific Re
     diagram_state: "init",
     title: "new_batch is not None (lines 2393 - 2423)",
     content: `
-<p> <p>
+<p>We also do not return a new batch if there are not <code> free_slots </code> in the KVcache for a new request. However, if a chunked request is being processed, it will be put in the next prefill batch despite having no free slots in the KVCache (what slot will it use then??) <p>
+<p>The second block determines the number of tokens (<code> chunked_prefill_size </code>) that the scheduler will process in the upcoming prefill step for a request that is undergoing chunked prefilling. This logic allows the scheduler to dynamically shrink or scale the chunk size of an ongoing chunked prefill request based on how many tokens have already been processed. This prevents performance degradation and latency spikes that would otherwise occur if it tried to process a statically sized chunk against a massive, rapidly growing KV cache context. <p>
+<p>(what is dynamic chunking??) Dynamic chunking was added in this PR: https://github.com/sgl-project/sglang/pull/11852 (why??) (why is it "predicting" the next chunk size instead of "determine" next chunk size??)<p>
+<p>After performing some math that we are skipping here (read more in docs/advanced_features/pipeline_parallelism.md (https://github.com/sgl-project/sglang/blob/main/docs/advanced_features/pipeline_parallelism.md)), it determines the next chunk size so that each chunk takes around the same amount of time that the first chunk of the prompt took. (why??) The predictor helps by dynamically shrinking the chunk size as the history grows. For example, Step 1 might process 4096 tokens, but Step 10 might only process 1024 tokens. By doing this, both steps will take roughly the exact same amount of time in milliseconds.<p>
+<p>The reason this feature is exclusively tied to pp_size > 1 (Pipeline Parallelism) is because PP relies heavily on synchronous, balanced workloads across multiple GPUs.
+
+In a pipeline:
+
+GPU 1 handles the first layers of the model.
+GPU 2 handles the middle layers.
+GPU 3 handles the final layers.
+If GPU 1 is processing a fast, early chunk of a request, but GPU 2 is processing a slow, deep chunk of a different request (with a massive KV cache), the pipeline stalls. One GPU sits idle wasting hardware utilization ("pipeline bubbles") waiting for the slower GPU to finish its chunk and pass the data forward.
+
+By using the ChunkSizePredictor, SGLang ensures that every prefill step on every GPU task takes the exact same target_latency. This predictable pacing eliminates major bottleneck disparities between layers, minimizing pipeline bubbles and drastically improving multi-GPU throughput.<p>
+<p><p>
 `
   },
   {
-    target: "new_batch is not None",
+    target: "class _get_new_batch_prefill_raw_part3",
     diagram_state: "init",
-    title: "new_batch is not None",
+    title: "new_batch is not None (lines 2426 - 2449)",
     content: `
-<p>TODO</p>
+<p>Next, an object called the <code> PrefillAdder </code> is created. The Prefill Adder's primary purpose is to safely batch incoming requests for prefilling without causing Out-of-Memory (OOM) errors, while maximizing batch size and system throughput.</p>
+<p> (we will talk about it when we actually use it??)<p>
+<p>If we are in middle of processing a chunked prefill request, then <p>
+`
+  },
+  {
+    target: "self.chunked_req = adder.add_chunked_req(self.chunked_req)",
+    diagram_state: "init",
+    title: "new_batch is not None (lines 2426 - 2449)",
+    content: `
+<p><p>
+`
+  },
+  {
+    target: "class _get_new_batch_prefill_raw_part3",
+    diagram_state: "init",
+    title: "new_batch is not None (lines 2443 - 2441",
+    content: `
+<p> <p>
 `
   },
   {

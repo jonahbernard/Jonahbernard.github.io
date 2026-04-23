@@ -100,12 +100,13 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: center;
+            justify-content: flex-start;
             text-decoration: none;
             color: #222;
             transition: all 0.2s ease;
-            padding: 20px;
+            padding: 30px 20px 20px;
             text-align: center;
+            box-sizing: border-box;
         }
 
         .square:hover {
@@ -117,10 +118,10 @@
 
         .square-img {
             width: 100%;
-            height: 140px;
-            object-fit: cover;
+            height: 90px;
+            object-fit: contain;
             border-radius: 6px;
-            margin-bottom: 15px;
+            margin-bottom: 20px;
         }
 
         .square-title {
@@ -138,16 +139,15 @@
 <body>
     <header>
         <div class="nav-group">
-            <a href="open-source.html">Open-Source Contributions</a>
+            <a href="/#open-source">Open-Source Contributions</a>
             <a href="/#about">About</a>
         </div>
         <a href="/" class="header-name">Jonah Bernard</a>
         <div class="nav-group">
-            <a href="/#resume">Resume</a>
             <a href="/#hobbies">Hobbies</a>
             <a href="/#experience">Experience</a>
             <a href="/#education">Education</a>
-            <a href="blog.html">Blog</a>
+            <a href="/#blog">Blog</a>
         </div>
     </header>
 
@@ -164,12 +164,43 @@
                 <div class="square-desc">Issue #19137</div>
             </a>
             <a href="details.html?id=infra-apple-2" class="square">
-                <div class="square-title">PR #2</div>
-                <div class="square-desc">Apple Silicon Backend contribution</div>
+                <img src="SGL Logo.png" alt="SGLang Logo" class="square-img">
+                <div class="square-title">SGLang PR #22159</div>
+                <div class="square-desc">Add MLX profiling to bench_one_batch.py</div>
             </a>
-            <a href="details.html?id=infra-apple-3" class="square">
-                <div class="square-title">Issue #3</div>
-                <div class="square-desc">Apple Silicon Backend contribution</div>
+        </div>
+
+        <h3>Mixture of Experts &amp; LoRA</h3>
+        <div class="grid">
+            <a href="details.html?id=infra-moe-1" class="square">
+                <img src="SGL Logo.png" alt="SGLang Logo" class="square-img">
+                <div class="square-title">SGLang PR #14105</div>
+                <div class="square-desc">[LoRA][III] Add LoRA support for MoE layers and enable TP</div>
+            </a>
+            <a href="details.html?id=infra-moe-2" class="square">
+                <img src="SGL Logo.png" alt="SGLang Logo" class="square-img">
+                <div class="square-title">SGLang PR #19710</div>
+                <div class="square-desc">[LoRA][I] Add MOE LoRA JIT alignment kernel and tests</div>
+            </a>
+            <a href="details.html?id=infra-moe-3" class="square">
+                <img src="SGL Logo.png" alt="SGLang Logo" class="square-img">
+                <div class="square-title">SGLang PR #19711</div>
+                <div class="square-desc">[LoRA][II] Add fused MOE LoRA Triton kernel and tests</div>
+            </a>
+            <a href="details.html?id=infra-moe-4" class="square">
+                <img src="SGL Logo.png" alt="SGLang Logo" class="square-img">
+                <div class="square-title">SGLang PR #11795</div>
+                <div class="square-desc">Refactor Triton-kernel MoE runner integration</div>
+            </a>
+            <a href="details.html?id=infra-moe-5" class="square">
+                <img src="SGL Logo.png" alt="SGLang Logo" class="square-img">
+                <div class="square-title">SGLang PR #16280</div>
+                <div class="square-desc">Add MoE Integration Tests For CUTLASS Coverage</div>
+            </a>
+            <a href="details.html?id=infra-moe-6" class="square">
+                <img src="SGL Logo.png" alt="SGLang Logo" class="square-img">
+                <div class="square-title">SGLang PR #12090</div>
+                <div class="square-desc">[MoE] Add Comprehensive MoE Integration Tests</div>
             </a>
         </div>
 

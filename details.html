@@ -140,20 +140,19 @@
 <body>
     <header>
         <div class="nav-group">
-            <a href="open-source.html">Open-Source Contributions</a>
+            <a href="/#open-source">Open-Source Contributions</a>
             <a href="/#about">About</a>
         </div>
         <a href="/" class="header-name">Jonah Bernard</a>
         <div class="nav-group">
-            <a href="/#resume">Resume</a>
             <a href="/#hobbies">Hobbies</a>
             <a href="/#experience">Experience</a>
             <a href="/#education">Education</a>
-            <a href="blog.html">Blog</a>
+            <a href="/#blog">Blog</a>
         </div>
     </header>
     <main>
-        <a href="open-source.html" class="back">&larr; Back to Open-Source</a>
+        <a href="/#open-source" class="back">&larr; Back to Open-Source</a>
         <h1 id="detail-title">Loading...</h1>
         <div id="detail-content"></div>
     </main>
@@ -172,8 +171,41 @@
                 content: "<p>I am leading the Apple Device Support (2026 Q1) for SGLang. SGLang currently has no support for Apple Silicon, and this roadmap coordinates community efforts to add it.</p><p>Key tasks include:</p><ul><li>Initial <code>mps</code> support and environment checks.</li><li>Implementing a full MLX Backend (switching from PyTorch to MLX).</li><li>Writing custom Metal Kernels for blazing fast inference (PagedAttention, FusedMoE, RMSNorm, RoPE).</li><li>Rewriting model architectures (Qwen, GPT, Hunyuan) using MLX.</li></ul><p><a href=\"https://github.com/sgl-project/sglang/issues/19137\" target=\"_blank\" rel=\"noopener noreferrer\">View the full GitHub Issue #19137</a></p>",
                 githubApiUrl: "https://api.github.com/repos/sgl-project/sglang/issues/19137"
             },
-            "infra-apple-2": { title: "Apple Silicon PR #2", content: "<p>Explanation and details about this Apple Silicon Backend contribution go here. You can link to the GitHub PR or issue directly.</p>" },
-            "infra-apple-3": { title: "Apple Silicon Issue #3", content: "<p>Explanation and details about this Apple Silicon Backend contribution go here. You can link to the GitHub PR or issue directly.</p>" },
+            "infra-apple-2": {
+                title: "Add MLX profiling to bench_one_batch.py",
+                content: "<p>Added MLX profiling support to the <code>bench_one_batch.py</code> script to allow easy GPU and system-wide profiling of the prefill and decode aspect of LLM inference.</p><p><a href=\"https://github.com/sgl-project/sglang/pull/22159\" target=\"_blank\" rel=\"noopener noreferrer\">View the full GitHub PR #22159</a></p>",
+                githubApiUrl: "https://api.github.com/repos/sgl-project/sglang/pulls/22159"
+            },
+            "infra-moe-1": {
+                title: "[LoRA][III] Add LoRA support for MoE layers and enable TP",
+                content: "<p>Added support for LoRA serving on the expert layers for Mixture-of-Expert models in SGLang.</p><p><a href=\"https://github.com/sgl-project/sglang/pull/14105\" target=\"_blank\" rel=\"noopener noreferrer\">View the full GitHub PR #14105</a></p>",
+                githubApiUrl: "https://api.github.com/repos/sgl-project/sglang/pulls/14105"
+            },
+            "infra-moe-2": {
+                title: "[LoRA][I] Add MOE LoRA JIT alignment kernel and tests",
+                content: "<p>Added JIT-compiled CUDA kernels for MOE LoRA block size alignment, along with Python wrappers and unit tests.</p><p><a href=\"https://github.com/sgl-project/sglang/pull/19710\" target=\"_blank\" rel=\"noopener noreferrer\">View the full GitHub PR #19710</a></p>",
+                githubApiUrl: "https://api.github.com/repos/sgl-project/sglang/pulls/19710"
+            },
+            "infra-moe-3": {
+                title: "[LoRA][II] Add fused MOE LoRA Triton kernel and tests",
+                content: "<p>Added Triton-based fused MoE LoRA kernel for combined expert routing and LoRA computation.</p><p><a href=\"https://github.com/sgl-project/sglang/pull/19711\" target=\"_blank\" rel=\"noopener noreferrer\">View the full GitHub PR #19711</a></p>",
+                githubApiUrl: "https://api.github.com/repos/sgl-project/sglang/pulls/19711"
+            },
+            "infra-moe-4": {
+                title: "Refactor Triton-kernel MoE runner integration",
+                content: "<p>Refactored Triton-kernel MoE runner integration into triton_kernels.py.</p><p><a href=\"https://github.com/sgl-project/sglang/pull/11795\" target=\"_blank\" rel=\"noopener noreferrer\">View the full GitHub PR #11795</a></p>",
+                githubApiUrl: "https://api.github.com/repos/sgl-project/sglang/pulls/11795"
+            },
+            "infra-moe-5": {
+                title: "Add MoE Integration Tests For CUTLASS Coverage",
+                content: "<p>Added 4 more MoE integration tests to achieve complete CUTLASS path coverage.</p><p><a href=\"https://github.com/sgl-project/sglang/pull/16280\" target=\"_blank\" rel=\"noopener noreferrer\">View the full GitHub PR #16280</a></p>",
+                githubApiUrl: "https://api.github.com/repos/sgl-project/sglang/pulls/16280"
+            },
+            "infra-moe-6": {
+                title: "[MoE] Add Comprehensive MoE Integration Tests",
+                content: "<p>Added a comprehensive suite of MoE integration tests to add test coverage for MoE models from beginning to end.</p><p><a href=\"https://github.com/sgl-project/sglang/pull/12090\" target=\"_blank\" rel=\"noopener noreferrer\">View the full GitHub PR #12090</a></p>",
+                githubApiUrl: "https://api.github.com/repos/sgl-project/sglang/pulls/12090"
+            },
             "infra-misc-1": { title: "Miscellaneous PR #4", content: "<p>Explanation and details about this Miscellaneous contribution go here. You can link to the GitHub PR or issue directly.</p>" },
             "infra-misc-2": { title: "Miscellaneous PR #5", content: "<p>Explanation and details about this Miscellaneous contribution go here. You can link to the GitHub PR or issue directly.</p>" },
             "infra-misc-3": { title: "Miscellaneous Issue #6", content: "<p>Explanation and details about this Miscellaneous contribution go here. You can link to the GitHub PR or issue directly.</p>" }

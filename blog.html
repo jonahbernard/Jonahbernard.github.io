@@ -424,7 +424,8 @@
         }
     </style>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" rel="stylesheet" />
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/toolbar/prism-toolbar.min.css" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/toolbar/prism-toolbar.min.css"
+        rel="stylesheet" />
     <style>
         /* Force code blocks in explanation panel to wrap instead of overflowing */
         .expl-block pre[class*="language-"],
@@ -436,19 +437,20 @@
             overflow-x: hidden !important;
             border-radius: 6px;
         }
-        
+
         /* Subtle styling for the copy button */
         .prism-copy-button {
             opacity: 0.8;
             transition: opacity 0.2s;
         }
+
         .prism-copy-button:hover {
             opacity: 1;
         }
 
         /* GitHub-style inline backticks */
         .expl-block code:not([class*="language-"]) {
-            background-color: rgba(27,31,35,0.05);
+            background-color: rgba(27, 31, 35, 0.05);
             border-radius: 6px;
             padding: 0.2em 0.4em;
             font-size: 85%;
@@ -463,16 +465,15 @@
 <body>
     <header>
         <div class="nav-group">
-            <a href="open-source.html">Open-Source Contributions</a>
+            <a href="/#open-source">Open-Source Contributions</a>
             <a href="/#about">About</a>
+            <a href="/#experience">Experience</a>
         </div>
         <a href="/" class="header-name">Jonah Bernard</a>
         <div class="nav-group">
-            <a href="/#resume">Resume</a>
             <a href="/#hobbies">Hobbies</a>
-            <a href="/#experience">Experience</a>
             <a href="/#education">Education</a>
-            <a href="blog.html">Blog</a>
+            <a href="/#blog">Blog</a>
         </div>
     </header>
 
@@ -504,7 +505,8 @@
 
     <div class="container">
         <div class="left-panel" id="explanation-container">
-            <div style="padding: 40px; color: #666; text-align: center; font-style: italic;">Loading blog content...</div>
+            <div style="padding: 40px; color: #666; text-align: center; font-style: italic;">Loading blog content...
+            </div>
         </div>
 
         <!-- STICKY CODE WINDOW WITH MINIMAP -->
@@ -535,7 +537,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-bash.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/toolbar/prism-toolbar.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/copy-to-clipboard/prism-copy-to-clipboard.min.js"></script>
+    <script
+        src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/copy-to-clipboard/prism-copy-to-clipboard.min.js"></script>
     <script src="blog_content.js"></script>
     <script>
         // 1. Configuration for file chunks
@@ -554,8 +557,8 @@
             { id: 'get_next_batch_to_run', start: 2239, end: 2346 },
             { id: '_abort_on_waiting_timeout', start: 2239, end: 2346 },
             { id: '_abort_on_running_timeout', start: 2239, end: 2346 },
-            { id: 'stash_chunked_request', start: 2239, end: 2346 }, 
-            { id: 'self.last_batch.filter_batch', start: 2239, end: 2346 }, 
+            { id: 'stash_chunked_request', start: 2239, end: 2346 },
+            { id: 'self.last_batch.filter_batch', start: 2239, end: 2346 },
             { id: 'self.running_batch.merge_batch(self.last_batch)', start: 2239, end: 2346 },
             { id: 'self.running_batch.filter_batch()', start: 2239, end: 2346 },
             { id: 'new_batch = self.get_new_batch_prefill()', start: 2239, end: 2346 },
@@ -581,7 +584,7 @@
             { id: 'self.process_batch_result_prefill(batch, result)_part5', start: 221, end: 249 }, // This is not in scheduler.py. It is in scheduler_output_processor_mixin.py
             { id: 'self.process_batch_result_prefill(batch, result)_part6', start: 250, end: 278 }, // This is not in scheduler.py. It is in scheduler_output_processor_mixin.py
             { id: 'self.process_batch_result_prefill(batch, result)_part7', start: 326, end: 332 }, // This is not in scheduler.py. It is in scheduler_output_processor_mixin.py
-             //------------------------------end normal process batch result prefill-------------------------------------------------------------------------
+            //------------------------------end normal process batch result prefill-------------------------------------------------------------------------
 
             { id: 'self.process_batch_result_decode(batch, result)', start: 374, end: 528 }, // This is not in scheduler.py. It is in scheduler_output_processor_mixin.py
 
@@ -593,7 +596,7 @@
             { id: 'self.process_batch_result_decode(batch, result)_part4', start: 464, end: 495 }, // This is not in scheduler.py. It is in scheduler_output_processor_mixin.py
             { id: 'self.process_batch_result_decode(batch, result)_part5', start: 496, end: 528 }, // This is not in scheduler.py. It is in scheduler_output_processor_mixin.py
 
-             //------------------------------end normal process batch result decode-------------------------------------------------------------------------
+            //------------------------------end normal process batch result decode-------------------------------------------------------------------------
 
             //------------------------------end normal process batch result-------------------------------------------------------------------------
             { id: 'on_idle', start: 24, end: 35 }, // This is not in scheduler.py
@@ -629,23 +632,23 @@
                 if (typeof blogContent !== 'undefined') {
                     const explanationContainer = document.getElementById('explanation-container');
                     explanationContainer.innerHTML = '';
-                    
+
                     blogContent.forEach((block) => {
                         const div = document.createElement('div');
                         div.className = 'expl-block';
                         div.setAttribute('data-target', block.target);
                         div.setAttribute('data-diagram-state', block.diagram_state || 'init');
-                        
+
                         const h2 = document.createElement('h2');
                         h2.textContent = block.title;
                         div.appendChild(h2);
-                        
+
                         const contentDiv = document.createElement('div');
                         // Replace markdown backticks with <code> tags
                         const formattedContent = block.content.replace(/`([^`]+)`/g, '<code>$1</code>');
                         contentDiv.innerHTML = formattedContent;
                         div.appendChild(contentDiv);
-                        
+
                         explanationContainer.appendChild(div);
                     });
                 }
