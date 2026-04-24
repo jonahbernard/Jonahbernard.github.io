@@ -665,6 +665,7 @@
             padding: 30px 20px 20px;
             text-align: center;
             box-sizing: border-box;
+            position: relative;
         }
 
         .square:hover {
@@ -690,6 +691,16 @@
         .square-desc {
             font-size: 15px;
             color: var(--link-color);
+        }
+
+        .square-date {
+            position: absolute;
+            bottom: 20px;
+            left: 0;
+            right: 0;
+            font-size: 14px;
+            color: var(--muted-color);
+            font-style: italic;
         }
 
         #hobbies {
@@ -957,97 +968,36 @@
             <div class="os-container">
                 <h2 class="os-title">Open-Source Contributions</h2>
 
-                <h3 class="os-section">LLM Infra (PRs &amp; Issues)</h3>
-
-                <h4 class="os-subsection">Apple Silicon Backend</h4>
                 <div class="grid">
-                    <a href="details.html?id=infra-apple-1" class="square">
-                        <img src="assets/Apple Logo.jpg" alt="SGLang and Apple" class="square-img">
-                        <div class="square-title">Roadmap: Apple Device Support</div>
-                        <div class="square-desc">Issue #19137</div>
+                    <a href="details.html?id=sglang-apple-silicon" class="square">
+                        <div class="square-title">SGLang on Apple Silicon</div>
+                        <div class="square-desc">Multiple PRs</div>
+                        <div class="square-date">Month D, YYYY – Month D, YYYY</div>
                     </a>
-                    <a href="details.html?id=infra-apple-2" class="square">
-                        <img src="assets/SGL Logo.png" alt="SGLang Logo" class="square-img">
-                        <div class="square-title">SGLang PR #22159</div>
-                        <div class="square-desc">Add MLX profiling to bench_one_batch.py</div>
+                    <a href="details.html?id=lora-moe-layers" class="square">
+                        <div class="square-title">LoRA on MoE Layers</div>
+                        <div class="square-desc">Multiple PRs</div>
+                        <div class="square-date">Month D, YYYY – Month D, YYYY</div>
                     </a>
-                </div>
-
-                <h4 class="os-subsection">Mixture of Experts &amp; LoRA</h4>
-                <div class="grid">
-                    <a href="details.html?id=infra-moe-1" class="square">
-                        <img src="assets/SGL Logo.png" alt="SGLang Logo" class="square-img">
-                        <div class="square-title">SGLang PR #14105</div>
-                        <div class="square-desc">[LoRA][III] Add LoRA support for MoE layers and enable TP</div>
+                    <a href="details.html?id=refactor-moe-sglang" class="square">
+                        <div class="square-title">Refactor MoE SGLang Code</div>
+                        <div class="square-desc">Multiple PRs</div>
+                        <div class="square-date">Month D, YYYY – Month D, YYYY</div>
                     </a>
-                    <a href="details.html?id=infra-moe-2" class="square">
-                        <img src="assets/SGL Logo.png" alt="SGLang Logo" class="square-img">
-                        <div class="square-title">SGLang PR #19710</div>
-                        <div class="square-desc">[LoRA][I] Add MOE LoRA JIT alignment kernel and tests</div>
+                    <a href="details.html?id=swe-ai-agent" class="square">
+                        <div class="square-title">SWE AI Agent</div>
+                        <div class="square-desc">Multiple PRs</div>
+                        <div class="square-date">Month D, YYYY – Month D, YYYY</div>
                     </a>
-                    <a href="details.html?id=infra-moe-3" class="square">
-                        <img src="assets/SGL Logo.png" alt="SGLang Logo" class="square-img">
-                        <div class="square-title">SGLang PR #19711</div>
-                        <div class="square-desc">[LoRA][II] Add fused MOE LoRA Triton kernel and tests</div>
+                    <a href="details.html?id=ocaml-ml-algorithms" class="square">
+                        <div class="square-title">OCaml ML Algorithms</div>
+                        <div class="square-desc">Multiple PRs</div>
+                        <div class="square-date">Month D, YYYY – Month D, YYYY</div>
                     </a>
-                    <a href="details.html?id=infra-moe-4" class="square">
-                        <img src="assets/SGL Logo.png" alt="SGLang Logo" class="square-img">
-                        <div class="square-title">SGLang PR #11795</div>
-                        <div class="square-desc">Refactor Triton-kernel MoE runner integration</div>
-                    </a>
-                    <a href="details.html?id=infra-moe-5" class="square">
-                        <img src="assets/SGL Logo.png" alt="SGLang Logo" class="square-img">
-                        <div class="square-title">SGLang PR #16280</div>
-                        <div class="square-desc">Add MoE Integration Tests For CUTLASS Coverage</div>
-                    </a>
-                    <a href="details.html?id=infra-moe-6" class="square">
-                        <img src="assets/SGL Logo.png" alt="SGLang Logo" class="square-img">
-                        <div class="square-title">SGLang PR #12090</div>
-                        <div class="square-desc">[MoE] Add Comprehensive MoE Integration Tests</div>
-                    </a>
-                </div>
-
-                <h4 class="os-subsection">Miscellaneous</h4>
-                <div class="grid">
-                    <a href="details.html?id=infra-misc-1" class="square">
-                        <div class="square-title">PR #4</div>
-                        <div class="square-desc">Miscellaneous contribution</div>
-                    </a>
-                    <a href="details.html?id=infra-misc-2" class="square">
-                        <div class="square-title">PR #5</div>
-                        <div class="square-desc">Miscellaneous contribution</div>
-                    </a>
-                    <a href="details.html?id=infra-misc-3" class="square">
-                        <div class="square-title">Issue #6</div>
-                        <div class="square-desc">Miscellaneous contribution</div>
-                    </a>
-                </div>
-
-                <h3 class="os-section">Side Projects</h3>
-                <div class="grid">
-                    <a href="details.html?id=project-1" class="square">
-                        <div class="square-title">Project 1</div>
-                        <div class="square-desc">Description of side project</div>
-                    </a>
-                    <a href="details.html?id=project-2" class="square">
-                        <div class="square-title">Project 2</div>
-                        <div class="square-desc">Description of side project</div>
-                    </a>
-                    <a href="details.html?id=project-3" class="square">
-                        <div class="square-title">Project 3</div>
-                        <div class="square-desc">Description of side project</div>
-                    </a>
-                    <a href="details.html?id=project-4" class="square">
-                        <div class="square-title">Project 4</div>
-                        <div class="square-desc">Description of side project</div>
-                    </a>
-                    <a href="details.html?id=project-5" class="square">
-                        <div class="square-title">Project 5</div>
-                        <div class="square-desc">Description of side project</div>
-                    </a>
-                    <a href="details.html?id=project-6" class="square">
-                        <div class="square-title">Project 6</div>
-                        <div class="square-desc">Description of side project</div>
+                    <a href="details.html?id=custom-compiler-passes" class="square">
+                        <div class="square-title">Custom Compiler Passes</div>
+                        <div class="square-desc">Multiple PRs</div>
+                        <div class="square-date">Month D, YYYY – Month D, YYYY</div>
                     </a>
                 </div>
             </div>
