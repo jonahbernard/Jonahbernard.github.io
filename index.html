@@ -123,6 +123,31 @@
             text-align: center;
             padding-bottom: 10vh;
             box-sizing: border-box;
+            position: relative;
+            overflow: hidden;
+        }
+
+        #binary-bg {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        #hero > h1,
+        #hero > .email,
+        #hero > .quote,
+        #hero > .social-links {
+            position: relative;
+            z-index: 1;
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            #binary-bg {
+                display: none;
+            }
         }
 
         #about {
@@ -522,6 +547,7 @@
 
     <main>
         <section id="hero">
+            <canvas id="binary-bg" aria-hidden="true"></canvas>
             <h1>Jonah Bernard</h1>
             <p class="email">jonah@thebernards.org</p>
             <p class="quote">"Life without impact is a life unlived."</p>
@@ -782,6 +808,91 @@
     </main>
 
     <script>
+        (function () {
+            const canvas = document.getElementById('binary-bg');
+            if (!canvas) return;
+            if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+            const ctx = canvas.getContext('2d');
+            const fontSize = 13;
+            const spacing = 22;
+            let chars = [];
+            let dpr = 1;
+
+            const FLASH_MS = 900;
+
+            function build() {
+                dpr = window.devicePixelRatio || 1;
+                const w = canvas.clientWidth;
+                const h = canvas.clientHeight;
+                canvas.width = w * dpr;
+                canvas.height = h * dpr;
+                ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+                const cols = Math.ceil(w / spacing);
+                const rows = Math.ceil(h / spacing);
+                chars = new Array(cols * rows);
+                for (let r = 0; r < rows; r++) {
+                    for (let c = 0; c < cols; c++) {
+                        chars[r * cols + c] = {
+                            x: c * spacing + spacing / 2,
+                            y: r * spacing + spacing / 2,
+                            value: Math.random() < 0.5 ? '0' : '1',
+                            opacity: 0.04 + Math.random() * 0.07,
+                            flashStart: -Infinity
+                        };
+                    }
+                }
+            }
+
+            function draw(now) {
+                ctx.clearRect(0, 0, canvas.clientWidth, canvas.clientHeight);
+                ctx.font = fontSize + 'px ui-monospace, SFMono-Regular, Menlo, Consolas, monospace';
+                ctx.textAlign = 'center';
+                ctx.textBaseline = 'middle';
+                for (let i = 0; i < chars.length; i++) {
+                    const ch = chars[i];
+                    const age = now - ch.flashStart;
+                    if (age >= 0 && age < FLASH_MS) {
+                        const t = age / FLASH_MS;
+                        const flash = 1 - t;
+                        const base = ch.opacity;
+                        const alpha = base + (0.9 - base) * flash;
+                        ctx.fillStyle = 'rgba(181, 142, 49, ' + alpha.toFixed(3) + ')';
+                    } else {
+                        ctx.fillStyle = 'rgba(49, 60, 82, ' + ch.opacity.toFixed(3) + ')';
+                    }
+                    ctx.fillText(ch.value, ch.x, ch.y);
+                }
+            }
+
+            function tick() {
+                const now = performance.now();
+                const flips = Math.max(1, Math.floor(chars.length * 0.006));
+                for (let i = 0; i < flips; i++) {
+                    const idx = (Math.random() * chars.length) | 0;
+                    const ch = chars[idx];
+                    ch.value = ch.value === '0' ? '1' : '0';
+                    ch.opacity = 0.04 + Math.random() * 0.07;
+                    ch.flashStart = now;
+                }
+            }
+
+            function loop() {
+                draw(performance.now());
+                requestAnimationFrame(loop);
+            }
+
+            let resizeTimer;
+            window.addEventListener('resize', () => {
+                clearTimeout(resizeTimer);
+                resizeTimer = setTimeout(() => { build(); }, 120);
+            });
+
+            build();
+            setInterval(tick, 220);
+            requestAnimationFrame(loop);
+        })();
+
         (function () {
             const sections = [
                 { id: 'hero', navIds: ['nav-home'] },
