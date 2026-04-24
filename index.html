@@ -32,9 +32,9 @@
         }
 
         header {
-            display: flex;
-            justify-content: flex-start;
-            align-items: center;
+            display: grid;
+            grid-template-columns: 1fr auto 1fr;
+            align-items: baseline;
             padding: 30px 40px;
             font-size: 15px;
             position: sticky;
@@ -44,10 +44,7 @@
         }
 
         .header-socials {
-            position: absolute;
-            right: 40px;
-            top: 50%;
-            transform: translateY(-50%);
+            justify-self: end;
             display: flex;
             gap: 16px;
             align-items: center;
@@ -96,19 +93,17 @@
         }
 
         .nav-group a:hover {
-            text-decoration: underline;
+            color: var(--brand-color);
         }
 
         .header-name {
             font-size: 20px;
-            color: var(--link-color);
-            margin-right: 120px;
+            color: var(--brand-color);
             text-decoration: none;
             transition: color 0.2s ease;
         }
 
-        .nav-group a.active,
-        .header-name.active {
+        .nav-group a.active {
             color: var(--brand-color);
         }
 
@@ -166,12 +161,107 @@
             color: var(--muted-color);
             overflow: hidden;
             box-shadow: 0 4px 15px rgba(49, 60, 82, 0.08);
+            position: relative;
+            flex-shrink: 0;
         }
 
         .about-image img {
             width: 100%;
             height: 100%;
             object-fit: cover;
+        }
+
+        .carousel-track {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            transition: transform 0.4s ease;
+            cursor: grab;
+            touch-action: pan-y;
+        }
+
+        .carousel-track.is-dragging {
+            cursor: grabbing;
+            transition: none;
+        }
+
+        .carousel-slide {
+            flex: 0 0 100%;
+            min-width: 0;
+            height: 100%;
+        }
+
+        .carousel-slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            user-select: none;
+            -webkit-user-drag: none;
+            pointer-events: none;
+        }
+
+        .carousel-caption {
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            padding: 22px 14px 10px;
+            color: #fff;
+            font-size: 14px;
+            text-align: center;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0));
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        .carousel-arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 28px;
+            height: 28px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0;
+            background: rgba(0, 0, 0, 0.2);
+            border: none;
+            border-radius: 50%;
+            color: #fff;
+            cursor: pointer;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.2s ease, background 0.2s ease;
+            z-index: 2;
+        }
+
+        .about-image:hover .carousel-arrow {
+            opacity: 0.45;
+            pointer-events: auto;
+        }
+
+        .about-image .carousel-arrow:hover {
+            opacity: 0.9;
+            background: rgba(0, 0, 0, 0.4);
+        }
+
+        .carousel-arrow.prev {
+            left: 10px;
+        }
+
+        .carousel-arrow.next {
+            right: 10px;
+        }
+
+        .carousel-arrow svg {
+            width: 12px;
+            height: 12px;
+            display: block;
+        }
+
+        .carousel-arrow[hidden] {
+            display: none;
         }
 
         h1 {
@@ -405,12 +495,11 @@
     <header>
         <a href="/" class="header-name active" id="nav-home">Jonah Bernard</a>
         <div class="nav-group">
-            <a href="#hobbies" id="nav-hobbies">Hobbies</a>
-            <a href="#open-source" id="nav-open-source">Open-Source Contributions</a>
-            <a href="#blog" id="nav-blog">Blog</a>
-            <a href="#education" id="nav-education">Education</a>
-            <a href="#experience" id="nav-experience">Experience</a>
             <a href="#about" id="nav-about">About</a>
+            <a href="#experience" id="nav-experience">Experience &amp; Education</a>
+            <a href="#blog" id="nav-blog">Blog</a>
+            <a href="#open-source" id="nav-open-source">Open-Source Contributions</a>
+            <a href="#hobbies" id="nav-hobbies">Hobbies</a>
         </div>
         <div class="header-socials">
             <a href="#" aria-label="GitHub" target="_blank" rel="noopener noreferrer">
@@ -466,10 +555,15 @@
                     </p>
                 </div>
 
-                <div class="about-image">
-                    <!-- Replace the src with your actual image path, e.g., "profile.jpg" -->
-                    <img src="assets/IMG_0467.jpg" alt="Jonah Bernard"
-                        onerror="this.style.display='none'; this.parentNode.innerHTML='Your Photo Here';">
+                <div class="about-image" id="about-carousel" aria-roledescription="carousel">
+                    <div class="carousel-track"></div>
+                    <div class="carousel-caption"></div>
+                    <button class="carousel-arrow prev" type="button" aria-label="Previous photo">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="15 18 9 12 15 6"></polyline></svg>
+                    </button>
+                    <button class="carousel-arrow next" type="button" aria-label="Next photo">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                    </button>
                 </div>
 
                 <div class="about-text">
@@ -550,6 +644,7 @@
                         <h3 class="blog-entry-title">Understanding the SGLang Scheduler</h3>
                         <p class="blog-entry-desc">A deep dive into how SGLang efficiently schedules tensor parallel GPU
                             workers and orchestrates request handling.</p>
+                        <p class="blog-entry-date">April 24, 2026</p>
                     </a>
                 </div>
             </div>
@@ -691,7 +786,7 @@
             const sections = [
                 { id: 'hero', navIds: ['nav-home'] },
                 { id: 'about', navIds: ['nav-about'] },
-                { id: 'experience', navIds: ['nav-experience', 'nav-education'] },
+                { id: 'experience', navIds: ['nav-experience'] },
                 { id: 'blog', navIds: ['nav-blog'] },
                 { id: 'open-source', navIds: ['nav-open-source'] },
                 { id: 'hobbies', navIds: ['nav-hobbies'] }
@@ -728,6 +823,95 @@
             }, { passive: true });
 
             updateActiveNav();
+        })();
+
+        (async function () {
+            const root = document.getElementById('about-carousel');
+            if (!root) return;
+            const track = root.querySelector('.carousel-track');
+            const caption = root.querySelector('.carousel-caption');
+            const prevBtn = root.querySelector('.carousel-arrow.prev');
+            const nextBtn = root.querySelector('.carousel-arrow.next');
+
+            const res = await fetch('assets/my_life_carousal/captions.json');
+            const captions = await res.json();
+            const photos = Object.entries(captions)
+                .map(([file, text]) => ({ file, caption: text }))
+                .reverse();
+
+            photos.forEach((p, i) => {
+                const slide = document.createElement('div');
+                slide.className = 'carousel-slide';
+                const img = document.createElement('img');
+                img.src = 'assets/my_life_carousal/' + encodeURIComponent(p.file);
+                img.alt = p.caption;
+                img.loading = i === 0 ? 'eager' : 'lazy';
+                slide.appendChild(img);
+                track.appendChild(slide);
+            });
+
+            let index = 0;
+
+            function render(offsetPx) {
+                const base = -index * 100;
+                if (offsetPx) {
+                    track.style.transform = 'translateX(calc(' + base + '% + ' + offsetPx + 'px))';
+                } else {
+                    track.style.transform = 'translateX(' + base + '%)';
+                }
+                caption.textContent = photos[index].caption;
+                prevBtn.hidden = index === 0;
+                nextBtn.hidden = index === photos.length - 1;
+            }
+
+            function go(delta) {
+                index = Math.max(0, Math.min(photos.length - 1, index + delta));
+                render();
+            }
+
+            let startX = 0;
+            let startY = 0;
+            let dragging = false;
+            let pointerId = null;
+
+            track.addEventListener('pointerdown', (e) => {
+                dragging = true;
+                pointerId = e.pointerId;
+                startX = e.clientX;
+                startY = e.clientY;
+                track.classList.add('is-dragging');
+            });
+
+            track.addEventListener('pointermove', (e) => {
+                if (!dragging || e.pointerId !== pointerId) return;
+                const dx = e.clientX - startX;
+                const dy = e.clientY - startY;
+                if (Math.abs(dx) > Math.abs(dy)) {
+                    e.preventDefault();
+                    render(dx);
+                }
+            });
+
+            function endDrag(e) {
+                if (!dragging || (pointerId !== null && e.pointerId !== pointerId)) return;
+                const dx = e.clientX - startX;
+                dragging = false;
+                pointerId = null;
+                track.classList.remove('is-dragging');
+                const threshold = Math.min(80, track.clientWidth * 0.15);
+                if (dx <= -threshold) go(1);
+                else if (dx >= threshold) go(-1);
+                else render();
+            }
+
+            track.addEventListener('pointerup', endDrag);
+            track.addEventListener('pointercancel', endDrag);
+            track.addEventListener('pointerleave', endDrag);
+
+            prevBtn.addEventListener('click', () => go(-1));
+            nextBtn.addEventListener('click', () => go(1));
+
+            render();
         })();
     </script>
 </body>

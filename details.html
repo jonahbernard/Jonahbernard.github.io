@@ -27,12 +27,13 @@
         }
 
         header {
-            display: flex;
-            justify-content: flex-start;
-            align-items: center;
+            display: grid;
+            grid-template-columns: 1fr auto 1fr;
+            align-items: baseline;
             padding: 30px 40px;
             font-size: 15px;
             border-bottom: 1px solid var(--border-color);
+            position: relative;
         }
 
         .nav-group {
@@ -47,20 +48,41 @@
         }
 
         .nav-group a:hover {
-            text-decoration: underline;
+            color: var(--brand-color);
         }
 
         .header-name {
             font-size: 20px;
-            color: var(--link-color);
-            margin-right: 120px;
+            color: var(--brand-color);
             text-decoration: none;
             transition: color 0.2s ease;
         }
 
-        .nav-group a.active,
-        .header-name.active {
+        .nav-group a.active {
             color: var(--brand-color);
+        }
+
+        .header-socials {
+            justify-self: end;
+            display: flex;
+            gap: 16px;
+            align-items: center;
+        }
+
+        .header-socials a {
+            color: var(--link-color);
+            display: inline-flex;
+            transition: color 0.2s ease, transform 0.2s ease;
+        }
+
+        .header-socials a:hover {
+            color: var(--brand-color);
+            transform: translateY(-2px);
+        }
+
+        .header-socials svg {
+            width: 18px;
+            height: 18px;
         }
 
         main {
@@ -151,12 +173,28 @@
     <header>
         <a href="/" class="header-name">Jonah Bernard</a>
         <div class="nav-group">
-            <a href="/#hobbies">Hobbies</a>
-            <a href="/#open-source" class="active">Open-Source Contributions</a>
-            <a href="/#blog">Blog</a>
-            <a href="/#education">Education</a>
-            <a href="/#experience">Experience</a>
             <a href="/#about">About</a>
+            <a href="/#experience">Experience &amp; Education</a>
+            <a href="/#blog">Blog</a>
+            <a href="/#open-source" class="active">Open-Source Contributions</a>
+            <a href="/#hobbies">Hobbies</a>
+        </div>
+        <div class="header-socials">
+            <a href="#" aria-label="GitHub" target="_blank" rel="noopener noreferrer">
+                <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                    <path d="M12 .5C5.73.5.5 5.73.5 12c0 5.08 3.29 9.39 7.86 10.91.58.11.79-.25.79-.56 0-.27-.01-1.17-.02-2.12-3.2.7-3.88-1.36-3.88-1.36-.52-1.33-1.27-1.68-1.27-1.68-1.04-.71.08-.7.08-.7 1.15.08 1.76 1.18 1.76 1.18 1.02 1.75 2.68 1.24 3.33.95.1-.74.4-1.24.72-1.53-2.55-.29-5.24-1.28-5.24-5.7 0-1.26.45-2.29 1.18-3.1-.12-.29-.51-1.47.11-3.06 0 0 .97-.31 3.18 1.18.92-.26 1.9-.39 2.88-.39s1.96.13 2.88.39c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.77.11 3.06.74.81 1.18 1.84 1.18 3.1 0 4.43-2.69 5.41-5.26 5.69.41.36.78 1.05.78 2.12 0 1.53-.01 2.76-.01 3.14 0 .31.21.67.8.56C20.21 21.39 23.5 17.08 23.5 12 23.5 5.73 18.27.5 12 .5Z"/>
+                </svg>
+            </a>
+            <a href="#" aria-label="LinkedIn" target="_blank" rel="noopener noreferrer">
+                <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                    <path d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.36V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28ZM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12ZM7.12 20.45H3.56V9h3.56v11.45ZM22.22 0H1.77C.79 0 0 .77 0 1.72v20.56C0 23.23.79 24 1.77 24h20.45C23.21 24 24 23.23 24 22.28V1.72C24 .77 23.21 0 22.22 0Z"/>
+                </svg>
+            </a>
+            <a href="#" aria-label="X" target="_blank" rel="noopener noreferrer">
+                <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                    <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231 5.45-6.231Zm-1.161 17.52h1.833L7.084 4.126H5.117L17.083 19.77Z"/>
+                </svg>
+            </a>
         </div>
     </header>
     <main>
