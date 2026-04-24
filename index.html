@@ -5,6 +5,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Jonah Bernard</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;700&display=swap" rel="stylesheet">
     <style>
         :root {
             --text-color: #000000;
@@ -37,10 +40,20 @@
             align-items: baseline;
             padding: 30px 40px;
             font-size: 15px;
-            position: sticky;
+            position: fixed;
             top: 0;
+            left: 0;
+            right: 0;
             background-color: #ffffff;
             z-index: 100;
+            box-sizing: border-box;
+            transform: translateY(-100%);
+            transition: transform 0.3s ease;
+            will-change: transform;
+        }
+
+        header.is-visible {
+            transform: translateY(0);
         }
 
         .header-socials {
@@ -114,14 +127,10 @@
         }
 
         #hero {
-            min-height: calc(100vh - 80px);
-            /* Fill the screen minus header */
+            min-height: 100vh;
             display: flex;
             flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            padding-bottom: 10vh;
+            padding: 50px 16px 60px;
             box-sizing: border-box;
             position: relative;
             overflow: hidden;
@@ -136,17 +145,258 @@
             z-index: 0;
         }
 
-        #hero > h1,
-        #hero > .email,
-        #hero > .quote,
-        #hero > .social-links {
+        .hero-content {
             position: relative;
             z-index: 1;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+        }
+
+        .hero-masthead {
+            display: grid;
+            grid-template-columns: minmax(240px, 1.1fr) minmax(260px, 1.4fr) minmax(200px, 0.9fr);
+            align-items: stretch;
+            border-bottom: 2px solid var(--text-color);
+            background: rgba(255, 255, 255, 0.9);
+        }
+
+        .hero-masthead>div {
+            padding: 34px 30px;
+            box-sizing: border-box;
+            display: flex;
+            align-items: center;
+        }
+
+        .hero-masthead>div:not(:last-child) {
+            border-right: 2px solid var(--text-color);
+        }
+
+        .hero-brand h1 {
+            font-family: 'Oswald', 'Arial Narrow', sans-serif;
+            font-weight: 700;
+            font-size: 72px;
+            line-height: 0.95;
+            letter-spacing: 0.01em;
+            text-transform: uppercase;
+            margin: 0;
+            color: var(--text-color);
+        }
+
+        .hero-tagline {
+            justify-content: center;
+            text-align: center;
+        }
+
+        .hero-tagline p {
+            font-family: Georgia, 'Times New Roman', Times, serif;
+            font-style: italic;
+            font-size: 20px;
+            margin: 0;
+            line-height: 1.45;
+            width: 100%;
+        }
+
+        .hero-tagline a {
+            color: inherit;
+            text-decoration: underline;
+            text-decoration-thickness: 1px;
+            text-underline-offset: 4px;
+            transition: color 0.2s ease;
+        }
+
+        .hero-tagline a:hover {
+            color: var(--brand-color);
+        }
+
+        .status {
+            position: relative;
+            display: inline-block;
+            font-style: normal;
+            font-weight: 600;
+        }
+
+        .status-dot {
+            position: absolute;
+            top: 2px;
+            right: -12px;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background-color: #22c55e;
+            box-shadow: 0 0 6px rgba(34, 197, 94, 0.55);
+        }
+
+        .status-dot.resting {
+            background-color: #ef4444;
+            box-shadow: 0 0 6px rgba(239, 68, 68, 0.55);
+        }
+
+        .hero-menu ul {
+            list-style: disc;
+            padding-left: 22px;
+            margin: 0;
+            width: 100%;
+        }
+
+        .hero-menu li {
+            padding: 3px 0;
+        }
+
+        .hero-menu a {
+            font-family: 'Oswald', 'Arial Narrow', sans-serif;
+            font-weight: 700;
+            font-size: 17px;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+            text-decoration: none;
+            color: var(--text-color);
+            transition: color 0.2s ease;
+        }
+
+        .hero-menu a:hover,
+        .hero-menu a.active {
+            color: var(--brand-color);
+            text-decoration: underline;
+            text-decoration-thickness: 2px;
+            text-underline-offset: 3px;
+        }
+
+        .hero-subnav {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            border-bottom: 2px solid var(--text-color);
+            background: rgba(255, 255, 255, 0.9);
+        }
+
+        .hero-subnav a {
+            padding: 18px 20px;
+            text-align: center;
+            font-family: 'Oswald', 'Arial Narrow', sans-serif;
+            font-weight: 700;
+            font-size: 16px;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            text-decoration: none;
+            color: var(--text-color);
+            transition: color 0.2s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .hero-subnav a:not(:last-child) {
+            border-right: 2px solid var(--text-color);
+        }
+
+        .hero-subnav a:hover {
+            color: var(--brand-color);
+        }
+
+        .hero-subnav a.active {
+            text-decoration: underline;
+            text-decoration-thickness: 2px;
+            text-underline-offset: 4px;
+        }
+
+        .hero-subnav svg {
+            width: 16px;
+            height: 16px;
+        }
+
+        .hero-body {
+            padding: 60px 32px 20px;
+            flex: 1;
+        }
+
+        .hero-body-heading {
+            font-family: 'Oswald', 'Arial Narrow', sans-serif;
+            font-weight: 700;
+            font-size: 68px;
+            line-height: 0.95;
+            letter-spacing: 0.01em;
+            text-transform: uppercase;
+            margin: 0 0 28px 0;
+            color: var(--text-color);
+        }
+
+        .hero-body-text {
+            font-family: Georgia, 'Times New Roman', Times, serif;
+            font-size: 20px;
+            line-height: 1.7;
+            max-width: 720px;
+            margin: 0;
+            color: var(--text-color);
+        }
+
+        .hero-body-text + .hero-body-text {
+            margin-top: 24px;
+        }
+
+        .hero-body-text em {
+            font-style: italic;
+        }
+
+        .hero-quote {
+            font-family: Georgia, 'Times New Roman', Times, serif;
+            font-style: italic;
+            font-size: 22px;
+            margin: 32px 0 0 0;
+            padding: 6px 0 6px 22px;
+            border-left: 3px solid var(--text-color);
+            max-width: 720px;
+            color: var(--text-color);
         }
 
         @media (prefers-reduced-motion: reduce) {
             #binary-bg {
                 display: none;
+            }
+        }
+
+        @media (max-width: 900px) {
+            #hero {
+                padding: 30px 20px 40px;
+            }
+
+            .hero-masthead {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-masthead>div:not(:last-child) {
+                border-right: none;
+                border-bottom: 2px solid var(--text-color);
+            }
+
+            .hero-masthead>div {
+                padding: 24px 22px;
+            }
+
+            .hero-subnav {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-subnav a:not(:last-child) {
+                border-right: none;
+                border-bottom: 2px solid var(--text-color);
+            }
+
+            .hero-brand h1 {
+                font-size: 56px;
+            }
+
+            .hero-body {
+                padding: 40px 22px 20px;
+            }
+
+            .hero-body-heading {
+                font-size: 46px;
+            }
+
+            .hero-body-text {
+                font-size: 18px;
             }
         }
 
@@ -293,16 +543,6 @@
             font-size: 42px;
             font-weight: normal;
             margin: 0 0 12px 0;
-        }
-
-        .email {
-            font-size: 20px;
-            margin: 0 0 16px 0;
-        }
-
-        .quote {
-            font-size: 20px;
-            margin: 0;
         }
 
         #blog {
@@ -513,7 +753,7 @@
             color: var(--link-color);
             margin: 0;
         }
-</style>
+    </style>
 </head>
 
 <body>
@@ -529,17 +769,20 @@
         <div class="header-socials">
             <a href="#" aria-label="GitHub" target="_blank" rel="noopener noreferrer">
                 <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                    <path d="M12 .5C5.73.5.5 5.73.5 12c0 5.08 3.29 9.39 7.86 10.91.58.11.79-.25.79-.56 0-.27-.01-1.17-.02-2.12-3.2.7-3.88-1.36-3.88-1.36-.52-1.33-1.27-1.68-1.27-1.68-1.04-.71.08-.7.08-.7 1.15.08 1.76 1.18 1.76 1.18 1.02 1.75 2.68 1.24 3.33.95.1-.74.4-1.24.72-1.53-2.55-.29-5.24-1.28-5.24-5.7 0-1.26.45-2.29 1.18-3.1-.12-.29-.51-1.47.11-3.06 0 0 .97-.31 3.18 1.18.92-.26 1.9-.39 2.88-.39s1.96.13 2.88.39c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.77.11 3.06.74.81 1.18 1.84 1.18 3.1 0 4.43-2.69 5.41-5.26 5.69.41.36.78 1.05.78 2.12 0 1.53-.01 2.76-.01 3.14 0 .31.21.67.8.56C20.21 21.39 23.5 17.08 23.5 12 23.5 5.73 18.27.5 12 .5Z"/>
+                    <path
+                        d="M12 .5C5.73.5.5 5.73.5 12c0 5.08 3.29 9.39 7.86 10.91.58.11.79-.25.79-.56 0-.27-.01-1.17-.02-2.12-3.2.7-3.88-1.36-3.88-1.36-.52-1.33-1.27-1.68-1.27-1.68-1.04-.71.08-.7.08-.7 1.15.08 1.76 1.18 1.76 1.18 1.02 1.75 2.68 1.24 3.33.95.1-.74.4-1.24.72-1.53-2.55-.29-5.24-1.28-5.24-5.7 0-1.26.45-2.29 1.18-3.1-.12-.29-.51-1.47.11-3.06 0 0 .97-.31 3.18 1.18.92-.26 1.9-.39 2.88-.39s1.96.13 2.88.39c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.77.11 3.06.74.81 1.18 1.84 1.18 3.1 0 4.43-2.69 5.41-5.26 5.69.41.36.78 1.05.78 2.12 0 1.53-.01 2.76-.01 3.14 0 .31.21.67.8.56C20.21 21.39 23.5 17.08 23.5 12 23.5 5.73 18.27.5 12 .5Z" />
                 </svg>
             </a>
             <a href="#" aria-label="LinkedIn" target="_blank" rel="noopener noreferrer">
                 <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                    <path d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.36V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28ZM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12ZM7.12 20.45H3.56V9h3.56v11.45ZM22.22 0H1.77C.79 0 0 .77 0 1.72v20.56C0 23.23.79 24 1.77 24h20.45C23.21 24 24 23.23 24 22.28V1.72C24 .77 23.21 0 22.22 0Z"/>
+                    <path
+                        d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.36V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28ZM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12ZM7.12 20.45H3.56V9h3.56v11.45ZM22.22 0H1.77C.79 0 0 .77 0 1.72v20.56C0 23.23.79 24 1.77 24h20.45C23.21 24 24 23.23 24 22.28V1.72C24 .77 23.21 0 22.22 0Z" />
                 </svg>
             </a>
             <a href="#" aria-label="X" target="_blank" rel="noopener noreferrer">
                 <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                    <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231 5.45-6.231Zm-1.161 17.52h1.833L7.084 4.126H5.117L17.083 19.77Z"/>
+                    <path
+                        d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231 5.45-6.231Zm-1.161 17.52h1.833L7.084 4.126H5.117L17.083 19.77Z" />
                 </svg>
             </a>
         </div>
@@ -548,25 +791,47 @@
     <main>
         <section id="hero">
             <canvas id="binary-bg" aria-hidden="true"></canvas>
-            <h1>Jonah Bernard</h1>
-            <p class="email">jonah@thebernards.org</p>
-            <p class="quote">"Life without impact is a life unlived."</p>
-            <div class="social-links">
-                <a href="#" aria-label="GitHub" target="_blank" rel="noopener noreferrer">
-                    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                        <path d="M12 .5C5.73.5.5 5.73.5 12c0 5.08 3.29 9.39 7.86 10.91.58.11.79-.25.79-.56 0-.27-.01-1.17-.02-2.12-3.2.7-3.88-1.36-3.88-1.36-.52-1.33-1.27-1.68-1.27-1.68-1.04-.71.08-.7.08-.7 1.15.08 1.76 1.18 1.76 1.18 1.02 1.75 2.68 1.24 3.33.95.1-.74.4-1.24.72-1.53-2.55-.29-5.24-1.28-5.24-5.7 0-1.26.45-2.29 1.18-3.1-.12-.29-.51-1.47.11-3.06 0 0 .97-.31 3.18 1.18.92-.26 1.9-.39 2.88-.39s1.96.13 2.88.39c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.77.11 3.06.74.81 1.18 1.84 1.18 3.1 0 4.43-2.69 5.41-5.26 5.69.41.36.78 1.05.78 2.12 0 1.53-.01 2.76-.01 3.14 0 .31.21.67.8.56C20.21 21.39 23.5 17.08 23.5 12 23.5 5.73 18.27.5 12 .5Z"/>
-                    </svg>
-                </a>
-                <a href="#" aria-label="LinkedIn" target="_blank" rel="noopener noreferrer">
-                    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                        <path d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.36V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28ZM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12ZM7.12 20.45H3.56V9h3.56v11.45ZM22.22 0H1.77C.79 0 0 .77 0 1.72v20.56C0 23.23.79 24 1.77 24h20.45C23.21 24 24 23.23 24 22.28V1.72C24 .77 23.21 0 22.22 0Z"/>
-                    </svg>
-                </a>
-                <a href="#" aria-label="X" target="_blank" rel="noopener noreferrer">
-                    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                        <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231 5.45-6.231Zm-1.161 17.52h1.833L7.084 4.126H5.117L17.083 19.77Z"/>
-                    </svg>
-                </a>
+            <div class="hero-content">
+                <div class="hero-masthead">
+                    <div class="hero-brand">
+                        <h1>Jonah<br>Bernard</h1>
+                    </div>
+                    <div class="hero-tagline">
+                        <p>Currently, <span class="status"><span id="status-word">coding</span><span class="status-dot" id="status-dot"></span></span></p>
+                    </div>
+                    <div class="hero-menu">
+                        <ul>
+                            <li><a href="#about">About</a></li>
+                            <li><a href="#experience">Experience &amp; Education</a></li>
+                            <li><a href="#blog">Blog</a></li>
+                            <li><a href="#open-source">Open-Source Contributions</a></li>
+                            <li><a href="#hobbies">Hobbies</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="hero-subnav">
+                    <a href="#" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+                        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                            <path
+                                d="M12 .5C5.73.5.5 5.73.5 12c0 5.08 3.29 9.39 7.86 10.91.58.11.79-.25.79-.56 0-.27-.01-1.17-.02-2.12-3.2.7-3.88-1.36-3.88-1.36-.52-1.33-1.27-1.68-1.27-1.68-1.04-.71.08-.7.08-.7 1.15.08 1.76 1.18 1.76 1.18 1.02 1.75 2.68 1.24 3.33.95.1-.74.4-1.24.72-1.53-2.55-.29-5.24-1.28-5.24-5.7 0-1.26.45-2.29 1.18-3.1-.12-.29-.51-1.47.11-3.06 0 0 .97-.31 3.18 1.18.92-.26 1.9-.39 2.88-.39s1.96.13 2.88.39c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.77.11 3.06.74.81 1.18 1.84 1.18 3.1 0 4.43-2.69 5.41-5.26 5.69.41.36.78 1.05.78 2.12 0 1.53-.01 2.76-.01 3.14 0 .31.21.67.8.56C20.21 21.39 23.5 17.08 23.5 12 23.5 5.73 18.27.5 12 .5Z" />
+                        </svg>
+                        GitHub
+                    </a>
+                    <a href="#" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+                        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                            <path
+                                d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.36V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28ZM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12ZM7.12 20.45H3.56V9h3.56v11.45ZM22.22 0H1.77C.79 0 0 .77 0 1.72v20.56C0 23.23.79 24 1.77 24h20.45C23.21 24 24 23.23 24 22.28V1.72C24 .77 23.21 0 22.22 0Z" />
+                        </svg>
+                        LinkedIn
+                    </a>
+                    <a href="mailto:jonah@thebernards.org" class="active">X</a>
+                </div>
+                <div class="hero-body">
+                    <h2 class="hero-body-heading">Software Engineer.</h2>
+                    <p class="hero-body-text">I want to build <em>systems that advance civilization</em> and make it
+                        easier for humans to live.</p>
+                    <p class="hero-body-text">I'm currently exploring <em>LLM inference.</em></p>
+                </div>
             </div>
         </section>
 
@@ -585,10 +850,16 @@
                     <div class="carousel-track"></div>
                     <div class="carousel-caption"></div>
                     <button class="carousel-arrow prev" type="button" aria-label="Previous photo">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="15 18 9 12 15 6"></polyline></svg>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                            stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                            <polyline points="15 18 9 12 15 6"></polyline>
+                        </svg>
                     </button>
                     <button class="carousel-arrow next" type="button" aria-label="Next photo">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                            stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                            <polyline points="9 18 15 12 9 6"></polyline>
+                        </svg>
                     </button>
                 </div>
 
@@ -894,6 +1165,26 @@
         })();
 
         (function () {
+            const word = document.getElementById('status-word');
+            const dot = document.getElementById('status-dot');
+            if (!word || !dot) return;
+
+            function update() {
+                const hour = parseInt(new Intl.DateTimeFormat('en-US', {
+                    timeZone: 'America/New_York',
+                    hour: 'numeric',
+                    hour12: false
+                }).format(new Date()), 10);
+                const coding = hour >= 7 && hour < 22;
+                word.textContent = coding ? 'coding' : 'resting';
+                dot.classList.toggle('resting', !coding);
+            }
+
+            update();
+            setInterval(update, 60000);
+        })();
+
+        (function () {
             const sections = [
                 { id: 'hero', navIds: ['nav-home'] },
                 { id: 'about', navIds: ['nav-about'] },
@@ -922,11 +1213,21 @@
                 });
             }
 
+            const header = document.querySelector('header');
+            const heroMenu = document.querySelector('.hero-menu');
+
+            function updateHeaderVisibility() {
+                if (!header || !heroMenu) return;
+                const visible = heroMenu.getBoundingClientRect().bottom <= 0;
+                header.classList.toggle('is-visible', visible);
+            }
+
             let ticking = false;
             window.addEventListener('scroll', () => {
                 if (!ticking) {
                     requestAnimationFrame(() => {
                         updateActiveNav();
+                        updateHeaderVisibility();
                         ticking = false;
                     });
                     ticking = true;
@@ -934,6 +1235,7 @@
             }, { passive: true });
 
             updateActiveNav();
+            updateHeaderVisibility();
         })();
 
         (async function () {
