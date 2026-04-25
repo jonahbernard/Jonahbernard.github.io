@@ -713,6 +713,33 @@
             border-bottom: 1px solid var(--border-color);
         }
 
+        #open-source h3.os-section-divider {
+            font-family: 'Oswald', 'Arial Narrow', sans-serif;
+            font-weight: 700;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+            font-size: 28px;
+            margin: 60px 0 28px 0;
+            padding-left: 14px;
+            display: inline-block;
+            position: relative;
+        }
+
+        #open-source h3.os-section-divider:first-of-type {
+            margin-top: 20px;
+        }
+
+        #open-source h3.os-section-divider::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            right: 100%;
+            transform: translateY(-50%);
+            height: 2px;
+            width: clamp(20px, calc(50vw - 520px), 120px);
+            background-color: var(--text-color);
+        }
+
         #open-source h4.os-subsection {
             font-family: 'Oswald', 'Arial Narrow', sans-serif;
             font-weight: 700;
@@ -814,6 +841,7 @@
         }
 
         .hobbies-grid {
+            position: relative;
             border-top: 2px solid var(--text-color);
             border-left: 2px solid var(--text-color);
             padding: 24px 28px;
@@ -821,11 +849,26 @@
             background: rgba(255, 255, 255, 0.6);
         }
 
+        .hobbies-grid::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            right: 100%;
+            height: 2px;
+            width: 20px;
+            background-color: var(--text-color);
+        }
+
         .hobbies-grid.flipped {
             border-top: none;
             border-left: none;
             border-bottom: 2px solid var(--text-color);
             border-right: 2px solid var(--text-color);
+        }
+
+        .hobbies-grid.flipped::before {
+            top: auto;
+            bottom: -2px;
         }
 
         .hobbies-grid-heading {
@@ -860,13 +903,17 @@
 
         #experience,
         #about,
-        #blog {
+        #blog,
+        #open-source,
+        #hobbies {
             position: relative;
         }
 
         #experience::before,
         #about::before,
-        #blog::before {
+        #blog::before,
+        #open-source::before,
+        #hobbies::before {
             content: '';
             position: absolute;
             top: 0;
@@ -874,6 +921,33 @@
             left: max(20px, calc(50% - 620px));
             width: 2px;
             background-color: var(--text-color);
+        }
+
+        #hobbies::before {
+            bottom: 40px;
+        }
+
+        #hobbies::after {
+            content: 'the end. pls email me, connect with me on linkedin, and follow me on github and X!';
+            position: absolute;
+            bottom: 40px;
+            left: max(20px, calc(50% - 620px));
+            transform: translate(14px, 50%);
+            font-family: 'Oswald', 'Arial Narrow', sans-serif;
+            font-weight: 700;
+            font-size: 14px;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            color: var(--text-color);
+            white-space: nowrap;
+            z-index: 2;
+        }
+
+        @media (max-width: 700px) {
+            #hobbies::after {
+                white-space: normal;
+                max-width: calc(100vw - 60px);
+            }
         }
 
         #hero::before {
@@ -919,6 +993,10 @@
 
             .hobbies-grid {
                 padding: 18px 20px;
+            }
+
+            .hobbies-grid::before {
+                display: none;
             }
 
             .hobbies-grid-heading {
@@ -1075,7 +1153,8 @@
                                 style="max-width: 100%; max-height: 100%; object-fit: contain;">
                         </div>
                         <div style="flex: 1; min-width: 0;">
-                            <h3 class="section-heading" style="font-size: 24px; margin: 0 0 6px 0;">Cubic Transportation Systems</h3>
+                            <h3 class="section-heading" style="font-size: 24px; margin: 0 0 6px 0;">Cubic Transportation
+                                Systems</h3>
                             <h4
                                 style="font-size: 18px; color: var(--link-color); margin: 0 0 4px 0; font-style: italic; font-weight: normal;">
                                 Software Engineer Intern</h4>
@@ -1097,7 +1176,8 @@
                                 style="max-width: 100%; max-height: 100%; object-fit: contain;">
                         </div>
                         <div style="flex: 1; min-width: 0;">
-                            <h3 class="section-heading" style="font-size: 24px; margin: 0 0 10px 0;">Cornell University</h3>
+                            <h3 class="section-heading" style="font-size: 24px; margin: 0 0 10px 0;">Cornell University
+                            </h3>
                             <h4
                                 style="font-size: 20px; color: var(--link-color); margin: 0 0 10px 0; font-style: italic; font-weight: normal;">
                                 B.S. in Computer Science</h4>
@@ -1133,38 +1213,26 @@
             <div class="os-container">
                 <h2 class="os-title">My open-source contributions</h2>
 
+                <h3 class="os-section-divider">SGLang</h3>
                 <div class="grid">
                     <a href="details.html?id=sglang-apple-silicon" class="square">
-                        <div class="square-title">SGLang on Apple Silicon</div>
+                        <div class="square-title">Enable SGLang on Apple Silicon</div>
                         <div class="square-desc">Multiple PRs</div>
                         <div class="square-date">Month D, YYYY – Month D, YYYY</div>
                     </a>
                     <a href="details.html?id=lora-moe-layers" class="square">
-                        <div class="square-title">LoRA on MoE Layers</div>
+                        <div class="square-title">Enable LoRA on MoE Layers</div>
                         <div class="square-desc">Multiple PRs</div>
                         <div class="square-date">Month D, YYYY – Month D, YYYY</div>
                     </a>
                     <a href="details.html?id=refactor-moe-sglang" class="square">
-                        <div class="square-title">Refactor MoE SGLang Code</div>
-                        <div class="square-desc">Multiple PRs</div>
-                        <div class="square-date">Month D, YYYY – Month D, YYYY</div>
-                    </a>
-                    <a href="details.html?id=swe-ai-agent" class="square">
-                        <div class="square-title">SWE AI Agent</div>
-                        <div class="square-desc">Multiple PRs</div>
-                        <div class="square-date">Month D, YYYY – Month D, YYYY</div>
-                    </a>
-                    <a href="details.html?id=ocaml-ml-algorithms" class="square">
-                        <div class="square-title">OCaml ML Algorithms</div>
-                        <div class="square-desc">Multiple PRs</div>
-                        <div class="square-date">Month D, YYYY – Month D, YYYY</div>
-                    </a>
-                    <a href="details.html?id=custom-compiler-passes" class="square">
-                        <div class="square-title">Custom Compiler Passes</div>
+                        <div class="square-title">Refactor MoE Code</div>
                         <div class="square-desc">Multiple PRs</div>
                         <div class="square-date">Month D, YYYY – Month D, YYYY</div>
                     </a>
                 </div>
+
+                <h3 class="os-section-divider">personal projects</h3>
             </div>
         </section>
 
