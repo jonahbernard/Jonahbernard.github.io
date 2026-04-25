@@ -337,7 +337,7 @@
             color: var(--text-color);
         }
 
-        .hero-body-text + .hero-body-text {
+        .hero-body-text+.hero-body-text {
             margin-top: 24px;
         }
 
@@ -710,65 +710,90 @@
         }
 
         .hobbies-container {
-            max-width: 1000px;
+            max-width: 1200px;
             margin: 0 auto;
             width: 100%;
         }
 
-        #hobbies h2.hobbies-title {
-            font-size: 32px;
-            font-weight: normal;
-            margin: 0 0 16px 0;
-            text-align: center;
+        .hobbies-narrative {
+            font-family: Georgia, 'Times New Roman', Times, serif;
+            font-size: 22px;
+            line-height: 1.7;
+            margin: 0 0 40px 0;
+            padding: 0;
+            color: var(--text-color);
+            max-width: 900px;
         }
 
-        #hobbies .hobbies-intro {
+        .hobbies-narrative em {
+            font-style: italic;
+        }
+
+        .hobbies-grid {
+            border-top: 2px solid var(--text-color);
+            border-left: 2px solid var(--text-color);
+            padding: 24px 28px;
+            max-width: 520px;
+            background: rgba(255, 255, 255, 0.6);
+        }
+
+        .hobbies-grid.flipped {
+            border-top: none;
+            border-left: none;
+            border-bottom: 2px solid var(--text-color);
+            border-right: 2px solid var(--text-color);
+        }
+
+        .hobbies-grid-heading {
+            font-family: 'Oswald', 'Arial Narrow', sans-serif;
+            font-weight: 700;
+            font-size: 22px;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+            margin: 0 0 12px 0;
+            color: var(--text-color);
+        }
+
+        .hobbies-grid-body {
+            font-family: Georgia, 'Times New Roman', Times, serif;
             font-size: 17px;
             line-height: 1.7;
-            color: var(--link-color);
-            text-align: center;
-            max-width: 700px;
-            margin: 0 auto 50px auto;
+            margin: 0;
+            color: var(--text-color);
         }
 
-        #hobbies h3.hobbies-section {
-            font-size: 24px;
-            font-weight: normal;
-            margin: 40px 0 20px 0;
-            padding-bottom: 10px;
-            border-bottom: 1px solid var(--border-color);
+        .hobbies-grid-body a {
+            color: inherit;
+            text-decoration: underline;
+            text-decoration-thickness: 1px;
+            text-underline-offset: 4px;
+            transition: color 0.2s ease;
         }
 
-        .hobbies-list {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 20px;
-        }
-
-        .hobby {
-            padding: 28px;
-            background-color: #ffffff;
-            border: 1px solid var(--border-color);
-            transition: all 0.2s ease;
-        }
-
-        .hobby:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 24px rgba(49, 60, 82, 0.1);
-            border-color: var(--muted-color);
-        }
-
-        .hobby-title {
-            font-size: 20px;
-            margin: 0 0 10px 0;
+        .hobbies-grid-body a:hover {
             color: var(--brand-color);
         }
 
-        .hobby-desc {
-            font-size: 15px;
-            line-height: 1.6;
-            color: var(--link-color);
-            margin: 0;
+        @media (max-width: 900px) {
+            #hobbies {
+                padding: 40px 20px;
+            }
+
+            .hobbies-narrative {
+                font-size: 18px;
+            }
+
+            .hobbies-grid {
+                padding: 18px 20px;
+            }
+
+            .hobbies-grid-heading {
+                font-size: 18px;
+            }
+
+            .hobbies-grid-body {
+                font-size: 16px;
+            }
         }
     </style>
 </head>
@@ -814,7 +839,8 @@
                         <h1><span class="underline">Jonah</span><br>Bernard</h1>
                     </div>
                     <div class="hero-tagline">
-                        <p>Currently, <span class="status"><span id="status-word">coding</span><span class="status-dot" id="status-dot"></span></span></p>
+                        <p>Currently, <span class="status"><span id="status-word">coding</span><span class="status-dot"
+                                    id="status-dot"></span></span></p>
                     </div>
                     <div class="hero-menu">
                         <ul>
@@ -1005,30 +1031,34 @@
 
         <section id="hobbies">
             <div class="hobbies-container">
-                <h2 class="hobbies-title">Hobbies &amp; Interests</h2>
-                <p class="hobbies-intro">A few things I care about outside of work.</p>
-
-                <h3 class="hobbies-section">Intellectual Interests</h3>
-                <div class="hobbies-list">
-                    <div class="hobby">
-                        <h3 class="hobby-title">Law</h3>
-                    </div>
-                    <div class="hobby">
-                        <h3 class="hobby-title">History</h3>
-                    </div>
-                    <div class="hobby">
-                        <h3 class="hobby-title">Psychology</h3>
-                    </div>
+                <p class="hobbies-narrative">i'm a software engineer because i want to make the world a better place
+                    through technology.</p>
+                <p class="hobbies-narrative">to ensure i know the best way to do this, i carve out time to learn about
+                    law, history and business.</p>
+                <div class="hobbies-grid">
+                    <p class="hobbies-grid-heading">recent reads...</p>
+                    <p class="hobbies-grid-body">the english and their history, the common law, a history of american
+                        law, legality, the conquest for happiness</p>
+                    <p class="hobbies-grid-heading" style="margin-top: 24px;">what i listen to...</p>
+                    <p class="hobbies-grid-body"><a href="https://www.oyez.org/" target="_blank"
+                            rel="noopener noreferrer">supreme court oral arguments</a>, <a
+                            href="https://www.acquired.fm/" target="_blank" rel="noopener noreferrer">acquired</a>, <a
+                            href="https://constitutioncenter.org/news-debate/podcasts" target="_blank"
+                            rel="noopener noreferrer">we the people</a>, <a href="https://therestishistory.com/main"
+                            target="_blank" rel="noopener noreferrer">the rest is history</a></p>
                 </div>
-
-                <h3 class="hobbies-section">Societal Causes</h3>
-                <div class="hobbies-list">
-                    <div class="hobby">
-                        <h3 class="hobby-title">Eradicating Lead Poisoning</h3>
-                    </div>
-                    <div class="hobby">
-                        <h3 class="hobby-title">Car Crash Prevention</h3>
-                    </div>
+                <p class="hobbies-narrative" style="margin-top: 40px;">it's also important to focus on where the rubber
+                    meets
+                    the road.</p>
+                <p class="hobbies-narrative">near and dear to me are keeping up with how new technology helps detect
+                    lead contamination and prevent car crashes</p>
+                <div class="hobbies-grid flipped">
+                    <p class="hobbies-grid-heading">what i'm following...</p>
+                    <p class="hobbies-grid-body"><a
+                            href="https://today.ucsd.edu/story/ultra-sensitive-lead-detector-could-significantly-improve-water-quality-monitoring"
+                            target="_blank" rel="noopener noreferrer">ultra-sensitive lead detector could significantly
+                            improve water quality monitoring</a>, <a href="https://waymo.com/" target="_blank"
+                            rel="noopener noreferrer">waymo</a></p>
                 </div>
             </div>
         </section>
