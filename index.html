@@ -605,6 +605,7 @@
             flex-direction: column;
             border-top: 2px solid var(--text-color);
             background: rgba(255, 255, 255, 0.6);
+            margin-left: calc(max(20px, 50vw - 620px) - max(40px, 50vw - 500px));
         }
 
         .blog-entry {
@@ -613,6 +614,7 @@
             align-items: baseline;
             gap: 28px;
             padding: 26px 28px;
+            padding-left: calc(28px + max(40px, 50vw - 500px) - max(20px, 50vw - 620px));
             border-bottom: 2px solid var(--text-color);
             text-decoration: none;
             color: var(--text-color);
@@ -665,6 +667,7 @@
                 grid-template-columns: 1fr;
                 gap: 18px;
                 padding: 22px 20px;
+                padding-left: calc(20px + max(40px, 50vw - 500px) - max(20px, 50vw - 620px));
             }
 
             .blog-entry-title {
@@ -856,12 +859,14 @@
         }
 
         #experience,
-        #about {
+        #about,
+        #blog {
             position: relative;
         }
 
         #experience::before,
-        #about::before {
+        #about::before,
+        #blog::before {
             content: '';
             position: absolute;
             top: 0;
