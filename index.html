@@ -271,7 +271,7 @@
 
         .hero-subnav {
             display: grid;
-            grid-template-columns: 1fr 1fr 1fr;
+            grid-template-columns: minmax(240px, 1.1fr) minmax(260px, 1.4fr) minmax(200px, 0.9fr);
             border-bottom: 2px solid var(--text-color);
             background: rgba(255, 255, 255, 0.9);
         }
@@ -855,6 +855,54 @@
             color: var(--brand-color);
         }
 
+        #experience,
+        #about {
+            position: relative;
+        }
+
+        #experience::before,
+        #about::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: max(20px, calc(50% - 620px));
+            width: 2px;
+            background-color: var(--text-color);
+        }
+
+        #hero::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            height: 100px;
+            left: max(20px, calc(50% - 620px));
+            width: 2px;
+            background-color: var(--text-color);
+            z-index: 2;
+        }
+
+        #hero::after {
+            content: 'learn more about me';
+            position: absolute;
+            bottom: 100px;
+            left: max(20px, calc(50% - 620px));
+            transform: translate(14px, 50%);
+            font-family: 'Oswald', 'Arial Narrow', sans-serif;
+            font-weight: 700;
+            font-size: 14px;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            color: var(--text-color);
+            white-space: nowrap;
+            z-index: 2;
+        }
+
+        .experience-entry {
+            margin-left: -20px;
+            padding-left: 20px;
+        }
+
         @media (max-width: 900px) {
             #hobbies {
                 padding: 40px 20px;
@@ -999,7 +1047,7 @@
             <div style="max-width: 1200px; width: 100%; display: flex; gap: 400px; align-items: flex-start;">
                 <div style="flex: 1; text-align: left;">
                     <h2 class="section-heading" style="margin-top: 0; font-size: 36px;">Experience</h2>
-                    <div
+                    <div class="experience-entry"
                         style="margin-bottom: 40px; border-bottom: 1px solid var(--border-color); padding-bottom: 20px; display: flex; gap: 20px; align-items: flex-start;">
                         <div
                             style="flex-shrink: 0; width: 64px; height: 64px; display: flex; align-items: center; justify-content: center;">
@@ -1014,7 +1062,7 @@
                             <p style="font-size: 14px; color: var(--muted-color); margin: 0;">Summer 2026</p>
                         </div>
                     </div>
-                    <div
+                    <div class="experience-entry"
                         style="margin-bottom: 40px; border-bottom: 1px solid var(--border-color); padding-bottom: 20px; display: flex; gap: 20px; align-items: flex-start;">
                         <div
                             style="flex-shrink: 0; width: 64px; height: 64px; display: flex; align-items: center; justify-content: center;">
