@@ -427,7 +427,7 @@
 
         .about-text {
             flex: 1;
-            font-size: 17px;
+            font-size: 21px;
             line-height: 1.8;
             color: var(--text-color);
         }
@@ -551,6 +551,14 @@
             margin: 0 0 12px 0;
         }
 
+        .section-heading {
+            font-family: 'Oswald', 'Arial Narrow', sans-serif;
+            font-weight: 700;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+            color: var(--text-color);
+        }
+
         #blog {
             padding: 80px 40px;
             box-sizing: border-box;
@@ -564,8 +572,11 @@
         }
 
         #blog h2.blog-title {
-            font-size: 32px;
-            font-weight: normal;
+            font-family: 'Oswald', 'Arial Narrow', sans-serif;
+            font-weight: 700;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+            font-size: 36px;
             margin: 0 0 40px 0;
             text-align: center;
         }
@@ -598,7 +609,7 @@
 
         .blog-entry {
             display: grid;
-            grid-template-columns: 60px 1fr auto;
+            grid-template-columns: 1fr auto;
             align-items: baseline;
             gap: 28px;
             padding: 26px 28px;
@@ -614,15 +625,6 @@
 
         .blog-entry:hover .blog-entry-title {
             color: var(--brand-color);
-        }
-
-        .blog-entry-num {
-            font-family: 'Oswald', 'Arial Narrow', sans-serif;
-            font-weight: 700;
-            font-size: 28px;
-            letter-spacing: 0.04em;
-            color: var(--brand-color);
-            line-height: 1;
         }
 
         .blog-entry-main {
@@ -660,13 +662,9 @@
 
         @media (max-width: 700px) {
             .blog-entry {
-                grid-template-columns: 44px 1fr;
+                grid-template-columns: 1fr;
                 gap: 18px;
                 padding: 22px 20px;
-            }
-
-            .blog-entry-num {
-                font-size: 22px;
             }
 
             .blog-entry-title {
@@ -674,7 +672,7 @@
             }
 
             .blog-entry-date {
-                grid-column: 2;
+                grid-column: 1;
                 margin-top: 8px;
             }
         }
@@ -692,23 +690,32 @@
         }
 
         #open-source h2.os-title {
-            font-size: 32px;
-            font-weight: normal;
+            font-family: 'Oswald', 'Arial Narrow', sans-serif;
+            font-weight: 700;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+            font-size: 36px;
             margin: 0 0 40px 0;
             text-align: center;
         }
 
         #open-source h3.os-section {
+            font-family: 'Oswald', 'Arial Narrow', sans-serif;
+            font-weight: 700;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
             font-size: 24px;
-            font-weight: normal;
             margin: 50px 0 20px 0;
             padding-bottom: 10px;
             border-bottom: 1px solid var(--border-color);
         }
 
         #open-source h4.os-subsection {
+            font-family: 'Oswald', 'Arial Narrow', sans-serif;
+            font-weight: 700;
+            letter-spacing: 0.03em;
+            text-transform: uppercase;
             font-size: 20px;
-            font-weight: normal;
             margin: 30px 0 15px 0;
             color: var(--link-color);
         }
@@ -752,11 +759,16 @@
         }
 
         .square-title {
+            font-family: 'Oswald', 'Arial Narrow', sans-serif;
+            font-weight: 700;
+            letter-spacing: 0.03em;
+            text-transform: uppercase;
             font-size: 20px;
             margin-bottom: 8px;
         }
 
         .square-desc {
+            font-family: Georgia, 'Times New Roman', Times, serif;
             font-size: 15px;
             color: var(--link-color);
         }
@@ -766,6 +778,7 @@
             bottom: 20px;
             left: 0;
             right: 0;
+            font-family: Georgia, 'Times New Roman', Times, serif;
             font-size: 14px;
             color: var(--muted-color);
             font-style: italic;
@@ -949,11 +962,10 @@
         <section id="about">
             <div class="about-container">
                 <div class="about-text">
-                    <p>Hi! I'm Jonah Bernard. I'm a senior at Cornell studying computer science. I am interesting in the
-                        world and in computing systems. I am currently exploring LLM inference with a focus on
-                        optimizing software for different hardware backends. Broadly, I want to work on systems that
-                        make us more
-                        productive, safer, and lead more meaningful lives.
+                    <p>Hi! I'm Jonah Bernard. I'm a senior at Cornell studying computer science.</p>
+                    <p>I am interested in the world and in computing systems.</p>
+                    <p>I am currently exploring LLM inference with a focus on optimizing software for different
+                        hardware backends.
                     </p>
                 </div>
 
@@ -975,8 +987,9 @@
                 </div>
 
                 <div class="about-text">
-                    <p>I am interested in building technology systems that advance civilization and make it easier for
-                        humans to live. Please reach out to me if you want to chat!</p>
+                    <p>I am interested in building technology systems that advance civilization and make us more
+                        productive, safer, and lead more meaningful lives.</p>
+                    <p>Please reach out to me if you want to chat!</p>
                 </div>
             </div>
         </section>
@@ -985,7 +998,7 @@
             style="min-height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 80px 40px; box-sizing: border-box; background-color: #ffffff;">
             <div style="max-width: 1200px; width: 100%; display: flex; gap: 400px; align-items: flex-start;">
                 <div style="flex: 1; text-align: left;">
-                    <h2 style="margin-top: 0;">Experience</h2>
+                    <h2 class="section-heading" style="margin-top: 0; font-size: 36px;">Experience</h2>
                     <div
                         style="margin-bottom: 40px; border-bottom: 1px solid var(--border-color); padding-bottom: 20px; display: flex; gap: 20px; align-items: flex-start;">
                         <div
@@ -994,7 +1007,7 @@
                                 style="max-width: 100%; max-height: 100%; object-fit: contain;">
                         </div>
                         <div style="flex: 1; min-width: 0;">
-                            <h3 style="font-size: 24px; margin: 0 0 6px 0;">AMD</h3>
+                            <h3 class="section-heading" style="font-size: 24px; margin: 0 0 6px 0;">AMD</h3>
                             <h4
                                 style="font-size: 18px; color: var(--link-color); margin: 0 0 4px 0; font-style: italic; font-weight: normal;">
                                 Software Engineer Intern</h4>
@@ -1009,7 +1022,7 @@
                                 style="max-width: 100%; max-height: 100%; object-fit: contain;">
                         </div>
                         <div style="flex: 1; min-width: 0;">
-                            <h3 style="font-size: 24px; margin: 0 0 6px 0;">Cubic Transportation Systems</h3>
+                            <h3 class="section-heading" style="font-size: 24px; margin: 0 0 6px 0;">Cubic Transportation Systems</h3>
                             <h4
                                 style="font-size: 18px; color: var(--link-color); margin: 0 0 4px 0; font-style: italic; font-weight: normal;">
                                 Software Engineer Intern</h4>
@@ -1022,7 +1035,7 @@
                 </div>
 
                 <div id="education" style="flex: 1; text-align: left;">
-                    <h2 style="margin-top: 0;">Education</h2>
+                    <h2 class="section-heading" style="margin-top: 0; font-size: 36px;">Education</h2>
                     <div
                         style="margin-bottom: 40px; border-bottom: 1px solid var(--border-color); padding-bottom: 20px; display: flex; gap: 20px; align-items: flex-start;">
                         <div
@@ -1031,7 +1044,7 @@
                                 style="max-width: 100%; max-height: 100%; object-fit: contain;">
                         </div>
                         <div style="flex: 1; min-width: 0;">
-                            <h3 style="font-size: 24px; margin: 0 0 10px 0;">Cornell University</h3>
+                            <h3 class="section-heading" style="font-size: 24px; margin: 0 0 10px 0;">Cornell University</h3>
                             <h4
                                 style="font-size: 20px; color: var(--link-color); margin: 0 0 10px 0; font-style: italic; font-weight: normal;">
                                 B.S. in Computer Science</h4>
@@ -1046,14 +1059,12 @@
 
         <section id="blog">
             <div class="blog-container">
-                <h2 class="blog-title">Blog</h2>
                 <p class="blog-narrative">open source work is important to me as it makes it easier for young people to
                     bring their ideas to life.</p>
                 <p class="blog-narrative">alongside my open-source contributions, i write technical blogs about topics
                     to help newcomers contribute more effectively to AI infrastructure.</p>
                 <div class="blog-list">
                     <a href="blog-construction.html" class="blog-entry">
-                        <span class="blog-entry-num">01</span>
                         <div class="blog-entry-main">
                             <h3 class="blog-entry-title">Understanding the SGLang Scheduler</h3>
                             <p class="blog-entry-desc">A deep dive into how SGLang efficiently schedules tensor parallel
@@ -1067,7 +1078,7 @@
 
         <section id="open-source">
             <div class="os-container">
-                <h2 class="os-title">Open-Source Contributions</h2>
+                <h2 class="os-title">My open-source contributions</h2>
 
                 <div class="grid">
                     <a href="details.html?id=sglang-apple-silicon" class="square">
