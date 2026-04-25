@@ -570,45 +570,113 @@
             text-align: center;
         }
 
+        .blog-narrative {
+            font-family: Georgia, 'Times New Roman', Times, serif;
+            font-size: 22px;
+            line-height: 1.7;
+            margin: 0 0 24px 0;
+            color: var(--text-color);
+            max-width: 900px;
+        }
+
+        .blog-narrative:last-of-type {
+            margin-bottom: 40px;
+        }
+
+        @media (max-width: 900px) {
+            .blog-narrative {
+                font-size: 18px;
+            }
+        }
+
         .blog-list {
             display: flex;
             flex-direction: column;
-            gap: 20px;
+            border-top: 2px solid var(--text-color);
+            background: rgba(255, 255, 255, 0.6);
         }
 
         .blog-entry {
-            display: block;
-            padding: 24px 28px;
-            background-color: #ffffff;
-            border: 1px solid var(--border-color);
+            display: grid;
+            grid-template-columns: 60px 1fr auto;
+            align-items: baseline;
+            gap: 28px;
+            padding: 26px 28px;
+            border-bottom: 2px solid var(--text-color);
             text-decoration: none;
             color: var(--text-color);
-            transition: all 0.2s ease;
+            transition: background-color 0.2s ease, color 0.2s ease;
         }
 
         .blog-entry:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 24px rgba(49, 60, 82, 0.1);
-            border-color: var(--muted-color);
+            background-color: #ffffff;
         }
 
-        .blog-entry-title {
-            font-size: 22px;
-            margin: 0 0 8px 0;
+        .blog-entry:hover .blog-entry-title {
             color: var(--brand-color);
         }
 
+        .blog-entry-num {
+            font-family: 'Oswald', 'Arial Narrow', sans-serif;
+            font-weight: 700;
+            font-size: 28px;
+            letter-spacing: 0.04em;
+            color: var(--brand-color);
+            line-height: 1;
+        }
+
+        .blog-entry-main {
+            min-width: 0;
+        }
+
+        .blog-entry-title {
+            font-family: 'Oswald', 'Arial Narrow', sans-serif;
+            font-weight: 700;
+            font-size: 24px;
+            letter-spacing: 0.03em;
+            text-transform: uppercase;
+            line-height: 1.15;
+            margin: 0 0 10px 0;
+            color: var(--text-color);
+            transition: color 0.2s ease;
+        }
+
         .blog-entry-desc {
+            font-family: Georgia, 'Times New Roman', Times, serif;
             font-size: 16px;
-            color: var(--link-color);
+            color: var(--text-color);
             line-height: 1.6;
-            margin: 0 0 8px 0;
+            margin: 0;
         }
 
         .blog-entry-date {
+            font-family: Georgia, 'Times New Roman', Times, serif;
             font-size: 14px;
-            color: var(--muted-color);
+            color: var(--text-color);
             font-style: italic;
+            white-space: nowrap;
+            align-self: start;
+        }
+
+        @media (max-width: 700px) {
+            .blog-entry {
+                grid-template-columns: 44px 1fr;
+                gap: 18px;
+                padding: 22px 20px;
+            }
+
+            .blog-entry-num {
+                font-size: 22px;
+            }
+
+            .blog-entry-title {
+                font-size: 20px;
+            }
+
+            .blog-entry-date {
+                grid-column: 2;
+                margin-top: 8px;
+            }
         }
 
         #open-source {
@@ -979,12 +1047,19 @@
         <section id="blog">
             <div class="blog-container">
                 <h2 class="blog-title">Blog</h2>
+                <p class="blog-narrative">open source work is important to me as it makes it easier for young people to
+                    bring their ideas to life.</p>
+                <p class="blog-narrative">alongside my open-source contributions, i write technical blogs about topics
+                    to help newcomers contribute more effectively to AI infrastructure.</p>
                 <div class="blog-list">
                     <a href="blog-construction.html" class="blog-entry">
-                        <h3 class="blog-entry-title">Understanding the SGLang Scheduler</h3>
-                        <p class="blog-entry-desc">A deep dive into how SGLang efficiently schedules tensor parallel GPU
-                            workers and orchestrates request handling.</p>
-                        <p class="blog-entry-date">April 24, 2026</p>
+                        <span class="blog-entry-num">01</span>
+                        <div class="blog-entry-main">
+                            <h3 class="blog-entry-title">Understanding the SGLang Scheduler</h3>
+                            <p class="blog-entry-desc">A deep dive into how SGLang efficiently schedules tensor parallel
+                                GPU workers and orchestrates request handling.</p>
+                        </div>
+                        <span class="blog-entry-date">April 24, 2026</span>
                     </a>
                 </div>
             </div>
