@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Jonah Bernard</title>
+    <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;700&display=swap" rel="stylesheet">
@@ -475,6 +476,8 @@
             transition: transform 0.4s ease;
             cursor: grab;
             touch-action: pan-y;
+            will-change: transform;
+            backface-visibility: hidden;
         }
 
         .carousel-track.is-dragging {
@@ -507,58 +510,43 @@
             color: #fff;
             font-size: 14px;
             text-align: center;
-            background: linear-gradient(to top, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0));
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.65), rgba(0, 0, 0, 0));
             z-index: 1;
             pointer-events: none;
         }
 
-        .carousel-arrow {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 28px;
-            height: 28px;
+        .about-image-wrapper {
             display: flex;
+            flex-direction: column;
             align-items: center;
+            gap: 14px;
+            flex-shrink: 0;
+        }
+
+        .carousel-dots {
+            display: flex;
             justify-content: center;
-            padding: 0;
-            background: rgba(0, 0, 0, 0.2);
-            border: none;
+            gap: 8px;
+        }
+
+        .carousel-dot {
+            width: 8px;
+            height: 8px;
             border-radius: 50%;
-            color: #fff;
+            background: rgba(49, 60, 82, 0.25);
+            border: none;
+            padding: 0;
             cursor: pointer;
-            opacity: 0;
-            pointer-events: none;
-            transition: opacity 0.2s ease, background 0.2s ease;
-            z-index: 2;
+            transition: background 0.2s ease, transform 0.2s ease;
         }
 
-        .about-image:hover .carousel-arrow {
-            opacity: 0.45;
-            pointer-events: auto;
+        .carousel-dot:hover {
+            background: rgba(49, 60, 82, 0.5);
         }
 
-        .about-image .carousel-arrow:hover {
-            opacity: 0.9;
-            background: rgba(0, 0, 0, 0.4);
-        }
-
-        .carousel-arrow.prev {
-            left: 10px;
-        }
-
-        .carousel-arrow.next {
-            right: 10px;
-        }
-
-        .carousel-arrow svg {
-            width: 12px;
-            height: 12px;
-            display: block;
-        }
-
-        .carousel-arrow[hidden] {
-            display: none;
+        .carousel-dot.is-active {
+            background: var(--text-color);
+            transform: scale(1.25);
         }
 
         h1 {
@@ -1314,21 +1302,12 @@
                     </p>
                 </div>
 
-                <div class="about-image" id="about-carousel" aria-roledescription="carousel">
-                    <div class="carousel-track"></div>
-                    <div class="carousel-caption"></div>
-                    <button class="carousel-arrow prev" type="button" aria-label="Previous photo">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
-                            stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                            <polyline points="15 18 9 12 15 6"></polyline>
-                        </svg>
-                    </button>
-                    <button class="carousel-arrow next" type="button" aria-label="Next photo">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
-                            stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                            <polyline points="9 18 15 12 9 6"></polyline>
-                        </svg>
-                    </button>
+                <div class="about-image-wrapper" id="about-carousel" aria-roledescription="carousel">
+                    <div class="about-image">
+                        <div class="carousel-track"></div>
+                        <div class="carousel-caption"></div>
+                    </div>
+                    <div class="carousel-dots" aria-hidden="true"></div>
                 </div>
 
                 <div class="about-text">
@@ -2064,8 +2043,7 @@
             if (!root) return;
             const track = root.querySelector('.carousel-track');
             const caption = root.querySelector('.carousel-caption');
-            const prevBtn = root.querySelector('.carousel-arrow.prev');
-            const nextBtn = root.querySelector('.carousel-arrow.next');
+            const dotsContainer = root.querySelector('.carousel-dots');
 
             const res = await fetch('assets/my_life_carousal/captions.json');
             const captions = await res.json();
@@ -2073,29 +2051,46 @@
                 .map(([file, text]) => ({ file, caption: text }))
                 .reverse();
 
+            const imgs = [];
             photos.forEach((p, i) => {
                 const slide = document.createElement('div');
                 slide.className = 'carousel-slide';
                 const img = document.createElement('img');
                 img.src = 'assets/my_life_carousal/' + encodeURIComponent(p.file);
                 img.alt = p.caption;
-                img.loading = i === 0 ? 'eager' : 'lazy';
+                img.loading = 'eager';
+                img.decoding = 'async';
                 slide.appendChild(img);
                 track.appendChild(slide);
+                imgs.push(img);
+
+                const dot = document.createElement('button');
+                dot.type = 'button';
+                dot.className = 'carousel-dot';
+                dot.setAttribute('aria-label', 'Go to photo ' + (i + 1));
+                dot.addEventListener('click', () => {
+                    index = i;
+                    render();
+                });
+                dotsContainer.appendChild(dot);
             });
+
+            imgs.forEach(img => {
+                const decode = () => { if (img.decode) img.decode().catch(() => {}); };
+                if (img.complete && img.naturalWidth) decode();
+                else img.addEventListener('load', decode, { once: true });
+            });
+
+            const dots = Array.from(dotsContainer.children);
 
             let index = 0;
 
             function render(offsetPx) {
-                const base = -index * 100;
-                if (offsetPx) {
-                    track.style.transform = 'translateX(calc(' + base + '% + ' + offsetPx + 'px))';
-                } else {
-                    track.style.transform = 'translateX(' + base + '%)';
-                }
+                const w = track.clientWidth || 1;
+                const px = -index * w + (offsetPx || 0);
+                track.style.transform = 'translate3d(' + px + 'px, 0, 0)';
                 caption.textContent = photos[index].caption;
-                prevBtn.hidden = index === 0;
-                nextBtn.hidden = index === photos.length - 1;
+                dots.forEach((d, i) => d.classList.toggle('is-active', i === index));
             }
 
             function go(delta) {
@@ -2116,13 +2111,21 @@
                 track.classList.add('is-dragging');
             });
 
+            let pendingDx = null;
+            let rafId = 0;
             track.addEventListener('pointermove', (e) => {
                 if (!dragging || e.pointerId !== pointerId) return;
                 const dx = e.clientX - startX;
                 const dy = e.clientY - startY;
                 if (Math.abs(dx) > Math.abs(dy)) {
                     e.preventDefault();
-                    render(dx);
+                    pendingDx = dx;
+                    if (!rafId) {
+                        rafId = requestAnimationFrame(() => {
+                            rafId = 0;
+                            if (pendingDx !== null && dragging) render(pendingDx);
+                        });
+                    }
                 }
             });
 
@@ -2131,6 +2134,8 @@
                 const dx = e.clientX - startX;
                 dragging = false;
                 pointerId = null;
+                pendingDx = null;
+                if (rafId) { cancelAnimationFrame(rafId); rafId = 0; }
                 track.classList.remove('is-dragging');
                 const threshold = Math.min(80, track.clientWidth * 0.15);
                 if (dx <= -threshold) go(1);
@@ -2141,9 +2146,6 @@
             track.addEventListener('pointerup', endDrag);
             track.addEventListener('pointercancel', endDrag);
             track.addEventListener('pointerleave', endDrag);
-
-            prevBtn.addEventListener('click', () => go(-1));
-            nextBtn.addEventListener('click', () => go(1));
 
             render();
         })();
