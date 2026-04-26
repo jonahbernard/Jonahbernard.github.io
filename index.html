@@ -779,7 +779,10 @@
         }
 
         .personal-projects-row {
-            display: block;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 16px;
             padding: 14px 16px;
             font-size: 16px;
             color: var(--text-color);
@@ -790,6 +793,12 @@
 
         .personal-projects-row:hover {
             background-color: var(--bg-alt);
+        }
+
+        .personal-projects-date {
+            color: var(--text-muted, #6e7781);
+            font-size: 14px;
+            white-space: nowrap;
         }
 
         .pr-list {
@@ -1408,7 +1417,7 @@
                             <p class="blog-entry-desc">my deep dive into the inner workings of sglang's famous
                                 scheduler</p>
                         </div>
-                        <span class="blog-entry-date">April 24, 2026</span>
+                        <span class="blog-entry-date">coming soon</span>
                     </a>
                 </div>
             </div>
@@ -1835,12 +1844,22 @@
 
                 <h3 class="os-section-divider">personal projects</h3>
                 <div class="personal-projects-list">
-                    <a href="details.html?id=swe-ai-agent" class="personal-projects-row">SWE AI Agent</a>
-                    <a href="details.html?id=custom-compiler-passes" class="personal-projects-row">Custom Compiler
-                        Passes</a>
-                    <a href="details.html?id=ocaml-ml-algorithms" class="personal-projects-row">OCaml ML Algorithms</a>
-                    <a href="details.html?id=emv-payment-app" class="personal-projects-row">EMV Payment Processing
-                        App</a>
+                    <a href="https://github.com/Jonahbernard/swe-debug-agent" class="personal-projects-row" target="_blank" rel="noopener noreferrer">
+                        <span>SWE AI Agent</span>
+                        <span class="personal-projects-date">Jan 2026</span>
+                    </a>
+                    <a href="https://github.com/Jonahbernard/compiler-passes-portfolio" class="personal-projects-row" target="_blank" rel="noopener noreferrer">
+                        <span>Custom Compiler Passes</span>
+                        <span class="personal-projects-date">Feb 2025</span>
+                    </a>
+                    <a href="https://github.com/Jonahbernard/ml-algos-ocaml" class="personal-projects-row" target="_blank" rel="noopener noreferrer">
+                        <span>OCaml ML Algorithms</span>
+                        <span class="personal-projects-date">Feb 2025</span>
+                    </a>
+                    <a href="https://github.com/Jonahbernard/mini-payment-processing-app" class="personal-projects-row" target="_blank" rel="noopener noreferrer">
+                        <span>EMV Payment Processing App</span>
+                        <span class="personal-projects-date">Mar 2025</span>
+                    </a>
                 </div>
             </div>
         </section>
