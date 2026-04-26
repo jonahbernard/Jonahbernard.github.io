@@ -204,7 +204,7 @@
         .hero-brand h1 .underline {
             text-decoration: underline;
             text-decoration-thickness: 3px;
-            text-underline-offset: 6px;
+            text-underline-offset: 2px;
         }
 
         .hero-tagline {
@@ -461,6 +461,7 @@
             box-shadow: 0 4px 15px rgba(49, 60, 82, 0.08);
             position: relative;
             flex-shrink: 0;
+            touch-action: pan-y;
         }
 
         .about-image img {
@@ -1202,6 +1203,310 @@
                 font-size: 16px;
             }
         }
+
+        /* ===== MOBILE STYLES (phones) ===== */
+        @media (max-width: 768px) {
+
+            /* Prevent any accidental horizontal scroll */
+            html,
+            body {
+                overflow-x: hidden;
+            }
+
+            img {
+                max-width: 100%;
+            }
+
+            /* ----- Header ----- */
+            header {
+                grid-template-columns: auto 1fr;
+                padding: 16px 18px;
+                gap: 12px;
+            }
+
+            .nav-group {
+                display: none;
+            }
+
+            .header-name {
+                font-size: 18px;
+            }
+
+            .header-socials {
+                gap: 14px;
+            }
+
+            .header-socials a {
+                padding: 6px;
+            }
+
+            .header-socials svg {
+                width: 20px;
+                height: 20px;
+            }
+
+            /* ----- Hero ----- */
+            #hero {
+                padding: 30px 16px 60px;
+            }
+
+            .hero-brand h1 {
+                font-size: 44px;
+            }
+
+            .hero-brand h1 .underline {
+                text-decoration: none;
+            }
+
+            .hero-tagline p {
+                font-size: 17px;
+            }
+
+            .hero-menu li {
+                padding: 6px 0;
+            }
+
+            .hero-menu a {
+                font-size: 15px;
+                display: inline-block;
+                padding: 4px 0;
+            }
+
+            .hero-subnav a {
+                padding: 16px 14px;
+                font-size: 13px;
+                gap: 8px;
+                min-height: 44px;
+                box-sizing: border-box;
+            }
+
+            .hero-body {
+                padding: 32px 16px 16px;
+            }
+
+            .hero-body-heading {
+                font-size: 34px;
+                line-height: 1;
+                margin-bottom: 20px;
+            }
+
+            .hero-body-text {
+                font-size: 16px;
+                line-height: 1.6;
+            }
+
+            .hero-body-text+.hero-body-text {
+                margin-top: 18px;
+            }
+
+            .hero-quote {
+                font-size: 17px;
+                margin: 24px 0 0 0;
+                padding-left: 16px;
+            }
+
+            #hero::after {
+                font-size: 12px;
+            }
+
+            /* ----- About: stack vertically ----- */
+            #about {
+                padding: 60px 20px;
+                min-height: auto;
+            }
+
+            .about-container {
+                flex-direction: column;
+                gap: 28px;
+            }
+
+            .about-text {
+                font-size: 17px;
+                line-height: 1.7;
+            }
+
+            .about-image-wrapper {
+                width: 100%;
+                align-items: center;
+            }
+
+            .about-image {
+                width: 100%;
+                max-width: 320px;
+                height: auto;
+                aspect-ratio: 6 / 7;
+            }
+
+            /* ----- Experience: stack columns (overrides inline styles) ----- */
+            #experience {
+                min-height: auto !important;
+                padding: 60px 20px !important;
+                justify-content: flex-start !important;
+            }
+
+            #experience>div {
+                flex-direction: column !important;
+                gap: 40px !important;
+            }
+
+            #experience .section-heading {
+                font-size: 28px !important;
+            }
+
+            #experience h3.section-heading {
+                font-size: 20px !important;
+            }
+
+            #experience h4 {
+                font-size: 16px !important;
+            }
+
+            .experience-entry {
+                margin-left: 0;
+                padding-left: 0;
+            }
+
+            /* ----- Blog ----- */
+            #blog {
+                padding: 60px 20px;
+            }
+
+            #blog h2.blog-title {
+                font-size: 28px;
+                margin-bottom: 28px;
+            }
+
+            .blog-narrative {
+                font-size: 17px;
+                line-height: 1.65;
+            }
+
+            .blog-list {
+                margin-left: 0;
+            }
+
+            .blog-entry {
+                padding: 22px 18px;
+            }
+
+            /* ----- Open source ----- */
+            #open-source {
+                padding: 60px 20px;
+            }
+
+            #open-source h2.os-title {
+                font-size: 28px;
+                margin-bottom: 28px;
+            }
+
+            #open-source h3.os-section-divider {
+                font-size: 22px;
+                padding-left: 0;
+                margin: 40px 0 20px 0;
+                display: block;
+            }
+
+            #open-source h3.os-section-divider::before {
+                display: none;
+            }
+
+            #open-source h4.os-subsection {
+                font-size: 17px;
+            }
+
+            .grid {
+                grid-template-columns: 1fr;
+                gap: 16px;
+            }
+
+            .square {
+                aspect-ratio: auto;
+                min-height: 200px;
+                padding: 28px 20px 56px;
+            }
+
+            .square-img {
+                height: 70px;
+                margin-bottom: 14px;
+            }
+
+            .square-title {
+                font-size: 18px;
+            }
+
+            .square-desc {
+                font-size: 14px;
+            }
+
+            /* PR list: drop the trailing comments column under the main col */
+            .pr-row {
+                grid-template-columns: 20px 1fr;
+                column-gap: 10px;
+                padding: 14px 14px;
+            }
+
+            .pr-comments {
+                grid-column: 2;
+                margin-top: 6px;
+                padding-top: 0;
+            }
+
+            .pr-line-1 {
+                font-size: 14px;
+                gap: 6px;
+            }
+
+            .pr-title,
+            .pr-repo {
+                font-size: 14px;
+            }
+
+            .personal-projects-row {
+                padding: 16px 14px;
+                font-size: 15px;
+            }
+
+            /* ----- Hobbies ----- */
+            #hobbies {
+                padding: 40px 20px 80px;
+            }
+
+            .hobbies-narrative {
+                font-size: 17px;
+                margin-bottom: 28px;
+            }
+
+            .hobbies-grid {
+                max-width: 100%;
+                padding: 18px 18px;
+            }
+
+            #hobbies::after {
+                font-size: 12px;
+                left: 20px;
+            }
+
+            /* Drop the vertical timeline entirely on mobile */
+            #hero::before,
+            #hero::after,
+            #experience::before,
+            #about::before,
+            #blog::before,
+            #open-source::before,
+            #hobbies::before {
+                display: none;
+            }
+
+            /* ----- Generic touch targets ----- */
+            .social-links a,
+            .hobbies-grid-body a {
+                padding: 4px 0;
+            }
+
+            h1 {
+                font-size: 32px;
+            }
+        }
     </style>
 </head>
 
@@ -1411,7 +1716,8 @@
                 <h4 class="os-subsection">Major projects</h4>
                 <div class="grid">
                     <a href="details.html?id=sglang-apple-silicon" class="square">
-                        <div class="square-active"><span class="status">active project<span class="status-dot"></span></span></div>
+                        <div class="square-active"><span class="status">active project<span
+                                    class="status-dot"></span></span></div>
                         <div class="square-title">Enable SGLang on Apple Silicon</div>
                         <div class="square-desc">i am leading the effort to enable optimized llm inference via sglang on
                             apple devices. this involves collaborating w/ a team of open-source contributors to write
@@ -1419,7 +1725,8 @@
                         <div class="square-date">Feb 21, 2026 – Present</div>
                     </a>
                     <a href="details.html?id=lora-moe-layers" class="square">
-                        <div class="square-active"><span class="status">active project<span class="status-dot"></span></span></div>
+                        <div class="square-active"><span class="status">active project<span
+                                    class="status-dot"></span></span></div>
                         <div class="square-title">Enable LoRA on MoE Layers</div>
                         <div class="square-desc">i led the effort to enable optimized inference of lora on the moe
                             layers. this involved integration custom triton and cuda kernels and adding python infra to
@@ -1427,7 +1734,8 @@
                         <div class="square-date">Nov 28, 2025 – Present</div>
                     </a>
                     <a href="details.html?id=refactor-moe-sglang" class="square">
-                        <div class="square-active"><span class="status">active project<span class="status-dot"></span></span></div>
+                        <div class="square-active"><span class="status">active project<span
+                                    class="status-dot"></span></span></div>
                         <div class="square-title">Refactor MoE Code</div>
                         <div class="square-desc">i worked with a team of open-source contributors to refactor the core
                             moe logic in sglang to be more extensible and maintainable</div>
@@ -1435,37 +1743,44 @@
                     </a>
                 </div>
 
-                <h4 class="os-subsection">Full list of PRs</h4>
+                <h4 class="os-subsection">Full List of my Prs to SGLang</h4>
                 <div class="pr-list">
-                    <a href="https://github.com/sgl-project/sglang/pull/23006" class="pr-row" target="_blank" rel="noopener noreferrer">
+                    <a href="https://github.com/sgl-project/sglang/pull/23006" class="pr-row" target="_blank"
+                        rel="noopener noreferrer">
                         <div class="pr-icon" aria-label="merged">
                             <svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
-                                <path d="M5 3.254V3.25v.005a.75.75 0 110-.005v.004zm.45 1.9a2.25 2.25 0 10-1.95.218v5.256a2.25 2.25 0 101.5 0V7.123A5.735 5.735 0 009.25 9h1.378a2.251 2.251 0 100-1.5H9.25a4.25 4.25 0 01-3.8-2.346zM12.75 9a.75.75 0 100-1.5.75.75 0 000 1.5zm-8.5 4.5a.75.75 0 100-1.5.75.75 0 000 1.5z"/>
+                                <path
+                                    d="M5 3.254V3.25v.005a.75.75 0 110-.005v.004zm.45 1.9a2.25 2.25 0 10-1.95.218v5.256a2.25 2.25 0 101.5 0V7.123A5.735 5.735 0 009.25 9h1.378a2.251 2.251 0 100-1.5H9.25a4.25 4.25 0 01-3.8-2.346zM12.75 9a.75.75 0 100-1.5.75.75 0 000 1.5zm-8.5 4.5a.75.75 0 100-1.5.75.75 0 000 1.5z" />
                             </svg>
                         </div>
                         <div class="pr-main">
                             <div class="pr-line-1">
                                 <span class="pr-repo">sgl-project/sglang</span>
-                                <span class="pr-title">[Pipeline Parallelism][Bug] Fix scheduler hang in pipeline parallelism setup</span>
+                                <span class="pr-title">[Pipeline Parallelism][Bug] Fix scheduler hang in pipeline
+                                    parallelism setup</span>
                                 <span class="pr-label pr-label-run-ci">run-ci</span>
                             </div>
                             <div class="pr-line-2">
                                 <span>#23006 by jonahbernard</span>
                                 <span class="pr-association">Contributor</span>
-                                <span>was merged <span data-merged-at="2026-04-17T06:50:48Z">last week</span> &middot; Approved</span>
+                                <span>was merged <span data-merged-at="2026-04-17T06:50:48Z">last week</span> &middot;
+                                    Approved</span>
                             </div>
                         </div>
                         <div class="pr-comments" aria-label="7 comments">
                             <svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
-                                <path d="M1 2.75C1 1.784 1.784 1 2.75 1h10.5c.966 0 1.75.784 1.75 1.75v7.5A1.75 1.75 0 0113.25 12H9.06l-2.573 2.573A1.458 1.458 0 014 13.543V12H2.75A1.75 1.75 0 011 10.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h2a.75.75 0 01.75.75v2.189l2.72-2.72a.75.75 0 01.53-.219h4.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25H2.75z"/>
+                                <path
+                                    d="M1 2.75C1 1.784 1.784 1 2.75 1h10.5c.966 0 1.75.784 1.75 1.75v7.5A1.75 1.75 0 0113.25 12H9.06l-2.573 2.573A1.458 1.458 0 014 13.543V12H2.75A1.75 1.75 0 011 10.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h2a.75.75 0 01.75.75v2.189l2.72-2.72a.75.75 0 01.53-.219h4.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25H2.75z" />
                             </svg>
                             <span>7</span>
                         </div>
                     </a>
-                    <a href="https://github.com/sgl-project/sglang/pull/22159" class="pr-row" target="_blank" rel="noopener noreferrer">
+                    <a href="https://github.com/sgl-project/sglang/pull/22159" class="pr-row" target="_blank"
+                        rel="noopener noreferrer">
                         <div class="pr-icon" aria-label="merged">
                             <svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
-                                <path d="M5 3.254V3.25v.005a.75.75 0 110-.005v.004zm.45 1.9a2.25 2.25 0 10-1.95.218v5.256a2.25 2.25 0 101.5 0V7.123A5.735 5.735 0 009.25 9h1.378a2.251 2.251 0 100-1.5H9.25a4.25 4.25 0 01-3.8-2.346zM12.75 9a.75.75 0 100-1.5.75.75 0 000 1.5zm-8.5 4.5a.75.75 0 100-1.5.75.75 0 000 1.5z"/>
+                                <path
+                                    d="M5 3.254V3.25v.005a.75.75 0 110-.005v.004zm.45 1.9a2.25 2.25 0 10-1.95.218v5.256a2.25 2.25 0 101.5 0V7.123A5.735 5.735 0 009.25 9h1.378a2.251 2.251 0 100-1.5H9.25a4.25 4.25 0 01-3.8-2.346zM12.75 9a.75.75 0 100-1.5.75.75 0 000 1.5zm-8.5 4.5a.75.75 0 100-1.5.75.75 0 000 1.5z" />
                             </svg>
                         </div>
                         <div class="pr-main">
@@ -1477,20 +1792,24 @@
                             <div class="pr-line-2">
                                 <span>#22159 by jonahbernard</span>
                                 <span class="pr-association">Contributor</span>
-                                <span>was merged <span data-merged-at="2026-04-09T12:45:22Z">2 weeks ago</span> &middot; Approved</span>
+                                <span>was merged <span data-merged-at="2026-04-09T12:45:22Z">2 weeks ago</span> &middot;
+                                    Approved</span>
                             </div>
                         </div>
                         <div class="pr-comments" aria-label="7 comments">
                             <svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
-                                <path d="M1 2.75C1 1.784 1.784 1 2.75 1h10.5c.966 0 1.75.784 1.75 1.75v7.5A1.75 1.75 0 0113.25 12H9.06l-2.573 2.573A1.458 1.458 0 014 13.543V12H2.75A1.75 1.75 0 011 10.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h2a.75.75 0 01.75.75v2.189l2.72-2.72a.75.75 0 01.53-.219h4.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25H2.75z"/>
+                                <path
+                                    d="M1 2.75C1 1.784 1.784 1 2.75 1h10.5c.966 0 1.75.784 1.75 1.75v7.5A1.75 1.75 0 0113.25 12H9.06l-2.573 2.573A1.458 1.458 0 014 13.543V12H2.75A1.75 1.75 0 011 10.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h2a.75.75 0 01.75.75v2.189l2.72-2.72a.75.75 0 01.53-.219h4.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25H2.75z" />
                             </svg>
                             <span>7</span>
                         </div>
                     </a>
-                    <a href="https://github.com/sgl-project/sglang/pull/14105" class="pr-row" target="_blank" rel="noopener noreferrer">
+                    <a href="https://github.com/sgl-project/sglang/pull/14105" class="pr-row" target="_blank"
+                        rel="noopener noreferrer">
                         <div class="pr-icon" aria-label="merged">
                             <svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
-                                <path d="M5 3.254V3.25v.005a.75.75 0 110-.005v.004zm.45 1.9a2.25 2.25 0 10-1.95.218v5.256a2.25 2.25 0 101.5 0V7.123A5.735 5.735 0 009.25 9h1.378a2.251 2.251 0 100-1.5H9.25a4.25 4.25 0 01-3.8-2.346zM12.75 9a.75.75 0 100-1.5.75.75 0 000 1.5zm-8.5 4.5a.75.75 0 100-1.5.75.75 0 000 1.5z"/>
+                                <path
+                                    d="M5 3.254V3.25v.005a.75.75 0 110-.005v.004zm.45 1.9a2.25 2.25 0 10-1.95.218v5.256a2.25 2.25 0 101.5 0V7.123A5.735 5.735 0 009.25 9h1.378a2.251 2.251 0 100-1.5H9.25a4.25 4.25 0 01-3.8-2.346zM12.75 9a.75.75 0 100-1.5.75.75 0 000 1.5zm-8.5 4.5a.75.75 0 100-1.5.75.75 0 000 1.5z" />
                             </svg>
                         </div>
                         <div class="pr-main">
@@ -1505,20 +1824,24 @@
                             <div class="pr-line-2">
                                 <span>#14105 by jonahbernard</span>
                                 <span class="pr-association">Contributor</span>
-                                <span>was merged <span data-merged-at="2026-03-24T20:14:15Z">last month</span> &middot; Approved</span>
+                                <span>was merged <span data-merged-at="2026-03-24T20:14:15Z">last month</span> &middot;
+                                    Approved</span>
                             </div>
                         </div>
                         <div class="pr-comments" aria-label="83 comments">
                             <svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
-                                <path d="M1 2.75C1 1.784 1.784 1 2.75 1h10.5c.966 0 1.75.784 1.75 1.75v7.5A1.75 1.75 0 0113.25 12H9.06l-2.573 2.573A1.458 1.458 0 014 13.543V12H2.75A1.75 1.75 0 011 10.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h2a.75.75 0 01.75.75v2.189l2.72-2.72a.75.75 0 01.53-.219h4.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25H2.75z"/>
+                                <path
+                                    d="M1 2.75C1 1.784 1.784 1 2.75 1h10.5c.966 0 1.75.784 1.75 1.75v7.5A1.75 1.75 0 0113.25 12H9.06l-2.573 2.573A1.458 1.458 0 014 13.543V12H2.75A1.75 1.75 0 011 10.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h2a.75.75 0 01.75.75v2.189l2.72-2.72a.75.75 0 01.53-.219h4.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25H2.75z" />
                             </svg>
                             <span>83</span>
                         </div>
                     </a>
-                    <a href="https://github.com/sgl-project/sglang/pull/19711" class="pr-row" target="_blank" rel="noopener noreferrer">
+                    <a href="https://github.com/sgl-project/sglang/pull/19711" class="pr-row" target="_blank"
+                        rel="noopener noreferrer">
                         <div class="pr-icon" aria-label="merged">
                             <svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
-                                <path d="M5 3.254V3.25v.005a.75.75 0 110-.005v.004zm.45 1.9a2.25 2.25 0 10-1.95.218v5.256a2.25 2.25 0 101.5 0V7.123A5.735 5.735 0 009.25 9h1.378a2.251 2.251 0 100-1.5H9.25a4.25 4.25 0 01-3.8-2.346zM12.75 9a.75.75 0 100-1.5.75.75 0 000 1.5zm-8.5 4.5a.75.75 0 100-1.5.75.75 0 000 1.5z"/>
+                                <path
+                                    d="M5 3.254V3.25v.005a.75.75 0 110-.005v.004zm.45 1.9a2.25 2.25 0 10-1.95.218v5.256a2.25 2.25 0 101.5 0V7.123A5.735 5.735 0 009.25 9h1.378a2.251 2.251 0 100-1.5H9.25a4.25 4.25 0 01-3.8-2.346zM12.75 9a.75.75 0 100-1.5.75.75 0 000 1.5zm-8.5 4.5a.75.75 0 100-1.5.75.75 0 000 1.5z" />
                             </svg>
                         </div>
                         <div class="pr-main">
@@ -1531,20 +1854,24 @@
                             <div class="pr-line-2">
                                 <span>#19711 by yushengsu-thu</span>
                                 <span class="pr-association">Collaborator</span>
-                                <span>was merged <span data-merged-at="2026-03-19T02:58:14Z">last month</span> &middot; Approved</span>
+                                <span>was merged <span data-merged-at="2026-03-19T02:58:14Z">last month</span> &middot;
+                                    Approved</span>
                             </div>
                         </div>
                         <div class="pr-comments" aria-label="8 comments">
                             <svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
-                                <path d="M1 2.75C1 1.784 1.784 1 2.75 1h10.5c.966 0 1.75.784 1.75 1.75v7.5A1.75 1.75 0 0113.25 12H9.06l-2.573 2.573A1.458 1.458 0 014 13.543V12H2.75A1.75 1.75 0 011 10.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h2a.75.75 0 01.75.75v2.189l2.72-2.72a.75.75 0 01.53-.219h4.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25H2.75z"/>
+                                <path
+                                    d="M1 2.75C1 1.784 1.784 1 2.75 1h10.5c.966 0 1.75.784 1.75 1.75v7.5A1.75 1.75 0 0113.25 12H9.06l-2.573 2.573A1.458 1.458 0 014 13.543V12H2.75A1.75 1.75 0 011 10.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h2a.75.75 0 01.75.75v2.189l2.72-2.72a.75.75 0 01.53-.219h4.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25H2.75z" />
                             </svg>
                             <span>8</span>
                         </div>
                     </a>
-                    <a href="https://github.com/sgl-project/sglang/pull/19710" class="pr-row" target="_blank" rel="noopener noreferrer">
+                    <a href="https://github.com/sgl-project/sglang/pull/19710" class="pr-row" target="_blank"
+                        rel="noopener noreferrer">
                         <div class="pr-icon" aria-label="merged">
                             <svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
-                                <path d="M5 3.254V3.25v.005a.75.75 0 110-.005v.004zm.45 1.9a2.25 2.25 0 10-1.95.218v5.256a2.25 2.25 0 101.5 0V7.123A5.735 5.735 0 009.25 9h1.378a2.251 2.251 0 100-1.5H9.25a4.25 4.25 0 01-3.8-2.346zM12.75 9a.75.75 0 100-1.5.75.75 0 000 1.5zm-8.5 4.5a.75.75 0 100-1.5.75.75 0 000 1.5z"/>
+                                <path
+                                    d="M5 3.254V3.25v.005a.75.75 0 110-.005v.004zm.45 1.9a2.25 2.25 0 10-1.95.218v5.256a2.25 2.25 0 101.5 0V7.123A5.735 5.735 0 009.25 9h1.378a2.251 2.251 0 100-1.5H9.25a4.25 4.25 0 01-3.8-2.346zM12.75 9a.75.75 0 100-1.5.75.75 0 000 1.5zm-8.5 4.5a.75.75 0 100-1.5.75.75 0 000 1.5z" />
                             </svg>
                         </div>
                         <div class="pr-main">
@@ -1557,20 +1884,24 @@
                             <div class="pr-line-2">
                                 <span>#19710 by yushengsu-thu</span>
                                 <span class="pr-association">Collaborator</span>
-                                <span>was merged <span data-merged-at="2026-03-12T19:23:46Z">last month</span> &middot; Approved</span>
+                                <span>was merged <span data-merged-at="2026-03-12T19:23:46Z">last month</span> &middot;
+                                    Approved</span>
                             </div>
                         </div>
                         <div class="pr-comments" aria-label="18 comments">
                             <svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
-                                <path d="M1 2.75C1 1.784 1.784 1 2.75 1h10.5c.966 0 1.75.784 1.75 1.75v7.5A1.75 1.75 0 0113.25 12H9.06l-2.573 2.573A1.458 1.458 0 014 13.543V12H2.75A1.75 1.75 0 011 10.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h2a.75.75 0 01.75.75v2.189l2.72-2.72a.75.75 0 01.53-.219h4.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25H2.75z"/>
+                                <path
+                                    d="M1 2.75C1 1.784 1.784 1 2.75 1h10.5c.966 0 1.75.784 1.75 1.75v7.5A1.75 1.75 0 0113.25 12H9.06l-2.573 2.573A1.458 1.458 0 014 13.543V12H2.75A1.75 1.75 0 011 10.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h2a.75.75 0 01.75.75v2.189l2.72-2.72a.75.75 0 01.53-.219h4.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25H2.75z" />
                             </svg>
                             <span>18</span>
                         </div>
                     </a>
-                    <a href="https://github.com/sgl-project/sglang/pull/18492" class="pr-row" target="_blank" rel="noopener noreferrer">
+                    <a href="https://github.com/sgl-project/sglang/pull/18492" class="pr-row" target="_blank"
+                        rel="noopener noreferrer">
                         <div class="pr-icon" aria-label="merged">
                             <svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
-                                <path d="M5 3.254V3.25v.005a.75.75 0 110-.005v.004zm.45 1.9a2.25 2.25 0 10-1.95.218v5.256a2.25 2.25 0 101.5 0V7.123A5.735 5.735 0 009.25 9h1.378a2.251 2.251 0 100-1.5H9.25a4.25 4.25 0 01-3.8-2.346zM12.75 9a.75.75 0 100-1.5.75.75 0 000 1.5zm-8.5 4.5a.75.75 0 100-1.5.75.75 0 000 1.5z"/>
+                                <path
+                                    d="M5 3.254V3.25v.005a.75.75 0 110-.005v.004zm.45 1.9a2.25 2.25 0 10-1.95.218v5.256a2.25 2.25 0 101.5 0V7.123A5.735 5.735 0 009.25 9h1.378a2.251 2.251 0 100-1.5H9.25a4.25 4.25 0 01-3.8-2.346zM12.75 9a.75.75 0 100-1.5.75.75 0 000 1.5zm-8.5 4.5a.75.75 0 100-1.5.75.75 0 000 1.5z" />
                             </svg>
                         </div>
                         <div class="pr-main">
@@ -1582,46 +1913,55 @@
                             <div class="pr-line-2">
                                 <span>#18492 by jonahbernard</span>
                                 <span class="pr-association">Contributor</span>
-                                <span>was merged <span data-merged-at="2026-03-03T22:16:36Z">last month</span> &middot; Approved</span>
+                                <span>was merged <span data-merged-at="2026-03-03T22:16:36Z">last month</span> &middot;
+                                    Approved</span>
                             </div>
                         </div>
                         <div class="pr-comments" aria-label="2 comments">
                             <svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
-                                <path d="M1 2.75C1 1.784 1.784 1 2.75 1h10.5c.966 0 1.75.784 1.75 1.75v7.5A1.75 1.75 0 0113.25 12H9.06l-2.573 2.573A1.458 1.458 0 014 13.543V12H2.75A1.75 1.75 0 011 10.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h2a.75.75 0 01.75.75v2.189l2.72-2.72a.75.75 0 01.53-.219h4.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25H2.75z"/>
+                                <path
+                                    d="M1 2.75C1 1.784 1.784 1 2.75 1h10.5c.966 0 1.75.784 1.75 1.75v7.5A1.75 1.75 0 0113.25 12H9.06l-2.573 2.573A1.458 1.458 0 014 13.543V12H2.75A1.75 1.75 0 011 10.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h2a.75.75 0 01.75.75v2.189l2.72-2.72a.75.75 0 01.53-.219h4.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25H2.75z" />
                             </svg>
                             <span>2</span>
                         </div>
                     </a>
-                    <a href="https://github.com/sgl-project/sglang/pull/19266" class="pr-row" target="_blank" rel="noopener noreferrer">
+                    <a href="https://github.com/sgl-project/sglang/pull/19266" class="pr-row" target="_blank"
+                        rel="noopener noreferrer">
                         <div class="pr-icon" aria-label="merged">
                             <svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
-                                <path d="M5 3.254V3.25v.005a.75.75 0 110-.005v.004zm.45 1.9a2.25 2.25 0 10-1.95.218v5.256a2.25 2.25 0 101.5 0V7.123A5.735 5.735 0 009.25 9h1.378a2.251 2.251 0 100-1.5H9.25a4.25 4.25 0 01-3.8-2.346zM12.75 9a.75.75 0 100-1.5.75.75 0 000 1.5zm-8.5 4.5a.75.75 0 100-1.5.75.75 0 000 1.5z"/>
+                                <path
+                                    d="M5 3.254V3.25v.005a.75.75 0 110-.005v.004zm.45 1.9a2.25 2.25 0 10-1.95.218v5.256a2.25 2.25 0 101.5 0V7.123A5.735 5.735 0 009.25 9h1.378a2.251 2.251 0 100-1.5H9.25a4.25 4.25 0 01-3.8-2.346zM12.75 9a.75.75 0 100-1.5.75.75 0 000 1.5zm-8.5 4.5a.75.75 0 100-1.5.75.75 0 000 1.5z" />
                             </svg>
                         </div>
                         <div class="pr-main">
                             <div class="pr-line-1">
                                 <span class="pr-repo">sgl-project/sglang</span>
-                                <span class="pr-title">[MoE Refactor] Refactor FlashInferFusedMoE into FusedMoE and flashinfer_trtllm.py</span>
+                                <span class="pr-title">[MoE Refactor] Refactor FlashInferFusedMoE into FusedMoE and
+                                    flashinfer_trtllm.py</span>
                                 <span class="pr-label pr-label-quant">quant</span>
                                 <span class="pr-label pr-label-run-ci">run-ci</span>
                             </div>
                             <div class="pr-line-2">
                                 <span>#19266 by jonahbernard</span>
                                 <span class="pr-association">Contributor</span>
-                                <span>was merged <span data-merged-at="2026-02-25T00:47:53Z">2 months ago</span> &middot; Approved</span>
+                                <span>was merged <span data-merged-at="2026-02-25T00:47:53Z">2 months ago</span>
+                                    &middot; Approved</span>
                             </div>
                         </div>
                         <div class="pr-comments" aria-label="2 comments">
                             <svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
-                                <path d="M1 2.75C1 1.784 1.784 1 2.75 1h10.5c.966 0 1.75.784 1.75 1.75v7.5A1.75 1.75 0 0113.25 12H9.06l-2.573 2.573A1.458 1.458 0 014 13.543V12H2.75A1.75 1.75 0 011 10.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h2a.75.75 0 01.75.75v2.189l2.72-2.72a.75.75 0 01.53-.219h4.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25H2.75z"/>
+                                <path
+                                    d="M1 2.75C1 1.784 1.784 1 2.75 1h10.5c.966 0 1.75.784 1.75 1.75v7.5A1.75 1.75 0 0113.25 12H9.06l-2.573 2.573A1.458 1.458 0 014 13.543V12H2.75A1.75 1.75 0 011 10.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h2a.75.75 0 01.75.75v2.189l2.72-2.72a.75.75 0 01.53-.219h4.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25H2.75z" />
                             </svg>
                             <span>2</span>
                         </div>
                     </a>
-                    <a href="https://github.com/sgl-project/sglang/pull/16280" class="pr-row" target="_blank" rel="noopener noreferrer">
+                    <a href="https://github.com/sgl-project/sglang/pull/16280" class="pr-row" target="_blank"
+                        rel="noopener noreferrer">
                         <div class="pr-icon" aria-label="merged">
                             <svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
-                                <path d="M5 3.254V3.25v.005a.75.75 0 110-.005v.004zm.45 1.9a2.25 2.25 0 10-1.95.218v5.256a2.25 2.25 0 101.5 0V7.123A5.735 5.735 0 009.25 9h1.378a2.251 2.251 0 100-1.5H9.25a4.25 4.25 0 01-3.8-2.346zM12.75 9a.75.75 0 100-1.5.75.75 0 000 1.5zm-8.5 4.5a.75.75 0 100-1.5.75.75 0 000 1.5z"/>
+                                <path
+                                    d="M5 3.254V3.25v.005a.75.75 0 110-.005v.004zm.45 1.9a2.25 2.25 0 10-1.95.218v5.256a2.25 2.25 0 101.5 0V7.123A5.735 5.735 0 009.25 9h1.378a2.251 2.251 0 100-1.5H9.25a4.25 4.25 0 01-3.8-2.346zM12.75 9a.75.75 0 100-1.5.75.75 0 000 1.5zm-8.5 4.5a.75.75 0 100-1.5.75.75 0 000 1.5z" />
                             </svg>
                         </div>
                         <div class="pr-main">
@@ -1632,20 +1972,24 @@
                             <div class="pr-line-2">
                                 <span>#16280 by jonahbernard</span>
                                 <span class="pr-association">Contributor</span>
-                                <span>was merged <span data-merged-at="2026-01-05T19:26:11Z">3 months ago</span> &middot; Approved</span>
+                                <span>was merged <span data-merged-at="2026-01-05T19:26:11Z">3 months ago</span>
+                                    &middot; Approved</span>
                             </div>
                         </div>
                         <div class="pr-comments" aria-label="5 comments">
                             <svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
-                                <path d="M1 2.75C1 1.784 1.784 1 2.75 1h10.5c.966 0 1.75.784 1.75 1.75v7.5A1.75 1.75 0 0113.25 12H9.06l-2.573 2.573A1.458 1.458 0 014 13.543V12H2.75A1.75 1.75 0 011 10.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h2a.75.75 0 01.75.75v2.189l2.72-2.72a.75.75 0 01.53-.219h4.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25H2.75z"/>
+                                <path
+                                    d="M1 2.75C1 1.784 1.784 1 2.75 1h10.5c.966 0 1.75.784 1.75 1.75v7.5A1.75 1.75 0 0113.25 12H9.06l-2.573 2.573A1.458 1.458 0 014 13.543V12H2.75A1.75 1.75 0 011 10.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h2a.75.75 0 01.75.75v2.189l2.72-2.72a.75.75 0 01.53-.219h4.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25H2.75z" />
                             </svg>
                             <span>5</span>
                         </div>
                     </a>
-                    <a href="https://github.com/sgl-project/sglang/pull/12090" class="pr-row" target="_blank" rel="noopener noreferrer">
+                    <a href="https://github.com/sgl-project/sglang/pull/12090" class="pr-row" target="_blank"
+                        rel="noopener noreferrer">
                         <div class="pr-icon" aria-label="merged">
                             <svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
-                                <path d="M5 3.254V3.25v.005a.75.75 0 110-.005v.004zm.45 1.9a2.25 2.25 0 10-1.95.218v5.256a2.25 2.25 0 101.5 0V7.123A5.735 5.735 0 009.25 9h1.378a2.251 2.251 0 100-1.5H9.25a4.25 4.25 0 01-3.8-2.346zM12.75 9a.75.75 0 100-1.5.75.75 0 000 1.5zm-8.5 4.5a.75.75 0 100-1.5.75.75 0 000 1.5z"/>
+                                <path
+                                    d="M5 3.254V3.25v.005a.75.75 0 110-.005v.004zm.45 1.9a2.25 2.25 0 10-1.95.218v5.256a2.25 2.25 0 101.5 0V7.123A5.735 5.735 0 009.25 9h1.378a2.251 2.251 0 100-1.5H9.25a4.25 4.25 0 01-3.8-2.346zM12.75 9a.75.75 0 100-1.5.75.75 0 000 1.5zm-8.5 4.5a.75.75 0 100-1.5.75.75 0 000 1.5z" />
                             </svg>
                         </div>
                         <div class="pr-main">
@@ -1657,20 +2001,24 @@
                             <div class="pr-line-2">
                                 <span>#12090 by jonahbernard</span>
                                 <span class="pr-association">Contributor</span>
-                                <span>was merged <span data-merged-at="2025-11-07T08:34:46Z">5 months ago</span> &middot; Approved</span>
+                                <span>was merged <span data-merged-at="2025-11-07T08:34:46Z">5 months ago</span>
+                                    &middot; Approved</span>
                             </div>
                         </div>
                         <div class="pr-comments" aria-label="0 comments">
                             <svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
-                                <path d="M1 2.75C1 1.784 1.784 1 2.75 1h10.5c.966 0 1.75.784 1.75 1.75v7.5A1.75 1.75 0 0113.25 12H9.06l-2.573 2.573A1.458 1.458 0 014 13.543V12H2.75A1.75 1.75 0 011 10.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h2a.75.75 0 01.75.75v2.189l2.72-2.72a.75.75 0 01.53-.219h4.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25H2.75z"/>
+                                <path
+                                    d="M1 2.75C1 1.784 1.784 1 2.75 1h10.5c.966 0 1.75.784 1.75 1.75v7.5A1.75 1.75 0 0113.25 12H9.06l-2.573 2.573A1.458 1.458 0 014 13.543V12H2.75A1.75 1.75 0 011 10.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h2a.75.75 0 01.75.75v2.189l2.72-2.72a.75.75 0 01.53-.219h4.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25H2.75z" />
                             </svg>
                             <span>0</span>
                         </div>
                     </a>
-                    <a href="https://github.com/sgl-project/sglang/pull/12165" class="pr-row" target="_blank" rel="noopener noreferrer">
+                    <a href="https://github.com/sgl-project/sglang/pull/12165" class="pr-row" target="_blank"
+                        rel="noopener noreferrer">
                         <div class="pr-icon" aria-label="merged">
                             <svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
-                                <path d="M5 3.254V3.25v.005a.75.75 0 110-.005v.004zm.45 1.9a2.25 2.25 0 10-1.95.218v5.256a2.25 2.25 0 101.5 0V7.123A5.735 5.735 0 009.25 9h1.378a2.251 2.251 0 100-1.5H9.25a4.25 4.25 0 01-3.8-2.346zM12.75 9a.75.75 0 100-1.5.75.75 0 000 1.5zm-8.5 4.5a.75.75 0 100-1.5.75.75 0 000 1.5z"/>
+                                <path
+                                    d="M5 3.254V3.25v.005a.75.75 0 110-.005v.004zm.45 1.9a2.25 2.25 0 10-1.95.218v5.256a2.25 2.25 0 101.5 0V7.123A5.735 5.735 0 009.25 9h1.378a2.251 2.251 0 100-1.5H9.25a4.25 4.25 0 01-3.8-2.346zM12.75 9a.75.75 0 100-1.5.75.75 0 000 1.5zm-8.5 4.5a.75.75 0 100-1.5.75.75 0 000 1.5z" />
                             </svg>
                         </div>
                         <div class="pr-main">
@@ -1682,20 +2030,24 @@
                             <div class="pr-line-2">
                                 <span>#12165 by jonahbernard</span>
                                 <span class="pr-association">Contributor</span>
-                                <span>was merged <span data-merged-at="2025-11-04T04:32:54Z">5 months ago</span> &middot; Approved</span>
+                                <span>was merged <span data-merged-at="2025-11-04T04:32:54Z">5 months ago</span>
+                                    &middot; Approved</span>
                             </div>
                         </div>
                         <div class="pr-comments" aria-label="10 comments">
                             <svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
-                                <path d="M1 2.75C1 1.784 1.784 1 2.75 1h10.5c.966 0 1.75.784 1.75 1.75v7.5A1.75 1.75 0 0113.25 12H9.06l-2.573 2.573A1.458 1.458 0 014 13.543V12H2.75A1.75 1.75 0 011 10.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h2a.75.75 0 01.75.75v2.189l2.72-2.72a.75.75 0 01.53-.219h4.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25H2.75z"/>
+                                <path
+                                    d="M1 2.75C1 1.784 1.784 1 2.75 1h10.5c.966 0 1.75.784 1.75 1.75v7.5A1.75 1.75 0 0113.25 12H9.06l-2.573 2.573A1.458 1.458 0 014 13.543V12H2.75A1.75 1.75 0 011 10.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h2a.75.75 0 01.75.75v2.189l2.72-2.72a.75.75 0 01.53-.219h4.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25H2.75z" />
                             </svg>
                             <span>10</span>
                         </div>
                     </a>
-                    <a href="https://github.com/sgl-project/sglang/pull/12227" class="pr-row" target="_blank" rel="noopener noreferrer">
+                    <a href="https://github.com/sgl-project/sglang/pull/12227" class="pr-row" target="_blank"
+                        rel="noopener noreferrer">
                         <div class="pr-icon" aria-label="merged">
                             <svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
-                                <path d="M5 3.254V3.25v.005a.75.75 0 110-.005v.004zm.45 1.9a2.25 2.25 0 10-1.95.218v5.256a2.25 2.25 0 101.5 0V7.123A5.735 5.735 0 009.25 9h1.378a2.251 2.251 0 100-1.5H9.25a4.25 4.25 0 01-3.8-2.346zM12.75 9a.75.75 0 100-1.5.75.75 0 000 1.5zm-8.5 4.5a.75.75 0 100-1.5.75.75 0 000 1.5z"/>
+                                <path
+                                    d="M5 3.254V3.25v.005a.75.75 0 110-.005v.004zm.45 1.9a2.25 2.25 0 10-1.95.218v5.256a2.25 2.25 0 101.5 0V7.123A5.735 5.735 0 009.25 9h1.378a2.251 2.251 0 100-1.5H9.25a4.25 4.25 0 01-3.8-2.346zM12.75 9a.75.75 0 100-1.5.75.75 0 000 1.5zm-8.5 4.5a.75.75 0 100-1.5.75.75 0 000 1.5z" />
                             </svg>
                         </div>
                         <div class="pr-main">
@@ -1707,45 +2059,54 @@
                             <div class="pr-line-2">
                                 <span>#12227 by jonahbernard</span>
                                 <span class="pr-association">Contributor</span>
-                                <span>was merged <span data-merged-at="2025-11-03T19:20:57Z">5 months ago</span> &middot; Approved</span>
+                                <span>was merged <span data-merged-at="2025-11-03T19:20:57Z">5 months ago</span>
+                                    &middot; Approved</span>
                             </div>
                         </div>
                         <div class="pr-comments" aria-label="1 comment">
                             <svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
-                                <path d="M1 2.75C1 1.784 1.784 1 2.75 1h10.5c.966 0 1.75.784 1.75 1.75v7.5A1.75 1.75 0 0113.25 12H9.06l-2.573 2.573A1.458 1.458 0 014 13.543V12H2.75A1.75 1.75 0 011 10.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h2a.75.75 0 01.75.75v2.189l2.72-2.72a.75.75 0 01.53-.219h4.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25H2.75z"/>
+                                <path
+                                    d="M1 2.75C1 1.784 1.784 1 2.75 1h10.5c.966 0 1.75.784 1.75 1.75v7.5A1.75 1.75 0 0113.25 12H9.06l-2.573 2.573A1.458 1.458 0 014 13.543V12H2.75A1.75 1.75 0 011 10.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h2a.75.75 0 01.75.75v2.189l2.72-2.72a.75.75 0 01.53-.219h4.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25H2.75z" />
                             </svg>
                             <span>1</span>
                         </div>
                     </a>
-                    <a href="https://github.com/sgl-project/sglang/pull/11560" class="pr-row" target="_blank" rel="noopener noreferrer">
+                    <a href="https://github.com/sgl-project/sglang/pull/11560" class="pr-row" target="_blank"
+                        rel="noopener noreferrer">
                         <div class="pr-icon" aria-label="merged">
                             <svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
-                                <path d="M5 3.254V3.25v.005a.75.75 0 110-.005v.004zm.45 1.9a2.25 2.25 0 10-1.95.218v5.256a2.25 2.25 0 101.5 0V7.123A5.735 5.735 0 009.25 9h1.378a2.251 2.251 0 100-1.5H9.25a4.25 4.25 0 01-3.8-2.346zM12.75 9a.75.75 0 100-1.5.75.75 0 000 1.5zm-8.5 4.5a.75.75 0 100-1.5.75.75 0 000 1.5z"/>
+                                <path
+                                    d="M5 3.254V3.25v.005a.75.75 0 110-.005v.004zm.45 1.9a2.25 2.25 0 10-1.95.218v5.256a2.25 2.25 0 101.5 0V7.123A5.735 5.735 0 009.25 9h1.378a2.251 2.251 0 100-1.5H9.25a4.25 4.25 0 01-3.8-2.346zM12.75 9a.75.75 0 100-1.5.75.75 0 000 1.5zm-8.5 4.5a.75.75 0 100-1.5.75.75 0 000 1.5z" />
                             </svg>
                         </div>
                         <div class="pr-main">
                             <div class="pr-line-1">
                                 <span class="pr-repo">sgl-project/sglang</span>
-                                <span class="pr-title">docs(server-arguments): add allowed options for each argument</span>
+                                <span class="pr-title">docs(server-arguments): add allowed options for each
+                                    argument</span>
                                 <span class="pr-label pr-label-run-ci">run-ci</span>
                             </div>
                             <div class="pr-line-2">
                                 <span>#11560 by jonahbernard</span>
                                 <span class="pr-association">Contributor</span>
-                                <span>was merged <span data-merged-at="2025-10-24T18:49:20Z">6 months ago</span> &middot; Approved</span>
+                                <span>was merged <span data-merged-at="2025-10-24T18:49:20Z">6 months ago</span>
+                                    &middot; Approved</span>
                             </div>
                         </div>
                         <div class="pr-comments" aria-label="16 comments">
                             <svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
-                                <path d="M1 2.75C1 1.784 1.784 1 2.75 1h10.5c.966 0 1.75.784 1.75 1.75v7.5A1.75 1.75 0 0113.25 12H9.06l-2.573 2.573A1.458 1.458 0 014 13.543V12H2.75A1.75 1.75 0 011 10.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h2a.75.75 0 01.75.75v2.189l2.72-2.72a.75.75 0 01.53-.219h4.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25H2.75z"/>
+                                <path
+                                    d="M1 2.75C1 1.784 1.784 1 2.75 1h10.5c.966 0 1.75.784 1.75 1.75v7.5A1.75 1.75 0 0113.25 12H9.06l-2.573 2.573A1.458 1.458 0 014 13.543V12H2.75A1.75 1.75 0 011 10.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h2a.75.75 0 01.75.75v2.189l2.72-2.72a.75.75 0 01.53-.219h4.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25H2.75z" />
                             </svg>
                             <span>16</span>
                         </div>
                     </a>
-                    <a href="https://github.com/sgl-project/sglang/pull/11795" class="pr-row" target="_blank" rel="noopener noreferrer">
+                    <a href="https://github.com/sgl-project/sglang/pull/11795" class="pr-row" target="_blank"
+                        rel="noopener noreferrer">
                         <div class="pr-icon" aria-label="merged">
                             <svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
-                                <path d="M5 3.254V3.25v.005a.75.75 0 110-.005v.004zm.45 1.9a2.25 2.25 0 10-1.95.218v5.256a2.25 2.25 0 101.5 0V7.123A5.735 5.735 0 009.25 9h1.378a2.251 2.251 0 100-1.5H9.25a4.25 4.25 0 01-3.8-2.346zM12.75 9a.75.75 0 100-1.5.75.75 0 000 1.5zm-8.5 4.5a.75.75 0 100-1.5.75.75 0 000 1.5z"/>
+                                <path
+                                    d="M5 3.254V3.25v.005a.75.75 0 110-.005v.004zm.45 1.9a2.25 2.25 0 10-1.95.218v5.256a2.25 2.25 0 101.5 0V7.123A5.735 5.735 0 009.25 9h1.378a2.251 2.251 0 100-1.5H9.25a4.25 4.25 0 01-3.8-2.346zM12.75 9a.75.75 0 100-1.5.75.75 0 000 1.5zm-8.5 4.5a.75.75 0 100-1.5.75.75 0 000 1.5z" />
                             </svg>
                         </div>
                         <div class="pr-main">
@@ -1757,20 +2118,24 @@
                             <div class="pr-line-2">
                                 <span>#11795 by jonahbernard</span>
                                 <span class="pr-association">Contributor</span>
-                                <span>was merged <span data-merged-at="2025-10-24T01:47:28Z">6 months ago</span> &middot; Approved</span>
+                                <span>was merged <span data-merged-at="2025-10-24T01:47:28Z">6 months ago</span>
+                                    &middot; Approved</span>
                             </div>
                         </div>
                         <div class="pr-comments" aria-label="14 comments">
                             <svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
-                                <path d="M1 2.75C1 1.784 1.784 1 2.75 1h10.5c.966 0 1.75.784 1.75 1.75v7.5A1.75 1.75 0 0113.25 12H9.06l-2.573 2.573A1.458 1.458 0 014 13.543V12H2.75A1.75 1.75 0 011 10.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h2a.75.75 0 01.75.75v2.189l2.72-2.72a.75.75 0 01.53-.219h4.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25H2.75z"/>
+                                <path
+                                    d="M1 2.75C1 1.784 1.784 1 2.75 1h10.5c.966 0 1.75.784 1.75 1.75v7.5A1.75 1.75 0 0113.25 12H9.06l-2.573 2.573A1.458 1.458 0 014 13.543V12H2.75A1.75 1.75 0 011 10.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h2a.75.75 0 01.75.75v2.189l2.72-2.72a.75.75 0 01.53-.219h4.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25H2.75z" />
                             </svg>
                             <span>14</span>
                         </div>
                     </a>
-                    <a href="https://github.com/sgl-project/sglang/pull/11485" class="pr-row" target="_blank" rel="noopener noreferrer">
+                    <a href="https://github.com/sgl-project/sglang/pull/11485" class="pr-row" target="_blank"
+                        rel="noopener noreferrer">
                         <div class="pr-icon" aria-label="merged">
                             <svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
-                                <path d="M5 3.254V3.25v.005a.75.75 0 110-.005v.004zm.45 1.9a2.25 2.25 0 10-1.95.218v5.256a2.25 2.25 0 101.5 0V7.123A5.735 5.735 0 009.25 9h1.378a2.251 2.251 0 100-1.5H9.25a4.25 4.25 0 01-3.8-2.346zM12.75 9a.75.75 0 100-1.5.75.75 0 000 1.5zm-8.5 4.5a.75.75 0 100-1.5.75.75 0 000 1.5z"/>
+                                <path
+                                    d="M5 3.254V3.25v.005a.75.75 0 110-.005v.004zm.45 1.9a2.25 2.25 0 10-1.95.218v5.256a2.25 2.25 0 101.5 0V7.123A5.735 5.735 0 009.25 9h1.378a2.251 2.251 0 100-1.5H9.25a4.25 4.25 0 01-3.8-2.346zM12.75 9a.75.75 0 100-1.5.75.75 0 000 1.5zm-8.5 4.5a.75.75 0 100-1.5.75.75 0 000 1.5z" />
                             </svg>
                         </div>
                         <div class="pr-main">
@@ -1784,38 +2149,45 @@
                             <div class="pr-line-2">
                                 <span>#11485 by jonahbernard</span>
                                 <span class="pr-association">Contributor</span>
-                                <span>was merged <span data-merged-at="2025-10-13T03:03:27Z">6 months ago</span> &middot; Approved</span>
+                                <span>was merged <span data-merged-at="2025-10-13T03:03:27Z">6 months ago</span>
+                                    &middot; Approved</span>
                             </div>
                         </div>
                         <div class="pr-comments" aria-label="4 comments">
                             <svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
-                                <path d="M1 2.75C1 1.784 1.784 1 2.75 1h10.5c.966 0 1.75.784 1.75 1.75v7.5A1.75 1.75 0 0113.25 12H9.06l-2.573 2.573A1.458 1.458 0 014 13.543V12H2.75A1.75 1.75 0 011 10.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h2a.75.75 0 01.75.75v2.189l2.72-2.72a.75.75 0 01.53-.219h4.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25H2.75z"/>
+                                <path
+                                    d="M1 2.75C1 1.784 1.784 1 2.75 1h10.5c.966 0 1.75.784 1.75 1.75v7.5A1.75 1.75 0 0113.25 12H9.06l-2.573 2.573A1.458 1.458 0 014 13.543V12H2.75A1.75 1.75 0 011 10.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h2a.75.75 0 01.75.75v2.189l2.72-2.72a.75.75 0 01.53-.219h4.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25H2.75z" />
                             </svg>
                             <span>4</span>
                         </div>
                     </a>
-                    <a href="https://github.com/sgl-project/sglang/pull/11483" class="pr-row" target="_blank" rel="noopener noreferrer">
+                    <a href="https://github.com/sgl-project/sglang/pull/11483" class="pr-row" target="_blank"
+                        rel="noopener noreferrer">
                         <div class="pr-icon" aria-label="merged">
                             <svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
-                                <path d="M5 3.254V3.25v.005a.75.75 0 110-.005v.004zm.45 1.9a2.25 2.25 0 10-1.95.218v5.256a2.25 2.25 0 101.5 0V7.123A5.735 5.735 0 009.25 9h1.378a2.251 2.251 0 100-1.5H9.25a4.25 4.25 0 01-3.8-2.346zM12.75 9a.75.75 0 100-1.5.75.75 0 000 1.5zm-8.5 4.5a.75.75 0 100-1.5.75.75 0 000 1.5z"/>
+                                <path
+                                    d="M5 3.254V3.25v.005a.75.75 0 110-.005v.004zm.45 1.9a2.25 2.25 0 10-1.95.218v5.256a2.25 2.25 0 101.5 0V7.123A5.735 5.735 0 009.25 9h1.378a2.251 2.251 0 100-1.5H9.25a4.25 4.25 0 01-3.8-2.346zM12.75 9a.75.75 0 100-1.5.75.75 0 000 1.5zm-8.5 4.5a.75.75 0 100-1.5.75.75 0 000 1.5z" />
                             </svg>
                         </div>
                         <div class="pr-main">
                             <div class="pr-line-1">
                                 <span class="pr-repo">sgl-project/sglang</span>
-                                <span class="pr-title">[router] Add Rust CLI flags for queue size, timeout, and rate limit for token bucket rate limiter</span>
+                                <span class="pr-title">[router] Add Rust CLI flags for queue size, timeout, and rate
+                                    limit for token bucket rate limiter</span>
                                 <span class="pr-label pr-label-router">router</span>
                                 <span class="pr-label pr-label-run-ci">run-ci</span>
                             </div>
                             <div class="pr-line-2">
                                 <span>#11483 by jonahbernard</span>
                                 <span class="pr-association">Contributor</span>
-                                <span>was merged <span data-merged-at="2025-10-13T18:08:48Z">6 months ago</span> &middot; Approved</span>
+                                <span>was merged <span data-merged-at="2025-10-13T18:08:48Z">6 months ago</span>
+                                    &middot; Approved</span>
                             </div>
                         </div>
                         <div class="pr-comments" aria-label="3 comments">
                             <svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
-                                <path d="M1 2.75C1 1.784 1.784 1 2.75 1h10.5c.966 0 1.75.784 1.75 1.75v7.5A1.75 1.75 0 0113.25 12H9.06l-2.573 2.573A1.458 1.458 0 014 13.543V12H2.75A1.75 1.75 0 011 10.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h2a.75.75 0 01.75.75v2.189l2.72-2.72a.75.75 0 01.53-.219h4.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25H2.75z"/>
+                                <path
+                                    d="M1 2.75C1 1.784 1.784 1 2.75 1h10.5c.966 0 1.75.784 1.75 1.75v7.5A1.75 1.75 0 0113.25 12H9.06l-2.573 2.573A1.458 1.458 0 014 13.543V12H2.75A1.75 1.75 0 011 10.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h2a.75.75 0 01.75.75v2.189l2.72-2.72a.75.75 0 01.53-.219h4.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25H2.75z" />
                             </svg>
                             <span>3</span>
                         </div>
@@ -1824,19 +2196,23 @@
 
                 <h3 class="os-section-divider">personal projects</h3>
                 <div class="personal-projects-list">
-                    <a href="https://github.com/Jonahbernard/swe-debug-agent" class="personal-projects-row" target="_blank" rel="noopener noreferrer">
+                    <a href="https://github.com/Jonahbernard/swe-debug-agent" class="personal-projects-row"
+                        target="_blank" rel="noopener noreferrer">
                         <span>SWE AI Agent</span>
                         <span class="personal-projects-date">Jan 2026</span>
                     </a>
-                    <a href="https://github.com/Jonahbernard/compiler-passes-portfolio" class="personal-projects-row" target="_blank" rel="noopener noreferrer">
+                    <a href="https://github.com/Jonahbernard/compiler-passes-portfolio" class="personal-projects-row"
+                        target="_blank" rel="noopener noreferrer">
                         <span>Custom Compiler Passes</span>
                         <span class="personal-projects-date">Feb 2025</span>
                     </a>
-                    <a href="https://github.com/Jonahbernard/ml-algos-ocaml" class="personal-projects-row" target="_blank" rel="noopener noreferrer">
+                    <a href="https://github.com/Jonahbernard/ml-algos-ocaml" class="personal-projects-row"
+                        target="_blank" rel="noopener noreferrer">
                         <span>OCaml ML Algorithms</span>
                         <span class="personal-projects-date">Feb 2025</span>
                     </a>
-                    <a href="https://github.com/Jonahbernard/mini-payment-processing-app" class="personal-projects-row" target="_blank" rel="noopener noreferrer">
+                    <a href="https://github.com/Jonahbernard/mini-payment-processing-app" class="personal-projects-row"
+                        target="_blank" rel="noopener noreferrer">
                         <span>EMV Payment Processing App</span>
                         <span class="personal-projects-date">Mar 2025</span>
                     </a>
@@ -2043,6 +2419,7 @@
             const root = document.getElementById('about-carousel');
             if (!root) return;
             const track = root.querySelector('.carousel-track');
+            const imageBox = root.querySelector('.about-image');
             const caption = root.querySelector('.carousel-caption');
             const dotsContainer = root.querySelector('.carousel-dots');
 
@@ -2101,7 +2478,7 @@
                     const blob = await r.blob();
                     bitmaps[i] = await createImageBitmap(blob);
                     drawSlide(i);
-                } catch (_) {}
+                } catch (_) { }
             });
 
             const ro = new ResizeObserver(entries => {
@@ -2138,52 +2515,118 @@
 
             let startX = 0;
             let startY = 0;
+            let lastDx = 0;
             let dragging = false;
-            let pointerId = null;
-
-            track.addEventListener('pointerdown', (e) => {
-                dragging = true;
-                pointerId = e.pointerId;
-                startX = e.clientX;
-                startY = e.clientY;
-                track.classList.add('is-dragging');
-            });
-
+            let lockedHorizontal = false;
             let pendingDx = null;
             let rafId = 0;
-            track.addEventListener('pointermove', (e) => {
-                if (!dragging || e.pointerId !== pointerId) return;
-                const dx = e.clientX - startX;
-                const dy = e.clientY - startY;
-                if (Math.abs(dx) > Math.abs(dy)) {
-                    e.preventDefault();
-                    pendingDx = dx;
-                    if (!rafId) {
-                        rafId = requestAnimationFrame(() => {
-                            rafId = 0;
-                            if (pendingDx !== null && dragging) render(pendingDx);
-                        });
+            const LOCK = 8;
+
+            function beginDrag(x, y) {
+                dragging = true;
+                lockedHorizontal = false;
+                startX = x;
+                startY = y;
+                lastDx = 0;
+                track.classList.add('is-dragging');
+            }
+
+            // Returns true when motion is locked horizontal and caller should preventDefault.
+            function updateDrag(x, y) {
+                if (!dragging) return false;
+                const dx = x - startX;
+                const dy = y - startY;
+                if (!lockedHorizontal) {
+                    if (Math.abs(dx) > LOCK && Math.abs(dx) > Math.abs(dy)) {
+                        lockedHorizontal = true;
+                    } else if (Math.abs(dy) > LOCK) {
+                        dragging = false;
+                        track.classList.remove('is-dragging');
+                        return false;
+                    } else {
+                        return false;
                     }
                 }
-            });
+                lastDx = dx;
+                pendingDx = dx;
+                if (!rafId) {
+                    rafId = requestAnimationFrame(() => {
+                        rafId = 0;
+                        if (pendingDx !== null && dragging) render(pendingDx);
+                    });
+                }
+                return true;
+            }
 
-            function endDrag(e) {
-                if (!dragging || (pointerId !== null && e.pointerId !== pointerId)) return;
-                const dx = e.clientX - startX;
+            function finishDrag() {
+                const dx = lastDx;
+                const wasHorizontal = lockedHorizontal;
                 dragging = false;
-                pointerId = null;
+                lockedHorizontal = false;
                 pendingDx = null;
                 if (rafId) { cancelAnimationFrame(rafId); rafId = 0; }
                 track.classList.remove('is-dragging');
+                if (!wasHorizontal) return;
                 const threshold = Math.min(80, track.clientWidth * 0.15);
                 if (dx <= -threshold) go(1);
                 else if (dx >= threshold) go(-1);
                 else render();
             }
 
-            track.addEventListener('pointerup', endDrag);
-            track.addEventListener('pointercancel', endDrag);
-            track.addEventListener('pointerleave', endDrag);
+            // Listen on the .about-image box (which never moves) instead of the track,
+            // because the track's transform shifts its hit-test geometry as `index` grows
+            // — on iOS Safari that causes touches on slide 2+ to miss the track entirely.
+            const inputBox = imageBox || track;
+
+            // Mouse / pen via pointer events. Touch is handled below by touch events
+            // because pointer-capture on iOS Safari has been unreliable for repeat swipes.
+            let activePointerId = null;
+            inputBox.addEventListener('pointerdown', (e) => {
+                if (e.pointerType === 'touch') return;
+                activePointerId = e.pointerId;
+                beginDrag(e.clientX, e.clientY);
+            });
+            inputBox.addEventListener('pointermove', (e) => {
+                if (e.pointerType === 'touch' || e.pointerId !== activePointerId) return;
+                updateDrag(e.clientX, e.clientY);
+            });
+            function endPointer(e) {
+                if (e.pointerType === 'touch' || e.pointerId !== activePointerId) return;
+                activePointerId = null;
+                finishDrag();
+            }
+            inputBox.addEventListener('pointerup', endPointer);
+            inputBox.addEventListener('pointercancel', endPointer);
+            inputBox.addEventListener('pointerleave', endPointer);
+
+            // Touch events for mobile.
+            let activeTouchId = null;
+            function findTouch(list) {
+                for (let i = 0; i < list.length; i++) {
+                    if (list[i].identifier === activeTouchId) return list[i];
+                }
+                return null;
+            }
+            inputBox.addEventListener('touchstart', (e) => {
+                if (activeTouchId !== null) return;
+                const t = e.changedTouches[0];
+                activeTouchId = t.identifier;
+                beginDrag(t.clientX, t.clientY);
+            }, { passive: true });
+            inputBox.addEventListener('touchmove', (e) => {
+                const t = findTouch(e.changedTouches);
+                if (!t) return;
+                const horizontal = updateDrag(t.clientX, t.clientY);
+                if (horizontal && e.cancelable) e.preventDefault();
+            }, { passive: false });
+            function endTouch(e) {
+                const ours = findTouch(e.changedTouches);
+                if (!ours && e.touches.length > 0) return;
+                activeTouchId = null;
+                finishDrag();
+            }
+            inputBox.addEventListener('touchend', endTouch);
+            inputBox.addEventListener('touchcancel', endTouch);
 
             render();
         })();
