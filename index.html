@@ -78,6 +78,10 @@
             transition: color 0.2s ease, transform 0.2s ease;
         }
 
+        .header-socials a {
+            color: #000000;
+        }
+
         .social-links a:hover,
         .header-socials a:hover {
             color: var(--brand-color);
@@ -100,8 +104,13 @@
         }
 
         .nav-group a {
+            font-family: 'Oswald', 'Arial Narrow', sans-serif;
+            font-weight: 700;
+            font-size: 15px;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
             text-decoration: none;
-            color: var(--link-color);
+            color: var(--text-color);
             transition: color 0.2s ease;
         }
 
@@ -110,7 +119,11 @@
         }
 
         .header-name {
-            font-size: 20px;
+            font-family: 'Oswald', 'Arial Narrow', sans-serif;
+            font-weight: 700;
+            font-size: 22px;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
             color: var(--brand-color);
             text-decoration: none;
             transition: color 0.2s ease;
@@ -118,6 +131,9 @@
 
         .nav-group a.active {
             color: var(--brand-color);
+            text-decoration: underline;
+            text-decoration-thickness: 2px;
+            text-underline-offset: 4px;
         }
 
         main {
@@ -776,6 +792,156 @@
             background-color: var(--bg-alt);
         }
 
+        .pr-list {
+            display: flex;
+            flex-direction: column;
+            border-top: 1px solid var(--border-color);
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+        }
+
+        .pr-row {
+            display: grid;
+            grid-template-columns: 20px 1fr auto;
+            column-gap: 12px;
+            align-items: start;
+            padding: 12px 16px;
+            border-bottom: 1px solid var(--border-color);
+            text-decoration: none;
+            color: #1f2328;
+            transition: background-color 0.15s ease;
+        }
+
+        .pr-row:hover {
+            background-color: var(--bg-alt);
+        }
+
+        .pr-row:hover .pr-title {
+            color: var(--brand-color);
+        }
+
+        .pr-icon {
+            color: #8250df;
+            padding-top: 2px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .pr-icon svg {
+            width: 16px;
+            height: 16px;
+        }
+
+        .pr-main {
+            min-width: 0;
+        }
+
+        .pr-line-1 {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 8px;
+            font-size: 16px;
+            line-height: 1.35;
+        }
+
+        .pr-repo {
+            font-weight: 600;
+            color: #1f2328;
+        }
+
+        .pr-title {
+            font-weight: 600;
+            color: #1f2328;
+            transition: color 0.15s ease;
+        }
+
+        .pr-label {
+            display: inline-block;
+            padding: 0 7px;
+            border-radius: 999px;
+            font-size: 12px;
+            font-weight: 500;
+            line-height: 18px;
+            white-space: nowrap;
+        }
+
+        .pr-label-run-ci {
+            background-color: #6cce5b;
+            color: #0a230b;
+        }
+
+        .pr-label-documentation {
+            background-color: #0075ca;
+            color: #ffffff;
+        }
+
+        .pr-label-router {
+            background-color: #d4c5f9;
+            color: #24292f;
+        }
+
+        .pr-label-lora {
+            background-color: #fbca04;
+            color: #24292f;
+        }
+
+        .pr-label-quant {
+            background-color: #c5def5;
+            color: #24292f;
+        }
+
+        .pr-label-default {
+            background-color: #ddf4ff;
+            color: #24292f;
+        }
+
+        .pr-line-2 {
+            margin-top: 4px;
+            font-size: 12px;
+            color: #59636e;
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 6px;
+            line-height: 1.5;
+        }
+
+        .pr-association {
+            display: inline-block;
+            padding: 0 7px;
+            border: 1px solid #d1d9e0;
+            border-radius: 999px;
+            font-size: 11px;
+            line-height: 18px;
+            color: #59636e;
+        }
+
+        .pr-comments {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            color: #59636e;
+            font-size: 13px;
+            padding-top: 2px;
+            white-space: nowrap;
+        }
+
+        .pr-comments svg {
+            width: 14px;
+            height: 14px;
+        }
+
+        @media (max-width: 700px) {
+            .pr-row {
+                padding: 10px 12px;
+            }
+
+            .pr-line-1 {
+                font-size: 14px;
+            }
+        }
+
         .square {
             aspect-ratio: 1;
             background-color: var(--bg-alt);
@@ -832,6 +998,17 @@
             font-size: 14px;
             color: var(--muted-color);
             font-style: italic;
+        }
+
+        .square-active {
+            position: absolute;
+            top: 14px;
+            right: 22px;
+            font-family: Georgia, 'Times New Roman', Times, serif;
+            font-size: 12px;
+            color: var(--muted-color);
+            font-style: italic;
+            letter-spacing: 0.02em;
         }
 
         #hobbies {
@@ -948,7 +1125,7 @@
         }
 
         #hobbies::after {
-            content: 'the end. pls email me, connect with me on linkedin, and follow me on github and X!';
+            content: 'the end. pls email me and connect with me on linkedin, github and X!';
             position: absolute;
             bottom: 40px;
             left: max(20px, calc(50% - 620px));
@@ -1155,7 +1332,7 @@
 
         <section id="experience"
             style="min-height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 80px 40px; box-sizing: border-box; background-color: #ffffff;">
-            <div style="max-width: 1200px; width: 100%; display: flex; gap: 400px; align-items: flex-start;">
+            <div style="max-width: 1200px; width: 100%; display: flex; gap: 215px; align-items: flex-start;">
                 <div style="flex: 1; text-align: left;">
                     <h2 class="section-heading" style="margin-top: 0; font-size: 36px;">Experience</h2>
                     <div class="experience-entry"
@@ -1242,21 +1419,417 @@
                 <h2 class="os-title">My open-source contributions</h2>
 
                 <h3 class="os-section-divider">SGLang</h3>
+                <h4 class="os-subsection">Major projects</h4>
                 <div class="grid">
                     <a href="details.html?id=sglang-apple-silicon" class="square">
+                        <div class="square-active"><span class="status">active project<span class="status-dot"></span></span></div>
                         <div class="square-title">Enable SGLang on Apple Silicon</div>
-                        <div class="square-desc">i am leading the effort to enable optimized llm inference via sglang on apple devices. this involves collaborating w/ a team of open-source contributors to write custom metal kernels, scheduler logic, and profiling logic</div>
+                        <div class="square-desc">i am leading the effort to enable optimized llm inference via sglang on
+                            apple devices. this involves collaborating w/ a team of open-source contributors to write
+                            custom metal kernels, scheduler logic, and profiling logic</div>
                         <div class="square-date">Feb 21, 2026 – Present</div>
                     </a>
                     <a href="details.html?id=lora-moe-layers" class="square">
+                        <div class="square-active"><span class="status">active project<span class="status-dot"></span></span></div>
                         <div class="square-title">Enable LoRA on MoE Layers</div>
-                        <div class="square-desc">i led the effort to enable optimized inference of lora on the moe layers. this involved integration custom triton and cuda kernels and adding python infra to connect lora to the current moe logic</div>
-                        <div class="square-date">Nov 28, 2025 – Mar 24, 2026</div>
+                        <div class="square-desc">i led the effort to enable optimized inference of lora on the moe
+                            layers. this involved integration custom triton and cuda kernels and adding python infra to
+                            connect lora to the current moe logic</div>
+                        <div class="square-date">Nov 28, 2025 – Present</div>
                     </a>
                     <a href="details.html?id=refactor-moe-sglang" class="square">
+                        <div class="square-active"><span class="status">active project<span class="status-dot"></span></span></div>
                         <div class="square-title">Refactor MoE Code</div>
-                        <div class="square-desc">i worked with a team of open-source contributors to refactor the core moe logic in sglang to be more extensible and maintainable</div>
+                        <div class="square-desc">i worked with a team of open-source contributors to refactor the core
+                            moe logic in sglang to be more extensible and maintainable</div>
                         <div class="square-date">Oct 28, 2026 – Present</div>
+                    </a>
+                </div>
+
+                <h4 class="os-subsection">Full list of PRs</h4>
+                <div class="pr-list">
+                    <a href="https://github.com/sgl-project/sglang/pull/23006" class="pr-row" target="_blank" rel="noopener noreferrer">
+                        <div class="pr-icon" aria-label="merged">
+                            <svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
+                                <path d="M5 3.254V3.25v.005a.75.75 0 110-.005v.004zm.45 1.9a2.25 2.25 0 10-1.95.218v5.256a2.25 2.25 0 101.5 0V7.123A5.735 5.735 0 009.25 9h1.378a2.251 2.251 0 100-1.5H9.25a4.25 4.25 0 01-3.8-2.346zM12.75 9a.75.75 0 100-1.5.75.75 0 000 1.5zm-8.5 4.5a.75.75 0 100-1.5.75.75 0 000 1.5z"/>
+                            </svg>
+                        </div>
+                        <div class="pr-main">
+                            <div class="pr-line-1">
+                                <span class="pr-repo">sgl-project/sglang</span>
+                                <span class="pr-title">[Pipeline Parallelism][Bug] Fix scheduler hang in pipeline parallelism setup</span>
+                                <span class="pr-label pr-label-run-ci">run-ci</span>
+                            </div>
+                            <div class="pr-line-2">
+                                <span>#23006 by jonahbernard</span>
+                                <span class="pr-association">Contributor</span>
+                                <span>was merged <span data-merged-at="2026-04-17T06:50:48Z">last week</span> &middot; Approved</span>
+                            </div>
+                        </div>
+                        <div class="pr-comments" aria-label="7 comments">
+                            <svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
+                                <path d="M1 2.75C1 1.784 1.784 1 2.75 1h10.5c.966 0 1.75.784 1.75 1.75v7.5A1.75 1.75 0 0113.25 12H9.06l-2.573 2.573A1.458 1.458 0 014 13.543V12H2.75A1.75 1.75 0 011 10.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h2a.75.75 0 01.75.75v2.189l2.72-2.72a.75.75 0 01.53-.219h4.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25H2.75z"/>
+                            </svg>
+                            <span>7</span>
+                        </div>
+                    </a>
+                    <a href="https://github.com/sgl-project/sglang/pull/22159" class="pr-row" target="_blank" rel="noopener noreferrer">
+                        <div class="pr-icon" aria-label="merged">
+                            <svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
+                                <path d="M5 3.254V3.25v.005a.75.75 0 110-.005v.004zm.45 1.9a2.25 2.25 0 10-1.95.218v5.256a2.25 2.25 0 101.5 0V7.123A5.735 5.735 0 009.25 9h1.378a2.251 2.251 0 100-1.5H9.25a4.25 4.25 0 01-3.8-2.346zM12.75 9a.75.75 0 100-1.5.75.75 0 000 1.5zm-8.5 4.5a.75.75 0 100-1.5.75.75 0 000 1.5z"/>
+                            </svg>
+                        </div>
+                        <div class="pr-main">
+                            <div class="pr-line-1">
+                                <span class="pr-repo">sgl-project/sglang</span>
+                                <span class="pr-title">Add MLX profiling to bench_one_batch.py</span>
+                                <span class="pr-label pr-label-run-ci">run-ci</span>
+                            </div>
+                            <div class="pr-line-2">
+                                <span>#22159 by jonahbernard</span>
+                                <span class="pr-association">Contributor</span>
+                                <span>was merged <span data-merged-at="2026-04-09T12:45:22Z">2 weeks ago</span> &middot; Approved</span>
+                            </div>
+                        </div>
+                        <div class="pr-comments" aria-label="7 comments">
+                            <svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
+                                <path d="M1 2.75C1 1.784 1.784 1 2.75 1h10.5c.966 0 1.75.784 1.75 1.75v7.5A1.75 1.75 0 0113.25 12H9.06l-2.573 2.573A1.458 1.458 0 014 13.543V12H2.75A1.75 1.75 0 011 10.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h2a.75.75 0 01.75.75v2.189l2.72-2.72a.75.75 0 01.53-.219h4.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25H2.75z"/>
+                            </svg>
+                            <span>7</span>
+                        </div>
+                    </a>
+                    <a href="https://github.com/sgl-project/sglang/pull/14105" class="pr-row" target="_blank" rel="noopener noreferrer">
+                        <div class="pr-icon" aria-label="merged">
+                            <svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
+                                <path d="M5 3.254V3.25v.005a.75.75 0 110-.005v.004zm.45 1.9a2.25 2.25 0 10-1.95.218v5.256a2.25 2.25 0 101.5 0V7.123A5.735 5.735 0 009.25 9h1.378a2.251 2.251 0 100-1.5H9.25a4.25 4.25 0 01-3.8-2.346zM12.75 9a.75.75 0 100-1.5.75.75 0 000 1.5zm-8.5 4.5a.75.75 0 100-1.5.75.75 0 000 1.5z"/>
+                            </svg>
+                        </div>
+                        <div class="pr-main">
+                            <div class="pr-line-1">
+                                <span class="pr-repo">sgl-project/sglang</span>
+                                <span class="pr-title">[LoRA][III] Add LoRA support for MoE layers and enable TP</span>
+                                <span class="pr-label pr-label-lora">lora</span>
+                                <span class="pr-label pr-label-documentation">documentation</span>
+                                <span class="pr-label pr-label-quant">quant</span>
+                                <span class="pr-label pr-label-run-ci">run-ci</span>
+                            </div>
+                            <div class="pr-line-2">
+                                <span>#14105 by jonahbernard</span>
+                                <span class="pr-association">Contributor</span>
+                                <span>was merged <span data-merged-at="2026-03-24T20:14:15Z">last month</span> &middot; Approved</span>
+                            </div>
+                        </div>
+                        <div class="pr-comments" aria-label="83 comments">
+                            <svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
+                                <path d="M1 2.75C1 1.784 1.784 1 2.75 1h10.5c.966 0 1.75.784 1.75 1.75v7.5A1.75 1.75 0 0113.25 12H9.06l-2.573 2.573A1.458 1.458 0 014 13.543V12H2.75A1.75 1.75 0 011 10.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h2a.75.75 0 01.75.75v2.189l2.72-2.72a.75.75 0 01.53-.219h4.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25H2.75z"/>
+                            </svg>
+                            <span>83</span>
+                        </div>
+                    </a>
+                    <a href="https://github.com/sgl-project/sglang/pull/19711" class="pr-row" target="_blank" rel="noopener noreferrer">
+                        <div class="pr-icon" aria-label="merged">
+                            <svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
+                                <path d="M5 3.254V3.25v.005a.75.75 0 110-.005v.004zm.45 1.9a2.25 2.25 0 10-1.95.218v5.256a2.25 2.25 0 101.5 0V7.123A5.735 5.735 0 009.25 9h1.378a2.251 2.251 0 100-1.5H9.25a4.25 4.25 0 01-3.8-2.346zM12.75 9a.75.75 0 100-1.5.75.75 0 000 1.5zm-8.5 4.5a.75.75 0 100-1.5.75.75 0 000 1.5z"/>
+                            </svg>
+                        </div>
+                        <div class="pr-main">
+                            <div class="pr-line-1">
+                                <span class="pr-repo">sgl-project/sglang</span>
+                                <span class="pr-title">[LoRA][II] Add fused MOE LoRA Triton kernel and tests</span>
+                                <span class="pr-label pr-label-lora">lora</span>
+                                <span class="pr-label pr-label-run-ci">run-ci</span>
+                            </div>
+                            <div class="pr-line-2">
+                                <span>#19711 by yushengsu-thu</span>
+                                <span class="pr-association">Collaborator</span>
+                                <span>was merged <span data-merged-at="2026-03-19T02:58:14Z">last month</span> &middot; Approved</span>
+                            </div>
+                        </div>
+                        <div class="pr-comments" aria-label="8 comments">
+                            <svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
+                                <path d="M1 2.75C1 1.784 1.784 1 2.75 1h10.5c.966 0 1.75.784 1.75 1.75v7.5A1.75 1.75 0 0113.25 12H9.06l-2.573 2.573A1.458 1.458 0 014 13.543V12H2.75A1.75 1.75 0 011 10.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h2a.75.75 0 01.75.75v2.189l2.72-2.72a.75.75 0 01.53-.219h4.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25H2.75z"/>
+                            </svg>
+                            <span>8</span>
+                        </div>
+                    </a>
+                    <a href="https://github.com/sgl-project/sglang/pull/19710" class="pr-row" target="_blank" rel="noopener noreferrer">
+                        <div class="pr-icon" aria-label="merged">
+                            <svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
+                                <path d="M5 3.254V3.25v.005a.75.75 0 110-.005v.004zm.45 1.9a2.25 2.25 0 10-1.95.218v5.256a2.25 2.25 0 101.5 0V7.123A5.735 5.735 0 009.25 9h1.378a2.251 2.251 0 100-1.5H9.25a4.25 4.25 0 01-3.8-2.346zM12.75 9a.75.75 0 100-1.5.75.75 0 000 1.5zm-8.5 4.5a.75.75 0 100-1.5.75.75 0 000 1.5z"/>
+                            </svg>
+                        </div>
+                        <div class="pr-main">
+                            <div class="pr-line-1">
+                                <span class="pr-repo">sgl-project/sglang</span>
+                                <span class="pr-title">[LoRA][I] Add MOE LoRA JIT alignment kernel and tests</span>
+                                <span class="pr-label pr-label-lora">lora</span>
+                                <span class="pr-label pr-label-run-ci">run-ci</span>
+                            </div>
+                            <div class="pr-line-2">
+                                <span>#19710 by yushengsu-thu</span>
+                                <span class="pr-association">Collaborator</span>
+                                <span>was merged <span data-merged-at="2026-03-12T19:23:46Z">last month</span> &middot; Approved</span>
+                            </div>
+                        </div>
+                        <div class="pr-comments" aria-label="18 comments">
+                            <svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
+                                <path d="M1 2.75C1 1.784 1.784 1 2.75 1h10.5c.966 0 1.75.784 1.75 1.75v7.5A1.75 1.75 0 0113.25 12H9.06l-2.573 2.573A1.458 1.458 0 014 13.543V12H2.75A1.75 1.75 0 011 10.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h2a.75.75 0 01.75.75v2.189l2.72-2.72a.75.75 0 01.53-.219h4.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25H2.75z"/>
+                            </svg>
+                            <span>18</span>
+                        </div>
+                    </a>
+                    <a href="https://github.com/sgl-project/sglang/pull/18492" class="pr-row" target="_blank" rel="noopener noreferrer">
+                        <div class="pr-icon" aria-label="merged">
+                            <svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
+                                <path d="M5 3.254V3.25v.005a.75.75 0 110-.005v.004zm.45 1.9a2.25 2.25 0 10-1.95.218v5.256a2.25 2.25 0 101.5 0V7.123A5.735 5.735 0 009.25 9h1.378a2.251 2.251 0 100-1.5H9.25a4.25 4.25 0 01-3.8-2.346zM12.75 9a.75.75 0 100-1.5.75.75 0 000 1.5zm-8.5 4.5a.75.75 0 100-1.5.75.75 0 000 1.5z"/>
+                            </svg>
+                        </div>
+                        <div class="pr-main">
+                            <div class="pr-line-1">
+                                <span class="pr-repo">sgl-project/sglang</span>
+                                <span class="pr-title">[args] Add Expert Parallelism Argument To SRT Runner</span>
+                                <span class="pr-label pr-label-run-ci">run-ci</span>
+                            </div>
+                            <div class="pr-line-2">
+                                <span>#18492 by jonahbernard</span>
+                                <span class="pr-association">Contributor</span>
+                                <span>was merged <span data-merged-at="2026-03-03T22:16:36Z">last month</span> &middot; Approved</span>
+                            </div>
+                        </div>
+                        <div class="pr-comments" aria-label="2 comments">
+                            <svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
+                                <path d="M1 2.75C1 1.784 1.784 1 2.75 1h10.5c.966 0 1.75.784 1.75 1.75v7.5A1.75 1.75 0 0113.25 12H9.06l-2.573 2.573A1.458 1.458 0 014 13.543V12H2.75A1.75 1.75 0 011 10.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h2a.75.75 0 01.75.75v2.189l2.72-2.72a.75.75 0 01.53-.219h4.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25H2.75z"/>
+                            </svg>
+                            <span>2</span>
+                        </div>
+                    </a>
+                    <a href="https://github.com/sgl-project/sglang/pull/19266" class="pr-row" target="_blank" rel="noopener noreferrer">
+                        <div class="pr-icon" aria-label="merged">
+                            <svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
+                                <path d="M5 3.254V3.25v.005a.75.75 0 110-.005v.004zm.45 1.9a2.25 2.25 0 10-1.95.218v5.256a2.25 2.25 0 101.5 0V7.123A5.735 5.735 0 009.25 9h1.378a2.251 2.251 0 100-1.5H9.25a4.25 4.25 0 01-3.8-2.346zM12.75 9a.75.75 0 100-1.5.75.75 0 000 1.5zm-8.5 4.5a.75.75 0 100-1.5.75.75 0 000 1.5z"/>
+                            </svg>
+                        </div>
+                        <div class="pr-main">
+                            <div class="pr-line-1">
+                                <span class="pr-repo">sgl-project/sglang</span>
+                                <span class="pr-title">[MoE Refactor] Refactor FlashInferFusedMoE into FusedMoE and flashinfer_trtllm.py</span>
+                                <span class="pr-label pr-label-quant">quant</span>
+                                <span class="pr-label pr-label-run-ci">run-ci</span>
+                            </div>
+                            <div class="pr-line-2">
+                                <span>#19266 by jonahbernard</span>
+                                <span class="pr-association">Contributor</span>
+                                <span>was merged <span data-merged-at="2026-02-25T00:47:53Z">2 months ago</span> &middot; Approved</span>
+                            </div>
+                        </div>
+                        <div class="pr-comments" aria-label="2 comments">
+                            <svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
+                                <path d="M1 2.75C1 1.784 1.784 1 2.75 1h10.5c.966 0 1.75.784 1.75 1.75v7.5A1.75 1.75 0 0113.25 12H9.06l-2.573 2.573A1.458 1.458 0 014 13.543V12H2.75A1.75 1.75 0 011 10.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h2a.75.75 0 01.75.75v2.189l2.72-2.72a.75.75 0 01.53-.219h4.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25H2.75z"/>
+                            </svg>
+                            <span>2</span>
+                        </div>
+                    </a>
+                    <a href="https://github.com/sgl-project/sglang/pull/16280" class="pr-row" target="_blank" rel="noopener noreferrer">
+                        <div class="pr-icon" aria-label="merged">
+                            <svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
+                                <path d="M5 3.254V3.25v.005a.75.75 0 110-.005v.004zm.45 1.9a2.25 2.25 0 10-1.95.218v5.256a2.25 2.25 0 101.5 0V7.123A5.735 5.735 0 009.25 9h1.378a2.251 2.251 0 100-1.5H9.25a4.25 4.25 0 01-3.8-2.346zM12.75 9a.75.75 0 100-1.5.75.75 0 000 1.5zm-8.5 4.5a.75.75 0 100-1.5.75.75 0 000 1.5z"/>
+                            </svg>
+                        </div>
+                        <div class="pr-main">
+                            <div class="pr-line-1">
+                                <span class="pr-repo">sgl-project/sglang</span>
+                                <span class="pr-title">Add MoE Integration Tests For CUTLASS Coverage</span>
+                            </div>
+                            <div class="pr-line-2">
+                                <span>#16280 by jonahbernard</span>
+                                <span class="pr-association">Contributor</span>
+                                <span>was merged <span data-merged-at="2026-01-05T19:26:11Z">3 months ago</span> &middot; Approved</span>
+                            </div>
+                        </div>
+                        <div class="pr-comments" aria-label="5 comments">
+                            <svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
+                                <path d="M1 2.75C1 1.784 1.784 1 2.75 1h10.5c.966 0 1.75.784 1.75 1.75v7.5A1.75 1.75 0 0113.25 12H9.06l-2.573 2.573A1.458 1.458 0 014 13.543V12H2.75A1.75 1.75 0 011 10.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h2a.75.75 0 01.75.75v2.189l2.72-2.72a.75.75 0 01.53-.219h4.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25H2.75z"/>
+                            </svg>
+                            <span>5</span>
+                        </div>
+                    </a>
+                    <a href="https://github.com/sgl-project/sglang/pull/12090" class="pr-row" target="_blank" rel="noopener noreferrer">
+                        <div class="pr-icon" aria-label="merged">
+                            <svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
+                                <path d="M5 3.254V3.25v.005a.75.75 0 110-.005v.004zm.45 1.9a2.25 2.25 0 10-1.95.218v5.256a2.25 2.25 0 101.5 0V7.123A5.735 5.735 0 009.25 9h1.378a2.251 2.251 0 100-1.5H9.25a4.25 4.25 0 01-3.8-2.346zM12.75 9a.75.75 0 100-1.5.75.75 0 000 1.5zm-8.5 4.5a.75.75 0 100-1.5.75.75 0 000 1.5z"/>
+                            </svg>
+                        </div>
+                        <div class="pr-main">
+                            <div class="pr-line-1">
+                                <span class="pr-repo">sgl-project/sglang</span>
+                                <span class="pr-title">[MoE] Add Comprehensive MoE Integration Tests</span>
+                                <span class="pr-label pr-label-run-ci">run-ci</span>
+                            </div>
+                            <div class="pr-line-2">
+                                <span>#12090 by jonahbernard</span>
+                                <span class="pr-association">Contributor</span>
+                                <span>was merged <span data-merged-at="2025-11-07T08:34:46Z">5 months ago</span> &middot; Approved</span>
+                            </div>
+                        </div>
+                        <div class="pr-comments" aria-label="0 comments">
+                            <svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
+                                <path d="M1 2.75C1 1.784 1.784 1 2.75 1h10.5c.966 0 1.75.784 1.75 1.75v7.5A1.75 1.75 0 0113.25 12H9.06l-2.573 2.573A1.458 1.458 0 014 13.543V12H2.75A1.75 1.75 0 011 10.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h2a.75.75 0 01.75.75v2.189l2.72-2.72a.75.75 0 01.53-.219h4.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25H2.75z"/>
+                            </svg>
+                            <span>0</span>
+                        </div>
+                    </a>
+                    <a href="https://github.com/sgl-project/sglang/pull/12165" class="pr-row" target="_blank" rel="noopener noreferrer">
+                        <div class="pr-icon" aria-label="merged">
+                            <svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
+                                <path d="M5 3.254V3.25v.005a.75.75 0 110-.005v.004zm.45 1.9a2.25 2.25 0 10-1.95.218v5.256a2.25 2.25 0 101.5 0V7.123A5.735 5.735 0 009.25 9h1.378a2.251 2.251 0 100-1.5H9.25a4.25 4.25 0 01-3.8-2.346zM12.75 9a.75.75 0 100-1.5.75.75 0 000 1.5zm-8.5 4.5a.75.75 0 100-1.5.75.75 0 000 1.5z"/>
+                            </svg>
+                        </div>
+                        <div class="pr-main">
+                            <div class="pr-line-1">
+                                <span class="pr-repo">sgl-project/sglang</span>
+                                <span class="pr-title">[Qwen3 VL] Add LoRA support for Qwen 3 VL</span>
+                                <span class="pr-label pr-label-run-ci">run-ci</span>
+                            </div>
+                            <div class="pr-line-2">
+                                <span>#12165 by jonahbernard</span>
+                                <span class="pr-association">Contributor</span>
+                                <span>was merged <span data-merged-at="2025-11-04T04:32:54Z">5 months ago</span> &middot; Approved</span>
+                            </div>
+                        </div>
+                        <div class="pr-comments" aria-label="10 comments">
+                            <svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
+                                <path d="M1 2.75C1 1.784 1.784 1 2.75 1h10.5c.966 0 1.75.784 1.75 1.75v7.5A1.75 1.75 0 0113.25 12H9.06l-2.573 2.573A1.458 1.458 0 014 13.543V12H2.75A1.75 1.75 0 011 10.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h2a.75.75 0 01.75.75v2.189l2.72-2.72a.75.75 0 01.53-.219h4.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25H2.75z"/>
+                            </svg>
+                            <span>10</span>
+                        </div>
+                    </a>
+                    <a href="https://github.com/sgl-project/sglang/pull/12227" class="pr-row" target="_blank" rel="noopener noreferrer">
+                        <div class="pr-icon" aria-label="merged">
+                            <svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
+                                <path d="M5 3.254V3.25v.005a.75.75 0 110-.005v.004zm.45 1.9a2.25 2.25 0 10-1.95.218v5.256a2.25 2.25 0 101.5 0V7.123A5.735 5.735 0 009.25 9h1.378a2.251 2.251 0 100-1.5H9.25a4.25 4.25 0 01-3.8-2.346zM12.75 9a.75.75 0 100-1.5.75.75 0 000 1.5zm-8.5 4.5a.75.75 0 100-1.5.75.75 0 000 1.5z"/>
+                            </svg>
+                        </div>
+                        <div class="pr-main">
+                            <div class="pr-line-1">
+                                <span class="pr-repo">sgl-project/sglang</span>
+                                <span class="pr-title">[Test] Add parameters to SRTRunner</span>
+                                <span class="pr-label pr-label-run-ci">run-ci</span>
+                            </div>
+                            <div class="pr-line-2">
+                                <span>#12227 by jonahbernard</span>
+                                <span class="pr-association">Contributor</span>
+                                <span>was merged <span data-merged-at="2025-11-03T19:20:57Z">5 months ago</span> &middot; Approved</span>
+                            </div>
+                        </div>
+                        <div class="pr-comments" aria-label="1 comment">
+                            <svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
+                                <path d="M1 2.75C1 1.784 1.784 1 2.75 1h10.5c.966 0 1.75.784 1.75 1.75v7.5A1.75 1.75 0 0113.25 12H9.06l-2.573 2.573A1.458 1.458 0 014 13.543V12H2.75A1.75 1.75 0 011 10.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h2a.75.75 0 01.75.75v2.189l2.72-2.72a.75.75 0 01.53-.219h4.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25H2.75z"/>
+                            </svg>
+                            <span>1</span>
+                        </div>
+                    </a>
+                    <a href="https://github.com/sgl-project/sglang/pull/11560" class="pr-row" target="_blank" rel="noopener noreferrer">
+                        <div class="pr-icon" aria-label="merged">
+                            <svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
+                                <path d="M5 3.254V3.25v.005a.75.75 0 110-.005v.004zm.45 1.9a2.25 2.25 0 10-1.95.218v5.256a2.25 2.25 0 101.5 0V7.123A5.735 5.735 0 009.25 9h1.378a2.251 2.251 0 100-1.5H9.25a4.25 4.25 0 01-3.8-2.346zM12.75 9a.75.75 0 100-1.5.75.75 0 000 1.5zm-8.5 4.5a.75.75 0 100-1.5.75.75 0 000 1.5z"/>
+                            </svg>
+                        </div>
+                        <div class="pr-main">
+                            <div class="pr-line-1">
+                                <span class="pr-repo">sgl-project/sglang</span>
+                                <span class="pr-title">docs(server-arguments): add allowed options for each argument</span>
+                                <span class="pr-label pr-label-run-ci">run-ci</span>
+                            </div>
+                            <div class="pr-line-2">
+                                <span>#11560 by jonahbernard</span>
+                                <span class="pr-association">Contributor</span>
+                                <span>was merged <span data-merged-at="2025-10-24T18:49:20Z">6 months ago</span> &middot; Approved</span>
+                            </div>
+                        </div>
+                        <div class="pr-comments" aria-label="16 comments">
+                            <svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
+                                <path d="M1 2.75C1 1.784 1.784 1 2.75 1h10.5c.966 0 1.75.784 1.75 1.75v7.5A1.75 1.75 0 0113.25 12H9.06l-2.573 2.573A1.458 1.458 0 014 13.543V12H2.75A1.75 1.75 0 011 10.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h2a.75.75 0 01.75.75v2.189l2.72-2.72a.75.75 0 01.53-.219h4.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25H2.75z"/>
+                            </svg>
+                            <span>16</span>
+                        </div>
+                    </a>
+                    <a href="https://github.com/sgl-project/sglang/pull/11795" class="pr-row" target="_blank" rel="noopener noreferrer">
+                        <div class="pr-icon" aria-label="merged">
+                            <svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
+                                <path d="M5 3.254V3.25v.005a.75.75 0 110-.005v.004zm.45 1.9a2.25 2.25 0 10-1.95.218v5.256a2.25 2.25 0 101.5 0V7.123A5.735 5.735 0 009.25 9h1.378a2.251 2.251 0 100-1.5H9.25a4.25 4.25 0 01-3.8-2.346zM12.75 9a.75.75 0 100-1.5.75.75 0 000 1.5zm-8.5 4.5a.75.75 0 100-1.5.75.75 0 000 1.5z"/>
+                            </svg>
+                        </div>
+                        <div class="pr-main">
+                            <div class="pr-line-1">
+                                <span class="pr-repo">sgl-project/sglang</span>
+                                <span class="pr-title">Refactor Triton-kernel MoE runner integration</span>
+                                <span class="pr-label pr-label-run-ci">run-ci</span>
+                            </div>
+                            <div class="pr-line-2">
+                                <span>#11795 by jonahbernard</span>
+                                <span class="pr-association">Contributor</span>
+                                <span>was merged <span data-merged-at="2025-10-24T01:47:28Z">6 months ago</span> &middot; Approved</span>
+                            </div>
+                        </div>
+                        <div class="pr-comments" aria-label="14 comments">
+                            <svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
+                                <path d="M1 2.75C1 1.784 1.784 1 2.75 1h10.5c.966 0 1.75.784 1.75 1.75v7.5A1.75 1.75 0 0113.25 12H9.06l-2.573 2.573A1.458 1.458 0 014 13.543V12H2.75A1.75 1.75 0 011 10.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h2a.75.75 0 01.75.75v2.189l2.72-2.72a.75.75 0 01.53-.219h4.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25H2.75z"/>
+                            </svg>
+                            <span>14</span>
+                        </div>
+                    </a>
+                    <a href="https://github.com/sgl-project/sglang/pull/11485" class="pr-row" target="_blank" rel="noopener noreferrer">
+                        <div class="pr-icon" aria-label="merged">
+                            <svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
+                                <path d="M5 3.254V3.25v.005a.75.75 0 110-.005v.004zm.45 1.9a2.25 2.25 0 10-1.95.218v5.256a2.25 2.25 0 101.5 0V7.123A5.735 5.735 0 009.25 9h1.378a2.251 2.251 0 100-1.5H9.25a4.25 4.25 0 01-3.8-2.346zM12.75 9a.75.75 0 100-1.5.75.75 0 000 1.5zm-8.5 4.5a.75.75 0 100-1.5.75.75 0 000 1.5z"/>
+                            </svg>
+                        </div>
+                        <div class="pr-main">
+                            <div class="pr-line-1">
+                                <span class="pr-repo">sgl-project/sglang</span>
+                                <span class="pr-title">docs(router): add token-bucket rate limiting to the docs</span>
+                                <span class="pr-label pr-label-documentation">documentation</span>
+                                <span class="pr-label pr-label-router">router</span>
+                                <span class="pr-label pr-label-run-ci">run-ci</span>
+                            </div>
+                            <div class="pr-line-2">
+                                <span>#11485 by jonahbernard</span>
+                                <span class="pr-association">Contributor</span>
+                                <span>was merged <span data-merged-at="2025-10-13T03:03:27Z">6 months ago</span> &middot; Approved</span>
+                            </div>
+                        </div>
+                        <div class="pr-comments" aria-label="4 comments">
+                            <svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
+                                <path d="M1 2.75C1 1.784 1.784 1 2.75 1h10.5c.966 0 1.75.784 1.75 1.75v7.5A1.75 1.75 0 0113.25 12H9.06l-2.573 2.573A1.458 1.458 0 014 13.543V12H2.75A1.75 1.75 0 011 10.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h2a.75.75 0 01.75.75v2.189l2.72-2.72a.75.75 0 01.53-.219h4.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25H2.75z"/>
+                            </svg>
+                            <span>4</span>
+                        </div>
+                    </a>
+                    <a href="https://github.com/sgl-project/sglang/pull/11483" class="pr-row" target="_blank" rel="noopener noreferrer">
+                        <div class="pr-icon" aria-label="merged">
+                            <svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
+                                <path d="M5 3.254V3.25v.005a.75.75 0 110-.005v.004zm.45 1.9a2.25 2.25 0 10-1.95.218v5.256a2.25 2.25 0 101.5 0V7.123A5.735 5.735 0 009.25 9h1.378a2.251 2.251 0 100-1.5H9.25a4.25 4.25 0 01-3.8-2.346zM12.75 9a.75.75 0 100-1.5.75.75 0 000 1.5zm-8.5 4.5a.75.75 0 100-1.5.75.75 0 000 1.5z"/>
+                            </svg>
+                        </div>
+                        <div class="pr-main">
+                            <div class="pr-line-1">
+                                <span class="pr-repo">sgl-project/sglang</span>
+                                <span class="pr-title">[router] Add Rust CLI flags for queue size, timeout, and rate limit for token bucket rate limiter</span>
+                                <span class="pr-label pr-label-router">router</span>
+                                <span class="pr-label pr-label-run-ci">run-ci</span>
+                            </div>
+                            <div class="pr-line-2">
+                                <span>#11483 by jonahbernard</span>
+                                <span class="pr-association">Contributor</span>
+                                <span>was merged <span data-merged-at="2025-10-13T18:08:48Z">6 months ago</span> &middot; Approved</span>
+                            </div>
+                        </div>
+                        <div class="pr-comments" aria-label="3 comments">
+                            <svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
+                                <path d="M1 2.75C1 1.784 1.784 1 2.75 1h10.5c.966 0 1.75.784 1.75 1.75v7.5A1.75 1.75 0 0113.25 12H9.06l-2.573 2.573A1.458 1.458 0 014 13.543V12H2.75A1.75 1.75 0 011 10.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h2a.75.75 0 01.75.75v2.189l2.72-2.72a.75.75 0 01.53-.219h4.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25H2.75z"/>
+                            </svg>
+                            <span>3</span>
+                        </div>
                     </a>
                 </div>
 
@@ -1554,6 +2127,39 @@
             nextBtn.addEventListener('click', () => go(1));
 
             render();
+        })();
+
+        (function () {
+            const nodes = document.querySelectorAll('[data-merged-at]');
+            if (!nodes.length) return;
+
+            function timeAgo(iso) {
+                const past = new Date(iso);
+                if (isNaN(past)) return '';
+                const seconds = Math.max(0, Math.floor((Date.now() - past.getTime()) / 1000));
+                const minutes = Math.floor(seconds / 60);
+                const hours = Math.floor(minutes / 60);
+                const days = Math.floor(hours / 24);
+                const weeks = Math.floor(days / 7);
+                const months = Math.floor(days / 30);
+                const years = Math.floor(days / 365);
+                if (years >= 2) return years + ' years ago';
+                if (years === 1) return 'last year';
+                if (months >= 2) return months + ' months ago';
+                if (months === 1) return 'last month';
+                if (weeks >= 2) return weeks + ' weeks ago';
+                if (weeks === 1) return 'last week';
+                if (days === 1) return 'yesterday';
+                if (days >= 1) return days + ' days ago';
+                if (hours >= 1) return hours === 1 ? '1 hour ago' : hours + ' hours ago';
+                if (minutes >= 1) return minutes === 1 ? '1 minute ago' : minutes + ' minutes ago';
+                return 'just now';
+            }
+
+            nodes.forEach(n => {
+                const text = timeAgo(n.getAttribute('data-merged-at'));
+                if (text) n.textContent = text;
+            });
         })();
     </script>
 </body>
