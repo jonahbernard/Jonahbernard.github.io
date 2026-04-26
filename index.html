@@ -491,7 +491,8 @@
             height: 100%;
         }
 
-        .carousel-slide img {
+        .carousel-slide img,
+        .carousel-slide canvas {
             width: 100%;
             height: 100%;
             object-fit: cover;
@@ -2051,18 +2052,17 @@
                 .map(([file, text]) => ({ file, caption: text }))
                 .reverse();
 
-            const imgs = [];
+            const canvases = [];
+            const bitmaps = [];
             photos.forEach((p, i) => {
                 const slide = document.createElement('div');
                 slide.className = 'carousel-slide';
-                const img = document.createElement('img');
-                img.src = 'assets/my_life_carousal/' + encodeURIComponent(p.file);
-                img.alt = p.caption;
-                img.loading = 'eager';
-                img.decoding = 'async';
-                slide.appendChild(img);
+                const canvas = document.createElement('canvas');
+                canvas.setAttribute('role', 'img');
+                canvas.setAttribute('aria-label', p.caption);
+                slide.appendChild(canvas);
                 track.appendChild(slide);
-                imgs.push(img);
+                canvases.push(canvas);
 
                 const dot = document.createElement('button');
                 dot.type = 'button';
@@ -2075,11 +2075,49 @@
                 dotsContainer.appendChild(dot);
             });
 
-            imgs.forEach(img => {
-                const decode = () => { if (img.decode) img.decode().catch(() => {}); };
-                if (img.complete && img.naturalWidth) decode();
-                else img.addEventListener('load', decode, { once: true });
+            function drawSlide(i) {
+                const canvas = canvases[i];
+                const bitmap = bitmaps[i];
+                if (!canvas || !bitmap) return;
+                const dpr = window.devicePixelRatio || 1;
+                const rect = canvas.getBoundingClientRect();
+                const w = Math.max(1, Math.round(rect.width * dpr));
+                const h = Math.max(1, Math.round(rect.height * dpr));
+                if (canvas.width !== w || canvas.height !== h) {
+                    canvas.width = w;
+                    canvas.height = h;
+                }
+                const ctx = canvas.getContext('2d');
+                const scale = Math.max(w / bitmap.width, h / bitmap.height);
+                const dw = bitmap.width * scale;
+                const dh = bitmap.height * scale;
+                ctx.clearRect(0, 0, w, h);
+                ctx.drawImage(bitmap, (w - dw) / 2, (h - dh) / 2, dw, dh);
+            }
+
+            photos.forEach(async (p, i) => {
+                try {
+                    const r = await fetch('assets/my_life_carousal/' + encodeURIComponent(p.file));
+                    const blob = await r.blob();
+                    bitmaps[i] = await createImageBitmap(blob);
+                    drawSlide(i);
+                } catch (_) {}
             });
+
+            const ro = new ResizeObserver(entries => {
+                entries.forEach(e => {
+                    const i = canvases.indexOf(e.target);
+                    if (i !== -1) drawSlide(i);
+                });
+            });
+            canvases.forEach(c => ro.observe(c));
+
+            const io = new IntersectionObserver(entries => {
+                entries.forEach(e => {
+                    if (e.isIntersecting) canvases.forEach((_, i) => drawSlide(i));
+                });
+            });
+            io.observe(root);
 
             const dots = Array.from(dotsContainer.children);
 
