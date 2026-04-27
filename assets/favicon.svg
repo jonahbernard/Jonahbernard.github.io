@@ -1,11 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+  <style>
+    .fg { fill: #000000; }
+    @media (prefers-color-scheme: dark) {
+      .fg { fill: #ffffff; }
+    }
+  </style>
   <text x="16" y="22"
         text-anchor="middle"
         font-family="'Oswald','Arial Narrow',Impact,sans-serif"
         font-weight="700"
         font-size="22"
         letter-spacing="0.5"
-        fill="#000000">JB</text>
-  <rect x="6" y="25" width="20" height="2.4" fill="#000000"/>
+        class="fg">JB</text>
+  <rect x="6" y="25" width="20" height="2.4" class="fg"/>
 </svg>
