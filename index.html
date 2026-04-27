@@ -4,6 +4,29 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-Z6NVSH939N"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-Z6NVSH939N');
+
+      document.addEventListener('click', function (e) {
+        var el = e.target.closest('a, button, [role="button"], input, select, textarea, label, summary, [data-track]') || e.target;
+        if (!el || !(el instanceof Element)) return;
+        var text = (el.innerText || el.textContent || el.value || '').trim().replace(/\s+/g, ' ').slice(0, 100);
+        gtag('event', 'click', {
+          element_tag: el.tagName ? el.tagName.toLowerCase() : '',
+          element_id: el.id || '',
+          element_class: (typeof el.className === 'string' ? el.className : '') || '',
+          element_text: text,
+          element_href: el.href || '',
+          page_path: location.pathname + location.hash
+        });
+      }, true);
+    </script>
     <title>Jonah Bernard</title>
     <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -349,7 +372,7 @@
             font-family: Georgia, 'Times New Roman', Times, serif;
             font-size: 20px;
             line-height: 1.7;
-            max-width: 720px;
+            max-width: 900px;
             margin: 0;
             color: var(--text-color);
         }
@@ -1591,9 +1614,9 @@
                 </div>
                 <div class="hero-body">
                     <h2 class="hero-body-heading">Software Engineer.</h2>
-                    <p class="hero-body-text">i want to build <em>systems that advance civilization</em> and make it
+                    <p class="hero-body-text">i want to build systems that advance civilization and make it
                         easier for humans to live.</p>
-                    <p class="hero-body-text">i'm currently exploring <em>llm inference.</em></p>
+                    <p class="hero-body-text">i'm currently exploring llm inference.</p>
                 </div>
             </div>
         </section>
